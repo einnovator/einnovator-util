@@ -5,3 +5,14 @@ install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
   - mvn test -B
+
+env:
+  - MVNREPO_TOKEN: 14eb87ed18ebe535fddbf9880b0b4f56d723266d0fc32c9d #packagecloud.io
+  - SPRING_PROFILES_ACTION: cloud
+
+deploy:
+  provider: script
+  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
+  skip_cleanup: true
+#  on:
+#    tags: true  
