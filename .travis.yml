@@ -1,4 +1,11 @@
 language: java
+
+services:
+- docker
+cache:
+  directories:
+  - "$HOME/.cache"
+  
 before_install:
   - chmod +x mvnw
 install:
