@@ -40,9 +40,11 @@ deploy:
   - provider: packagecloud
     repository: "einnovator"
     username: "einnovator"
+    file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
     token: "$PCKCLOUD_TOKEN"
     #dist: "ubuntu/precise"
- 
- 
+    skip_cleanup: true
+    overwrite: true
+  
 after_deploy: 
   - "echo 'Deployment Done!'"
