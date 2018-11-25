@@ -30,20 +30,17 @@ before_deploy:
 
 deploy:
   - provider: script
-    access_key_id: "AKIAILQVHTGV6Y7TVRCA"
-    secret_access_key: "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"
-    #access_key_id: "AKIAIVWCFWEK3CKJGIKQ"
-    #secret_access_key: "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"
     skip_cleanup: true
-    draft: true
     script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -DskipTests -Ps3"
   - provider: script
     script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -DskipTests -Ppackagecloud"
     skip_cleanup: true
-    draft: true
   - provider: s3
     access_key_id: "AKIAIVWCFWEK3CKJGIKQ"
     secret_access_key: "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"
+    file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
+    #access_key_id: "AKIAILQVHTGV6Y7TVRCA"
+    #secret_access_key: "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"
     bucket: "einnovator-mvnrepo"
     skip_cleanup: true
   - provider: releases
