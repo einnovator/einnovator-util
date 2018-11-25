@@ -9,9 +9,9 @@ cache:
 before_install:
   - chmod +x mvnw
 install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -s .travis.settings.xml
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -P s3 -s .travis.settings.xml
 script:
-  - mvn test -B -s .travis.settings.xml
+  - mvn test -B  -P s3 -s .travis.settings.xml
 
 env:
   global:
@@ -32,7 +32,7 @@ deploy:
   - provider: script
     skip_cleanup: true
     overwrite: true
-    script: "mvn deploy -DskipTests -Ps3 -s .travis.setting.xml"
+    script: "mvn deploy -DskipTests -Ps3 -s .travis.settings.xml"
   #- provider: script
   #  overwrite: true
   #  script: "mvn deploy -DskipTests -Ppackagecloud"
