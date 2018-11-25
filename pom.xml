@@ -116,13 +116,13 @@
 			
 			<distributionManagement>
 				<repository>
-				  <id>ci</id>
+				  <id>packagecloud</id>
 				  <url>
 				    packagecloud+https://packagecloud.io/einnovator/einnovator
 				  </url>
 				</repository>
 				<snapshotRepository>
-				  <id>ci</id>
+				  <id>packagecloud</id>
 				  <url>
 				    packagecloud+https://packagecloud.io/einnovator/einnovator
 				  </url>

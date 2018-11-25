@@ -29,8 +29,10 @@ before_deploy:
     fi
 
 deploy:
-# - provider: script
-#   script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
+  - provider: script
+    script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -Ppackagecloud"
+    skip_cleanup: true
+    draft: true
   - provider: releases
     api_key: "5adc2bc01f814f242bb87b09d8a21316f29812ea"
     file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
@@ -39,17 +41,18 @@ deploy:
     overwrite: true
     #on:
     # tags: true   
-  - provider: packagecloud
-    repository: "einnovator"
-    username: "einnovator"
-    file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
-    token: "$PCKCLOUD_TOKEN"
-    draft: true
+  #- provider: packagecloud
+  #  repository: "einnovator"
+  #  username: "einnovator"
+  #  file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
+  #  token: "$PCKCLOUD_TOKEN"
+  #  draft: true
+  #  skip_cleanup: true
+  #  overwrite: true
     #on:
     # tags: true
     #dist: "ubuntu/precise"
-    skip_cleanup: true
-    overwrite: true
+
   
 after_deploy: 
   - "echo 'Deployment Done!'"
