@@ -29,7 +29,7 @@ deploy:
 #  provider: script
 #  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
   provider: releases
-  api_key: "$GITHUB_TOKEN"
+  api_key: "5adc2bc01f814f242bb87b09d8a21316f29812ea"
   file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
   skip_cleanup: true
   draft: true
