@@ -166,7 +166,7 @@
 			</distributionManagement>		
 			<repositories>
 			<repository>
-		     	<id>repo.teamed.io</id>
+		     	<id>einnovator-mvnrepo</id>
       			<url>s3://einnovator-mvnrepo/release</url>
 			 </repository>
 			</repositories>

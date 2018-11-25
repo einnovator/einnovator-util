@@ -9,9 +9,9 @@ cache:
 before_install:
   - chmod +x mvnw
 install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -s .travis.settings.xml
 script:
-  - mvn test -B
+  - mvn test -B -s .travis.settings.xml
 
 env:
   global:
@@ -32,10 +32,10 @@ deploy:
   - provider: script
     skip_cleanup: true
     overwrite: true
-    script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -DskipTests -Ps3"
+    script: "mvn deploy -DskipTests -Ps3 -s .travis.setting.xml"
   #- provider: script
   #  overwrite: true
-  #  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -DskipTests -Ppackagecloud"
+  #  script: "mvn deploy -DskipTests -Ppackagecloud"
   #  skip_cleanup: true
   #- provider: s3
   #  access_key_id: "AKIAIVWCFWEK3CKJGIKQ"
@@ -76,5 +76,5 @@ notifications:
   #  - ci@einnovator.org
   slack:
     rooms:
-      - ci:yAq0Xm9vZe8oFIRyX53KlphI
+      - einnovator:yAq0Xm9vZe8oFIRyX53KlphI#ci
   
