@@ -35,13 +35,15 @@ deploy:
     skip_cleanup: true
     draft: false
     overwrite: true
- #  on:
- #    tags: true   
+    on:
+     tags: true   
   - provider: packagecloud
     repository: "einnovator"
     username: "einnovator"
     file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
     token: "$PCKCLOUD_TOKEN"
+    on:
+     tags: true
     #dist: "ubuntu/precise"
     skip_cleanup: true
     overwrite: true
