@@ -14,9 +14,10 @@ script:
   - mvn test -B
 
 env:
-  - MVNREPO_TOKEN: 14eb87ed18ebe535fddbf9880b0b4f56d723266d0fc32c9d #packagecloud.io
-  - GITHUB_TOKEN: "5adc2bc01f814f242bb87b09d8a21316f29812ea" #ci
-  - SPRING_PROFILES_ACTIVE: cloud
+  global:
+    - PCKCLOUD_TOKEN: 14eb87ed18ebe535fddbf9880b0b4f56d723266d0fc32c9d #packagecloud.io
+    - GITHUB_TOKEN: "5adc2bc01f814f242bb87b09d8a21316f29812ea" #ci
+    - SPRING_PROFILES_ACTIVE: cloud
 
 before_deploy:
   - echo 'before_deploy:....'
@@ -26,16 +27,22 @@ before_deploy:
   - git tag $TRAVIS_TAG
 
 deploy:
-#  provider: script
-#  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
-  provider: releases
-  api_key: "5adc2bc01f814f242bb87b09d8a21316f29812ea"
-  file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
-  skip_cleanup: true
-  draft: true
-  overwrite: true
-#  on:
-#    tags: true  
-
-
-after_deploy: "echo 'Deployment Done!'"
+# - provider: script
+#   script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
+  - provider: releases
+    api_key: "5adc2bc01f814f242bb87b09d8a21316f29812ea"
+    file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
+    skip_cleanup: true
+    draft: false
+    overwrite: true
+ #  on:
+ #    tags: true   
+  - provider: packagecloud
+    repository: "einnovator"
+    username: "einnovator"
+    token: "$PCKCLOUD_TOKEN"
+    #dist: "ubuntu/precise"
+ 
+ 
+after_deploy: 
+  - "echo 'Deployment Done!'"
