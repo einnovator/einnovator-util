@@ -101,12 +101,17 @@
 	      <artifactId>maven-packagecloud-wagon</artifactId>
 	      <version>0.0.4</version>
 	    </extension>
+		  <extension>
+	        <groupId>org.kuali.maven.wagons</groupId>
+	        <artifactId>maven-s3-wagon</artifactId>
+	        <version>1.2.1</version>
+	      </extension>
 	  </extensions>
 	</build>
 
 	<profiles>
 		<profile>
-			<id>ci</id>
+			<id>packagecloud</id>
 			<activation>
 				<property>
 					<name>CI</name>
@@ -135,6 +140,34 @@
 			
 			
 		</profile>
+		<profile>
+			<id>s3</id>
+			<activation>
+				<property>
+					<name>CI</name>
+					<value>true</value>
+				</property>
+			</activation>
+			
+			<distributionManagement>
+			    <snapshotRepository>
+			      <id>s3</id>
+			      <url>s3://einnovator-mvnrepo/snapshot</url>
+			    </snapshotRepository>
+			    <repository>
+			      <id>s3</id>
+			      <url>s3://einnovator-mvnrepo/release</url>
+			    </repository>
+			</distributionManagement>
+			
+						
+			<repositories>
+			</repositories>
+			
+			
+		</profile>
+		
+		
 	</profiles>
 
 </project>

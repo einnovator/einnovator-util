@@ -4,5 +4,10 @@
       <id>packagecloud</id>
       <password>${env.PCKCLOUD_TOKEN}</password>
     </server>
+     <server>
+      <id>s3</id>
+      <username>AKIAI9NNNJD5D7X4TUVA</username>
+      <password>t5tZQCwuaRhmlOXfbGE5aTBMFw34iFyxfCEr32av</password>
+    </server>
   </servers>
 </settings>
