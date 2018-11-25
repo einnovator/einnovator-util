@@ -33,7 +33,7 @@ deploy:
     api_key: "5adc2bc01f814f242bb87b09d8a21316f29812ea"
     file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
     skip_cleanup: true
-    draft: false
+    draft: true
     overwrite: true
     on:
      tags: true   
@@ -42,6 +42,7 @@ deploy:
     username: "einnovator"
     file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
     token: "$PCKCLOUD_TOKEN"
+    draft: true
     on:
      tags: true
     #dist: "ubuntu/precise"
