@@ -33,10 +33,10 @@ deploy:
     skip_cleanup: true
     overwrite: true
     script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -DskipTests -Ps3"
-  - provider: script
-    overwrite: true
-    script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -DskipTests -Ppackagecloud"
-    skip_cleanup: true
+  #- provider: script
+  #  overwrite: true
+  #  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -DskipTests -Ppackagecloud"
+  #  skip_cleanup: true
   - provider: s3
     access_key_id: "AKIAIVWCFWEK3CKJGIKQ"
     secret_access_key: "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"
