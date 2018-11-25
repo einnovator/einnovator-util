@@ -69,3 +69,12 @@ deploy:
   
 after_deploy: 
   - "echo 'Deployment Done!'"
+  
+  
+notifications:
+  #email:
+  #  - ci@einnovator.org
+  slack:
+    rooms:
+      - ci:yAq0Xm9vZe8oFIRyX53KlphI
+  

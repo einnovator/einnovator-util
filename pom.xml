@@ -163,16 +163,14 @@
 			      <id>s3</id>
 			      <url>s3://einnovator-mvnrepo/release</url>
 			    </repository>
-			</distributionManagement>
-			
-						
+			</distributionManagement>		
 			<repositories>
+			<repository>
+		     	<id>repo.teamed.io</id>
+      			<url>s3://einnovator-mvnrepo/release</url>
+			 </repository>
 			</repositories>
-			
-			
 		</profile>
-		
-		
 	</profiles>
 
 </project>
