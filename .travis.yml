@@ -39,6 +39,7 @@ deploy:
     access_key_id: "AKIAIVWCFWEK3CKJGIKQ"
     secret_access_key: "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"
     file: "$TRAVIS_BUILD_DIR/target/einnovator-util-1.5.17.0.RELEASE.jar"
+    overwrite: true
     #access_key_id: "AKIAILQVHTGV6Y7TVRCA"
     #secret_access_key: "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"
     bucket: "einnovator-mvnrepo"
