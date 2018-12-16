@@ -19,5 +19,12 @@ public class PageUtil {
 		return new PageImpl<U>(list, new PageRequest(page.getNumber(), page.getSize()), page.getTotalElements());
 	}
 
+	public static String toString(Page<?> page) {
+		if (page==null) {
+			return null;
+		}
+		return String.format("%s %s/%s %s/%s", page.getNumberOfElements(),  page.getContent()!=null ? page.getContent().size() : null, page.getTotalElements(), page.getNumber(), page.getTotalPages());
+	}
+
 
 }

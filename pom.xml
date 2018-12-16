@@ -81,6 +81,7 @@
 		    <groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-jwt</artifactId>
 		</dependency>
+
 <!-- 
  
 	 <dependency>
@@ -166,7 +167,7 @@
 			</distributionManagement>		
 			<repositories>
 			<repository>
-		     	<id>einnovator-mvnrepo</id>
+		     	<id>s3</id>
       			<url>s3://einnovator-mvnrepo/release</url>
 			 </repository>
 			</repositories>
