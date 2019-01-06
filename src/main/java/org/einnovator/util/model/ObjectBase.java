@@ -1,7 +1,6 @@
 package org.einnovator.util.model;
 
 import org.einnovator.util.MappingUtils;
-import org.springframework.core.style.ToStringCreator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,7 +18,7 @@ public abstract class ObjectBase {
 	
 	@Override
 	public String toString() {
-		return toString(new ToStringCreator(this)).toString();
+		return toString(new ToStringCreator(this, new DefaultToStringStyler2())).toString();
 	}
 
 	public ToStringCreator toString(ToStringCreator creator) {

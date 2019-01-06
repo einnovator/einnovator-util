@@ -18,7 +18,8 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -29,7 +30,7 @@ import org.apache.log4j.Logger;
  */
 public class ServiceLoader<T> {
 
-	public Logger logger =Logger.getLogger(this.getClass());
+	public Log logger = LogFactory.getLog(this.getClass());
 
 	private volatile Map<ClassLoader, List<T>> services = new HashMap<ClassLoader, List<T>>();
 
