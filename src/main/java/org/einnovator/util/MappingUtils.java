@@ -30,6 +30,9 @@ public class MappingUtils {
 	}
 
 	public static <T> T fromJson(String obj, Class<T> type) {
+		if (obj==null) {
+			return null;
+		}
 		try {
 			return mapper.readValue(obj, type);
 		} catch (IOException e) {
