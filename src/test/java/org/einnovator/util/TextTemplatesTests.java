@@ -1,5 +1,6 @@
 package org.einnovator.util;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedHashMap;
@@ -59,6 +60,16 @@ public class TextTemplatesTests {
 		assertTrue(result.contains(((Map<String,Object>)b.get("c")).get("y").toString()));
 
 	}
+	
+	@Test
+	public void expandCustomMarkersTest() {
+		TextTemplates t = new TextTemplates("{", "}");
+		Map<String, Object> env = new LinkedHashMap<>();
+		env.put("username", "tdd");
+		String s = t.expand("/home/{username}", env);
+		assertEquals("/home/"+env.get("username"), s);
+	}
+
 	
 	public String makeTestMessage() {
 		StringBuilder sb = new StringBuilder();

@@ -19,17 +19,32 @@ public class UriUtils {
 			throw new RuntimeException(e);
 		}		
 	}
-	
+
+	public static URI appendQueryParameters(URI uri, Object... objs) {
+		for (Object obj: objs) {
+			uri = appendFormattedQueryParameters(uri, MappingUtils.toMap(obj));			
+		}
+		return uri;
+	}
+
+	public static URI appendQueryParameters(URI uri, Object obj) {
+		return appendFormattedQueryParameters(uri, MappingUtils.toMap(obj));
+	}
+
 	public static URI appendQueryParameters(URI uri, Map<String, String> params) {
-		for (Map.Entry<String, String> e: params.entrySet()) {
-			uri = appendQueryParameter(uri, e.getKey(), e.getValue());
+		if (params!=null) {
+			for (Map.Entry<String, String> e: params.entrySet()) {
+				uri = appendQueryParameter(uri, e.getKey(), e.getValue());
+			}
 		}
 		return uri;
 	}
 	
 	public static URI appendFormattedQueryParameters(URI uri, Map<String, Object> params) {
-		for (Map.Entry<String, Object> e: params.entrySet()) {
-			uri = appendQueryParameter(uri, e.getKey(), e.getValue().toString());
+		if (params!=null) {
+			for (Map.Entry<String, Object> e: params.entrySet()) {
+				uri = appendQueryParameter(uri, e.getKey(), e.getValue().toString());
+			}			
 		}
 		return uri;
 	}
@@ -50,10 +65,8 @@ public class UriUtils {
 				query = query + "&" + queryFragment;
 			}
 
-			// first form the URI without query and fragment parts, so that it doesn't re-encode some query string chars
-			// (SECOAUTH-90)
-			URI update = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), uri.getPath(), null,
-					null);
+			// first form the URI without query and fragment parts, so that it doesn't re-encode some query string chars // (SECOAUTH-90)
+			URI update = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), uri.getPath(), null,	null);
 			// now add the encoded query string and the then fragment
 			StringBuffer sb = new StringBuffer(update.toString());
 			sb.append("?");

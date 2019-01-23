@@ -12,23 +12,45 @@ import org.springframework.core.io.Resource;
 
 public class TextTemplates {
 
-	public static final String MARKER = "$";
+	public static final String DEFAULT_START_MARKER = "${";
+	public static final String DEFAULT_END_MARKER = "}";
 	
+	protected String startMarker = DEFAULT_START_MARKER;
+
+	protected String endMarker = DEFAULT_END_MARKER;
+
+	/**
+	 * Create instance of {@code TextTemplates}.
+	 *
+	 */
+	public TextTemplates() {
+	}
+	
+	/**
+	 * Create instance of {@code TextTemplates}.
+	 *
+	 */
+	public TextTemplates(String startMarker, String endMarker) {
+		this.startMarker = startMarker;
+		this.endMarker = endMarker;
+	}
+
+
 	public String expand(String text, Map<String, Object> env) {
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
 		while (i<text.length()) {
-			int i1 = text.indexOf(MARKER+"{", i);
+			int i1 = text.indexOf(startMarker, i);
 			if (i1>=0) {
 				sb.append(text.substring(i, i1));
-				int i2 = text.indexOf("}", i1+2);
+				int i2 = text.indexOf(endMarker, i1+2);
 				if (i2<0) {
 					//ERROR
 					sb.append("?{..?");
 					sb.append(text.substring(i));
 					break;
 				}
-				String var = text.substring(i1+2, i2);
+				String var = text.substring(i1+startMarker.length(), i2);
 				String value = resolve(var, env);
 				if (value==null) {
 					value = "?" + var + "?";
