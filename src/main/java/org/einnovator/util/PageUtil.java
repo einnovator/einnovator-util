@@ -19,6 +19,14 @@ public class PageUtil {
 		return new PageImpl<U>(list, new PageRequest(page.getNumber(), page.getSize()), page.getTotalElements());
 	}
 
+	public static <U> Page<U> create2(PageResult<?> page, Class<U> type) {
+		List<U> list = new ArrayList<>();
+		for (Object obj: page.getContent()) {
+			list.add(MappingUtils.convert(obj, type));
+		}
+		return new PageImpl<U>(list, new PageRequest(page.getNumber(), page.getSize()), page.getTotalElements());
+	}
+
 	public static String toString(Page<?> page) {
 		if (page==null) {
 			return null;

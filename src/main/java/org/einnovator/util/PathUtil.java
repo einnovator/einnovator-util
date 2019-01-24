@@ -91,4 +91,7 @@ public class PathUtil {
 		return false;
 	}
 
+	public static boolean isRoot(String path) {
+		return path==null || path.isEmpty() || DELIMITER.equals(path) || !StringUtils.hasText(path);
+	}
 }
