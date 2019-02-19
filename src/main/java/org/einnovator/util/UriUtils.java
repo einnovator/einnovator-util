@@ -130,4 +130,41 @@ public class UriUtils {
 		return uri.toString().substring(uri.toString().lastIndexOf("/") + 1);
 	}
 
+	private static TextTemplates templates = new TextTemplates();
+
+	public static  String parseUri(String uri, Map<String, String> hosts) {
+		return parseUri(uri, hosts, null);
+	}
+
+	public static  String parseUri(String uri, Map<String, String> hosts, Map<String, Object> env) {
+		if (env!=null) {
+			uri = templates.expand(uri, env);			
+		}
+		if (StringUtils.hasText(uri)) {
+			uri = uri.trim();
+			if (!uri.contains("//")) {
+				String key = uri;
+				String suffix = "";
+				int i = uri.indexOf("/");
+				if (i==0 && uri.length()>1) {
+					key = uri.substring(1);
+					i = key.indexOf("/", 1);
+				}
+				if (i>0 && i<key.length()) {
+					suffix = key.substring(i);
+					key = key.substring(0, i);
+				}
+				if (hosts!=null) {
+					String uri2 = hosts.get(key);
+					if (StringUtils.hasText(uri2)) {
+						uri = uri2 + suffix;
+					}					
+				}
+			}				
+		} else {
+			uri = null;
+		}
+		return uri;
+	}
+
 }

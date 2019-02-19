@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.einnovator.util.model.ToStringCreator;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -20,6 +18,10 @@ public abstract class EntityBase extends ObjectBase {
 	protected Date creationDate;
 
 	protected Date lastModified;
+	
+	protected String creationDateFormatted;
+
+	protected String lastModifiedFormatted;
 	
 	private String createdBy;
 	
@@ -87,11 +89,52 @@ public abstract class EntityBase extends ObjectBase {
 				.append("uuid", uuid);
 	}
 
+	/**
+	 * Get the value of property {@code creationDateFormatted}.
+	 *
+	 * @return the creationDateFormatted
+	 */
+	public String getCreationDateFormatted() {
+		return creationDateFormatted;
+	}
+
+	/**
+	 * Set the value of property {@code creationDateFormatted}.
+	 *
+	 * @param creationDateFormatted the creationDateFormatted to set
+	 */
+	public void setCreationDateFormatted(String creationDateFormatted) {
+		this.creationDateFormatted = creationDateFormatted;
+	}
+
+	/**
+	 * Get the value of property {@code lastModifiedFormatted}.
+	 *
+	 * @return the lastModifiedFormatted
+	 */
+	public String getLastModifiedFormatted() {
+		return lastModifiedFormatted;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedFormatted}.
+	 *
+	 * @param lastModifiedFormatted the lastModifiedFormatted to set
+	 */
+	public void setLastModifiedFormatted(String lastModifiedFormatted) {
+		this.lastModifiedFormatted = lastModifiedFormatted;
+	}
+
 	@Override
 	public ToStringCreator toString2(ToStringCreator creator) {
 		return creator
 				.append("lastModified", lastModified)
-				.append("creationDate", creationDate);
+				.append("creationDate", creationDate)
+				.append("lastModifiedFormatted", lastModifiedFormatted)
+				.append("creationDateFormatted", creationDateFormatted)
+				.append("lastModifiedBy", lastModifiedBy)
+				.append("creationDateBy", createdBy)
+				;
 	}
 
 	public static <T extends EntityBase> boolean findById(String id, Iterable<T> it) {
@@ -126,4 +169,13 @@ public abstract class EntityBase extends ObjectBase {
 		return ids;
 	}
 
+	public static <T extends EntityBase> List<String> getUuids(Iterable<T> it) {
+		List<String> ids = new ArrayList<>();
+		for (EntityBase obj: it) {
+			if (obj.getUuid()!=null) {
+				ids.add(obj.getUuid());				
+			}
+		}
+		return ids;
+	}
 }
