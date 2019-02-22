@@ -160,6 +160,9 @@ public abstract class EntityBase extends ObjectBase {
 	}
 
 	public static <T extends EntityBase> List<String> getIds(Iterable<T> it) {
+		if (it==null) {
+			return null;
+		}
 		List<String> ids = new ArrayList<>();
 		for (EntityBase obj: it) {
 			if (obj.getId()!=null) {
@@ -170,6 +173,9 @@ public abstract class EntityBase extends ObjectBase {
 	}
 
 	public static <T extends EntityBase> List<String> getUuids(Iterable<T> it) {
+		if (it==null) {
+			return null;
+		}
 		List<String> ids = new ArrayList<>();
 		for (EntityBase obj: it) {
 			if (obj.getUuid()!=null) {
