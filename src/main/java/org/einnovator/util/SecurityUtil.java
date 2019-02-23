@@ -28,7 +28,7 @@ public class SecurityUtil {
 		return null;
 	}
 
-	public static Collection<? extends GrantedAuthority> getAuthorites() {
+	public static Collection<? extends GrantedAuthority> getAuthorities() {
 		Authentication authentication = getAuthentication();
 		if (authentication != null) {
 			return authentication.getAuthorities();
