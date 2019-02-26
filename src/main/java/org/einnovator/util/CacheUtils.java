@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 public class CacheUtils {
 
 	@SuppressWarnings("unchecked")
-	protected <T> T getCacheValueForPrincipal(Class<T> type, Cache cache, Object... keys) {
+	public static <T> T getCacheValueForPrincipal(Class<T> type, Cache cache, Object... keys) {
 		if (cache==null) {
 			return null;
 		}
@@ -33,7 +33,7 @@ public class CacheUtils {
 		return null;
 	}
 
-	protected <T> T putCacheValueForPrincipal(T value, Cache cache, Object... keys) {
+	public static <T> T putCacheValueForPrincipal(T value, Cache cache, Object... keys) {
 		if (cache==null) {
 			return value;
 		}
@@ -48,7 +48,7 @@ public class CacheUtils {
 
 
 	@SuppressWarnings("unchecked")
-	protected <T> T getCacheValue(Class<T> type, Cache cache, Object... keys) {
+	public static <T> T getCacheValue(Class<T> type, Cache cache, Object... keys) {
 		if (cache==null) {
 			return null;
 		}
@@ -62,7 +62,7 @@ public class CacheUtils {
 		return null;
 	}
 
-	protected <T> T putCacheValue(T value, Cache cache, Object... keys) {
+	public static <T> T putCacheValue(T value, Cache cache, Object... keys) {
 		if (cache==null) {
 			return value;
 		}
@@ -73,7 +73,7 @@ public class CacheUtils {
 		return value;
 	}
 
-	protected String makeKeyForPrincipal(Object... keys) {
+	public static String makeKeyForPrincipal(Object... keys) {
 		Principal principal = SecurityUtil.getPrincipal();
 		if (principal==null) {
 			return null;
@@ -83,7 +83,7 @@ public class CacheUtils {
 	}
 		
 
-	protected String makeKey(Object... keys) {
+	public static String makeKey(Object... keys) {
 		StringBuilder sb = new StringBuilder();
 		for (Object key: keys) {
 			if (key!=null) {
