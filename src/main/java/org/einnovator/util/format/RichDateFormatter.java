@@ -9,14 +9,16 @@ import org.springframework.format.Formatter;
 
 public class RichDateFormatter implements Formatter<Date> {
 	
-	private SimpleDateFormat formater;
+	private SimpleDateFormat formatter;
+	
+	private Integer maxDays = 30;
 	
 	public RichDateFormatter() {
-		formater = new SimpleDateFormat("dd-MMM-yyy");
+		formatter = new SimpleDateFormat("dd MMM yyy");
 	}
 
-	public RichDateFormatter(SimpleDateFormat formater) {
-		this.formater = formater;
+	public RichDateFormatter(SimpleDateFormat formatter) {
+		this.formatter = formatter;
 	}
 
 	@Override
@@ -33,10 +35,16 @@ public class RichDateFormatter implements Formatter<Date> {
 			return hs + (hs==1 ? " hour" : " hours") + " ago";
 		}
 		long days = dt / (60*24);
-		if (days<7) {
-			return (days==1 ? "yesterday" : days + " days ago");
+		if (days==1) {
+			return "yesterday";
 		}
-		return formater.format(date);
+		if (maxDays!=null && days<maxDays) {
+			return days + " days ago";
+		}
+		if (formatter==null) {
+			return null;
+		}
+		return formatter.format(date);
 	}
 
 	@Override
