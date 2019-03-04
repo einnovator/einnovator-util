@@ -13,7 +13,7 @@ public abstract class ObjectBase {
 	}
 	
 	public ObjectBase(Object obj) {
-		updateFrom(obj);
+		updateFrom(obj, false);
 	}
 	
 	@Override

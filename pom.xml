@@ -78,17 +78,17 @@
 			<artifactId>spring-security-oauth2</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-jwt</artifactId>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
 		</dependency>
 
 <!-- 
  
 	 <dependency>
-   	 	<groupId>org.springframework.security.oauth.boot</groupId>
-   	 	<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+	 	 	<groupId>org.springframework.security.oauth.boot</groupId>
+	 	 	<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 		<version>1.5.17.RELEASE</version>
-  	</dependency>
+		</dependency>
  -->
 
 
@@ -96,27 +96,60 @@
 
 
 	<build>
-	  <extensions>
-		 <!--  <extension>
-	        <groupId>org.kuali.maven.wagons</groupId>
-	        <artifactId>maven-s3-wagon</artifactId>
-	        <version>1.2.1</version>
-	      </extension> -->
-	      <extension>
-	       <groupId>com.allogy.maven.wagon</groupId>
-		   <artifactId>maven-s3-wagon</artifactId>
-   			<version>1.1.0</version>
-	      </extension>
-	      <!-- 
-	       <extensions>
-        <extension>
-            <groupId>com.gkatzioura.maven.cloud</groupId>
-            <artifactId>s3-storage-wagon</artifactId>
-            <version>1.0</version>
-        </extension>
-	  </extensions>
-	       -->
-	  </extensions>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+				<execution>
+					<id>attach-sources</id>
+					<goals>
+					<goal>jar</goal>
+					</goals>
+				</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		
+		</plugins>
+
+		<extensions>
+		 <!--	<extension>
+			<groupId>org.kuali.maven.wagons</groupId>
+			<artifactId>maven-s3-wagon</artifactId>
+			<version>1.2.1</version>
+			</extension> -->
+			<extension>
+			 <groupId>com.allogy.maven.wagon</groupId>
+			 <artifactId>maven-s3-wagon</artifactId>
+	 			<version>1.1.0</version>
+			</extension>
+			<!-- 
+			 <extensions>
+		<extension>
+			<groupId>com.gkatzioura.maven.cloud</groupId>
+			<artifactId>s3-storage-wagon</artifactId>
+			<version>1.0</version>
+		</extension>
+		</extensions>
+			 -->
+		</extensions>
+
+
+
 	</build>
 
 	<profiles>
@@ -131,19 +164,19 @@
 			</activation>
 			
 			<distributionManagement>
-			    <snapshotRepository>
-			      <id>s3</id>
-			      <url>s3://einnovator-mvnrepo/snapshot</url>
-			    </snapshotRepository>
-			    <repository>
-			      <id>s3</id>
-			      <url>s3://einnovator-mvnrepo/release</url>
-			    </repository>
+				<snapshotRepository>
+					<id>s3</id>
+					<url>s3://einnovator-mvnrepo/snapshot</url>
+				</snapshotRepository>
+				<repository>
+					<id>s3</id>
+					<url>s3://einnovator-mvnrepo/release</url>
+				</repository>
 			</distributionManagement>		
 			<repositories>
 			<repository>
-		     	<id>s3</id>
-      			<url>s3://einnovator-mvnrepo/release</url>
+			 	<id>s3</id>
+				<url>s3://einnovator-mvnrepo/release</url>
 			 </repository>
 			</repositories>
 		</profile>
