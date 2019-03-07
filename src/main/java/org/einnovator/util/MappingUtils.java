@@ -49,9 +49,15 @@ public class MappingUtils {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> T makeCopy(T obj) {
-		return (T) MappingUtils.convert(obj, obj.getClass());
+		if (obj==null) {
+			return null;
+		}
+		try {
+			return (T)BeanUtils.cloneBean(obj);
+		} catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
+			return null;
+		}
 	}
-
 
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> toMap(Object obj, Map<String, Object> map) {

@@ -7,10 +7,18 @@ import java.util.TimeZone;
 /**
  * Miscellaneous utility methods related with {@code Date}.
  *
- * @author Jorge Sim�o, {@code jorge.simao@einnovator.org}
+ * @author Jorge Simao {@code jorge.simao@einnovator.org}
  *
  */
 public class DateUtil {
+	
+	public static Date addDays(Date date, int days) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DATE, days);
+		return cal.getTime();
+	}
+
 	public static int diffMillis(Date date, Date date2) {
 		Calendar a = Calendar.getInstance();
 		a.setTime(date);
