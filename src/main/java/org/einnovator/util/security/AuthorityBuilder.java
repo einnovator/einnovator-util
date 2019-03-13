@@ -47,10 +47,12 @@ public class AuthorityBuilder extends EntityBase {
 	}
 
 	public AuthorityBuilder permissions(String... permissions) {
-		if (this.permissions==null) {
-			this.permissions = new ArrayList<>();
+		if (permissions!=null) {
+			if (this.permissions==null) {
+				this.permissions = new ArrayList<>();
+			}
+			this.permissions.addAll(Arrays.asList(permissions));
 		}
-		this.permissions.addAll(Arrays.asList(permissions));
 		return this;
 	}
 

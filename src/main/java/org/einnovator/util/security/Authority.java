@@ -39,13 +39,13 @@ public class Authority extends EntityBase {
 	
 	protected List<String> permissions;
 
-	protected Map<String, Object> userData;
+	protected Object userData;
 
-	protected Map<String, Object> groupData;
+	protected Object groupData;
 
-	protected Map<String, Object> roleData;
+	protected Object roleData;
 
-	protected Map<String, Map<String,Object>> permissionData;
+	protected Map<String, Object> permissionData;
 
 
 	public Authority(Boolean other) {
@@ -53,6 +53,10 @@ public class Authority extends EntityBase {
 	}
 
 	public Authority() {
+	}
+
+	public Authority(Object obj) {
+		super(obj);
 	}
 
 	/**
@@ -238,7 +242,7 @@ public class Authority extends EntityBase {
 	 *
 	 * @return the userData
 	 */
-	public Map<String, Object> getUserData() {
+	public Object getUserData() {
 		return userData;
 	}
 
@@ -247,7 +251,7 @@ public class Authority extends EntityBase {
 	 *
 	 * @param userData the userData to set
 	 */
-	public void setUserData(Map<String, Object> userData) {
+	public void setUserData(Object userData) {
 		this.userData = userData;
 	}
 
@@ -256,7 +260,7 @@ public class Authority extends EntityBase {
 	 *
 	 * @return the groupData
 	 */
-	public Map<String, Object> getStringData() {
+	public Object getStringData() {
 		return groupData;
 	}
 
@@ -265,7 +269,7 @@ public class Authority extends EntityBase {
 	 *
 	 * @param groupData the groupData to set
 	 */
-	public void setStringData(Map<String, Object> groupData) {
+	public void setStringData(Object groupData) {
 		this.groupData = groupData;
 	}
 
@@ -274,7 +278,7 @@ public class Authority extends EntityBase {
 	 *
 	 * @return the roleData
 	 */
-	public Map<String, Object> getRoleData() {
+	public Object getRoleData() {
 		return roleData;
 	}
 
@@ -283,7 +287,7 @@ public class Authority extends EntityBase {
 	 *
 	 * @param roleData the roleData to set
 	 */
-	public void setRoleData(Map<String, Object> roleData) {
+	public void setRoleData(Object roleData) {
 		this.roleData = roleData;
 	}
 
@@ -292,7 +296,7 @@ public class Authority extends EntityBase {
 	 *
 	 * @return the permissionData
 	 */
-	public Map<String, Map<String, Object>> getPermissionData() {
+	public Map<String, Object> getPermissionData() {
 		return permissionData;
 	}
 
@@ -301,52 +305,52 @@ public class Authority extends EntityBase {
 	 *
 	 * @param permissionData the permissionData to set
 	 */
-	public void setPermissionData(Map<String, Map<String, Object>> permissionData) {
+	public void setPermissionData(Map<String, Object> permissionData) {
 		this.permissionData = permissionData;
 	}
 
 	@JsonIgnore
-	public boolean isOther() {
+	public boolean canOther() {
 		return Boolean.TRUE.equals(other);
 	}
 
 	@JsonIgnore
-	public boolean isUser(String user) {
+	public boolean canUser(String user) {
 		return this.user!=null && this.user.equals(user);
 	}
 
 	@JsonIgnore
-	public boolean isString(String group) {
+	public boolean canGroup(String group) {
 		return this.group!=null && this.group.equals(group);
 	}
 
 	@JsonIgnore
-	public boolean isRole(String role) {
+	public boolean canRole(String role) {
 		return this.role!=null && this.role.equals(role);
 	}
 
 	@JsonIgnore
-	public boolean isGlobalRole(String role) {
-		return group==null && isRole(role);
+	public boolean canGlobalRole(String role) {
+		return group==null && canRole(role);
 	}
 
 	@JsonIgnore
-	public boolean isConnection(String connection) {
+	public boolean canConnection(String connection) {
 		return this.connection!=null && this.connection.equals(connection);
 	}
 
 	@JsonIgnore
-	public boolean isRead() {
+	public boolean canRead() {
 		return Boolean.TRUE.equals(read);
 	}
 
 	@JsonIgnore
-	public boolean isWrite() {
+	public boolean canWrite() {
 		return Boolean.TRUE.equals(write);
 	}
 
 	@JsonIgnore
-	public boolean isManage() {
+	public boolean canManage() {
 		return Boolean.TRUE.equals(manage);
 	}
 
@@ -356,7 +360,7 @@ public class Authority extends EntityBase {
 	}
 
 	public boolean anyRWM() {
-		return isRead() || isWrite() || isManage();
+		return canRead() || canWrite() || canManage();
 	}
 
 	public boolean anyPermission() {
