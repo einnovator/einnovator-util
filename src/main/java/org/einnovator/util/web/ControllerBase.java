@@ -230,13 +230,13 @@ public abstract class ControllerBase {
 			String redirect = (String)session.getAttribute(ATTRIBUTE_REDIRECT_URI);
 			if (redirect!=null) {
 				session.removeAttribute(ATTRIBUTE_REDIRECT_URI);
-				return parseUri(redirect);
+				return redirect(parseUri(redirect));
 			}
 		}	
 		if (StringUtils.hasText(redirect_uri)) {
-			return parseUri(redirect_uri);
+			return redirect(parseUri(redirect_uri));
 		} 
-		return uri;
+		return redirect(uri);
 	}
 
 }
