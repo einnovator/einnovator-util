@@ -95,7 +95,7 @@ public class StringUtil {
 	public static int countEmpty(String[] l) {
 		int n = 0;
 		for (String s: l) {
-			if (StringUtils.isEmpty(s))  {
+			if (StringUtils.isEmpty(s))	{
 				n++;
 			}
 		}
@@ -438,7 +438,7 @@ public class StringUtil {
 		return (s0==null && s1==null) || (s0!=null && s0.equalsIgnoreCase(s1));
 	}
 
-	public static String sconcat(String s0, String s1, String separator)  {	
+	public static String sconcat(String s0, String s1, String separator)	{	
 		if (s0==null) {
 			return s1;
 		}
@@ -464,13 +464,13 @@ public class StringUtil {
 		return s0 + separator + s1;
 	}
 
-	public static String join(String[] strs, String separator)  {	
+	public static String join(String[] strs, String separator)	{	
 		StringBuilder sb = new StringBuilder();
 		join(sb, strs, separator);
 		return sb.toString();				
 	}
 	
-	public static void join(StringBuilder sb, String[] strs, String separator)  {	
+	public static void join(StringBuilder sb, String[] strs, String separator)	{	
 		for (int i=0; i<strs.length; i++) {
 			sb.append(strs[i]);
 			if (i<strs.length-1) {
@@ -479,13 +479,13 @@ public class StringUtil {
 		}
 	}
 	
-	public static String concat(String... arr)  {	
+	public static String concat(String... arr)	{	
 		StringBuilder sb = new StringBuilder();
 		concat(sb, arr);
 		return sb.toString();
 	}
 
-	public static void concat(StringBuilder sb, String... arr)  {	
+	public static void concat(StringBuilder sb, String... arr)	{	
 		for (String s: arr) {
 			if (!StringUtils.isEmpty(s)) {
 				sb.append(s);				
@@ -668,5 +668,40 @@ public class StringUtil {
 			pattern = Pattern.compile("\\s+");
 		}
 		return pattern.matcher(s).replaceAll(" ");	
+	}
+	
+	public static String capitalizeWords(String s) {
+		if (s==null) {
+			return null;
+		}
+		char[] chars = s.toLowerCase().toCharArray();
+		boolean found = false;
+		for (int i = 0; i < chars.length; i++) {
+			if (!found && Character.isLetter(chars[i])) {
+				chars[i] = Character.toUpperCase(chars[i]);
+				found = true;
+			} else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') {
+				found = false;
+			}
+		}
+		return String.valueOf(chars);
+	}
+	
+	public static String replaceSpecialChars(String s, String s2) {
+		if (s==null) {
+			return null;
+		}
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<s.length(); i++) {
+			char c = s.charAt(i);
+			if (Character.isAlphabetic(c) || Character.isDigit(c)) {
+				sb.append(c);
+			} else {
+				if (s2!=null) {
+					sb.append(s2);					
+				}
+			}
+		}
+		return sb.toString();
 	}
 }
