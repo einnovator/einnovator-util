@@ -59,6 +59,19 @@ public class MappingUtils {
 		}
 	}
 
+	public static <T> T fromMap(T obj, Map<String, Object> map) {
+		if (obj==null) {
+			return null;
+		}
+		try {
+			BeanUtils.populate(obj, map);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			return null;
+		}
+		return obj;
+	}
+
+
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> toMap(Object obj, Map<String, Object> map) {
 		if (obj==null) {
@@ -122,9 +135,13 @@ public class MappingUtils {
 	}
 
   
+	@SuppressWarnings("unchecked")
 	public static <T> T updateObjectFrom(T current, Object obj) {
-		if (obj==null) {
+		if (current==null || obj==null) {
 			return current;
+		}
+		if (obj instanceof Map && !(current instanceof Map)) {
+			return fromMap(current, (Map<String, Object>)obj);
 		}
 		try {
 			BeanUtils.copyProperties(current, obj);       
@@ -133,10 +150,15 @@ public class MappingUtils {
 		return current;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> T updateObjectFromNonNull(T current, Object obj) {
 		if (obj==null) {
 			return current;
 		}
+		if (obj instanceof Map && !(current instanceof Map)) {
+			return fromMap(current, (Map<String, Object>)obj);
+		}
+
 		try {
 			NullAwareBeanUtilsBean.singleton.copyProperties(current, obj);
 		} catch (IllegalAccessException | InvocationTargetException e) {
@@ -144,9 +166,13 @@ public class MappingUtils {
 		return current;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> T updateObjectFromNonNullIgnoreCollections(T current, Object obj) {
 		if (obj==null) {
 			return current;
+		}
+		if (obj instanceof Map && !(current instanceof Map)) {
+			return fromMap(current, (Map<String, Object>)obj);
 		}
 		try {
 			NullAwareBeanUtilsBean.singletonIgnoreCollections.copyProperties(current, obj);
