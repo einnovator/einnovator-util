@@ -25,6 +25,14 @@ public class EmailUtilsTests {
 		assertEquals("einnovator", emailToProperDomain(email));
 		assertEquals("Einnovator", emailToDomainDisplayName(email));
 
+		email="tdd@einnovator.co.uk";
+		assertTrue(validEmail(email));
+		assertEquals("tdd", emailToUsername(email));
+		assertEquals("Tdd", emailToUserDisplayName(email));
+		assertEquals("einnovator.co.uk", emailToDomain(email));
+		assertEquals("einnovator", emailToProperDomain(email));
+		assertEquals("Einnovator", emailToDomainDisplayName(email));
+
 	}
 
 }

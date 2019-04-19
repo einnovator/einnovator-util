@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 public class EmailUtils {
 
+	public static final String[] SUBROOT_DOMAINS = {"com", "co", "gov", "edu", "net", "org"};
+	
 	public static boolean validEmail(String email) {
 		if (email == null) {
 			return false;			
@@ -53,10 +55,24 @@ public class EmailUtils {
 		if (i>0 && i<domain.length()-1) {
 			domain = domain.substring(0, i);
 		}
+		i = domain.lastIndexOf(".");
+		if (i>0 && i<domain.length()-1) {
+			if (subrootDomain(domain.substring(i+1))) {
+				domain = domain.substring(0, i);				
+			}
+		}
 		domain = domain.replace('.', ' ').trim();
 		return domain;
 	}
 	
+	public static boolean subrootDomain(String domain) {
+		if (ArrayUtil.contains(SUBROOT_DOMAINS, domain)) {
+			return true;
+		}
+		return false;
+	}
+
+
 	public static String emailToUsername(String email) {
 		int i = email.indexOf("@");
 		if (i<0 || i==email.length()-1) {

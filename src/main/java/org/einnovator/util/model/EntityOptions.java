@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EntityOptions extends ObjectBase {
+public class EntityOptions<T> extends ObjectBase implements Options<T> {
 
 	private String runAs;
 	
