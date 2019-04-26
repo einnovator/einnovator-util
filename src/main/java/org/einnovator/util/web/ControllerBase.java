@@ -194,8 +194,12 @@ public abstract class ControllerBase {
 		return ResponseEntity.created(location).build();
 	}
 
+	public static boolean adminAccess(HttpServletRequest request) {
+		return request.getRequestURI().indexOf("/admin")>=0;
+	}
+
 	public static boolean adminAccess(HttpServletRequest request, Model model) {
-		boolean _admin = request.getRequestURI().indexOf("/admin")>=0;
+		boolean _admin = adminAccess(request);
 		model.addAttribute("_admin", _admin);		
 		return _admin;
 	}
