@@ -165,7 +165,7 @@ public abstract class ControllerBase {
 	}
 
 	protected String notfound(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		return error(msg, Messages.KEY_NOT_FOUND, null, Messages.KEY_NOT_FOUND, request, redirectAttributes, objs);		
+		return error(msg, Messages.KEY_NOT_FOUND, null, Messages.MSG_NOT_FOUND, request, redirectAttributes, objs);		
 	}
 	
 	protected <T> ResponseEntity<T> notfound(String msg, HttpServletResponse response, Object... objs) {
@@ -173,7 +173,7 @@ public abstract class ControllerBase {
 	}
 
 	protected String badrequest(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		return error(msg, Messages.KEY_NOT_FOUND, null, Messages.KEY_NOT_FOUND, request, redirectAttributes, objs);		
+		return error(msg, Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes, objs);		
 	}
 	
 	protected <T> ResponseEntity<T> badrequest(String msg, HttpServletResponse response, Object... objs) {
