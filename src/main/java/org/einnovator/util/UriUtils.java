@@ -1,5 +1,7 @@
 package org.einnovator.util;
 
+import static org.springframework.util.StringUtils.hasText;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -163,6 +165,15 @@ public class UriUtils {
 			}				
 		} else {
 			uri = null;
+		}
+		return uri;
+	}
+
+	public static String qualify(String uri, String prefix) {
+		if (hasText(uri)) {
+			if (!(uri.startsWith("http:") || uri.startsWith("https:") || uri.startsWith("/"))) {
+				return PathUtil.concat(prefix, uri);
+			}
 		}
 		return uri;
 	}
