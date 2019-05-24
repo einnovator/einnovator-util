@@ -1,6 +1,7 @@
 package org.einnovator.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +21,25 @@ public class MappingUtils {
 	static {
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		//mapper.setSerializationInclusion(SerializationFeature.FAIL_ON_EMPTY_BEANS)		
+	}
+
+	public static <T> T readJson(Resource resource, Class<T> type) {
+		try {
+			return readJson(resource.getInputStream(), type);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static <T> T readJson(InputStream in, Class<T> type) {
+		if (in==null) {
+			return null;
+		}
+		try {
+			return mapper.readValue(in, type);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static String toJson(Object obj) {

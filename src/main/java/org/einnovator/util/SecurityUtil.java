@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityUtil {
 
+	public static final String ROLE_ADMIN = "ROLE_ADMIN";
+
 	public static String getPrincipalName() {
 		Principal principal = getPrincipal();
 		return principal!=null ? principal.getName() : null;
@@ -42,6 +44,25 @@ public class SecurityUtil {
 			return context.getAuthentication();
 		}
 		return null;
+	}
+
+	/**
+	 * Check if role or authority exists in {@link Collection}.
+	 * 
+	 * @param role
+	 * @param authorities
+	 * @return
+	 */
+	public static boolean hasAuthority(String role, Collection<? extends GrantedAuthority> authorities) {
+		if (role==null || authorities==null) {
+			return false;
+		}
+		for (GrantedAuthority authority : authorities) {
+			if (authority.getAuthority().equalsIgnoreCase(role)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 
