@@ -1,5 +1,7 @@
 package org.einnovator.util.model;
 
+import java.util.Map;
+
 import org.einnovator.util.MappingUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,8 +43,11 @@ public abstract class ObjectBase {
 		updateFrom(obj, true);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void updateFrom(Object obj, boolean ignoreCollections) {
-		if (ignoreCollections) {
+		if (obj instanceof Map) {
+			MappingUtils.fromMap(this, (Map<String, Object>)obj);
+		} else if (ignoreCollections) {
 			MappingUtils.updateObjectFromNonNullIgnoreCollections(this, obj);			
 		} else {
 			MappingUtils.updateObjectFromNonNull(this, obj);						
