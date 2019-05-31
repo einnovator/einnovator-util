@@ -31,6 +31,7 @@ public class PageOptions {
 		this.marker = options.marker;
 		this.sort = options.sort;
 	}
+
 	
 	public PageOptions(String marker, Integer pageSize) {
 		this.marker = marker;
@@ -40,6 +41,12 @@ public class PageOptions {
 	public PageOptions(Integer page, Integer pageSize) {
 		this.page = page;
 		this.pageSize = pageSize;
+	}	
+
+	public PageOptions(Integer page, Integer pageSize, String sort) {
+		this.page = page;
+		this.pageSize = pageSize;
+		this.sort = sort;
 	}	
 
 	public PageOptions(Pageable pageable) {
