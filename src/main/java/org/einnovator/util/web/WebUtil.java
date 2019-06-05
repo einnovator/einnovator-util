@@ -24,10 +24,17 @@ public class WebUtil {
 			int n = request.getPathInfo().length();			
 			return url.substring(0, url.length() - n);
 		}
-		int n = url.lastIndexOf("/");
+		int n = url.indexOf("/",  8);
 		return url.substring(0, n);
 	}
 	
+	public static String getBaseUrl() {
+		HttpServletRequest request = getHttpServletRequest();
+		if (request==null) {
+			return null;
+		}
+		return getBaseUrl(request);
+	}
 	
 	public static HttpServletRequest getHttpServletRequest() {
 		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
