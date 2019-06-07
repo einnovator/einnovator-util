@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class XSessionScopeConfig {
 
 	@Bean
-	public XSessionScopeRegistrar xSessionScopeRegistrar() {
+	public static XSessionScopeRegistrar xSessionScopeRegistrar() {
 		return new XSessionScopeRegistrar();
 	}
 }

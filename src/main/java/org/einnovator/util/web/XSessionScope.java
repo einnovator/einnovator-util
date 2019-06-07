@@ -9,7 +9,6 @@ import org.springframework.context.support.SimpleThreadScope;
 import org.springframework.web.context.request.SessionScope;
 
 /**
- * @author jsima
  *
  */
 public class XSessionScope implements Scope {
