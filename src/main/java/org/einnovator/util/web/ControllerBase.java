@@ -140,11 +140,13 @@ public abstract class ControllerBase {
 		return defaultMsg!=null ? defaultMsg : msg;
 	}
 
-	protected String success(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+	protected String success(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		info(msg, objs);
 		return info(Messages.KEY_SUCCESS, null, Messages.MSG_SUCCESS, request, redirectAttributes);
 	}
 
-	protected String failure(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+	protected String failure(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		error(msg, objs);
 		return info(Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes);
 	}
 
@@ -178,6 +180,10 @@ public abstract class ControllerBase {
 	
 	protected <T> ResponseEntity<T> badrequest(String msg, HttpServletResponse response, Object... objs) {
 		return status(msg, HttpStatus.BAD_REQUEST, response, objs);		
+	}
+
+	protected <T> ResponseEntity<T> conflict(String msg, HttpServletResponse response, Object... objs) {
+		return status(msg, HttpStatus.CONFLICT, response, objs);		
 	}
 
 	protected <T> ResponseEntity<T> ok(T result, String msg, HttpServletResponse response, Object... objs) {
