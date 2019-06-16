@@ -40,13 +40,15 @@ public abstract class ControllerBase {
 	
 	protected String format(Object... objs) {
 		StringBuilder sb = new StringBuilder();
-		for (Object obj: objs) {
-			if (obj!=null) {
-				if (sb.length()>0) {
-					sb.append(" ");
+		if (objs!=null) {
+			for (Object obj: objs) {
+				if (obj!=null) {
+					if (sb.length()>0) {
+						sb.append(" ");
+					}
+					sb.append(obj);				
 				}
-				sb.append(obj);				
-			}
+			}			
 		}
 		return sb.toString();
 	}
@@ -115,7 +117,7 @@ public abstract class ControllerBase {
 
 	protected String error(String msg, String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
 		if (logger.isErrorEnabled()) {
-			logger.error(String.format("%s: %s %s", msg, Messages.MSG_UNAUTHORIZED, format(objs)));			
+			logger.error(String.format("%s: %s %s", msg, defaultMsg, format(objs)));			
 		}
 		return flash(Messages.ATTRIBUTE_ERROR, key, args, defaultMsg, request, redirectAttributes);
 	}
