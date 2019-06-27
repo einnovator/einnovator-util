@@ -38,14 +38,14 @@ public class TextTemplates {
 				int i2 = text.indexOf(endMarker, i1+2);
 				if (i2<0) {
 					//ERROR
-					sb.append("?{..?");
+					sb.append(startMarker);
 					sb.append(text.substring(i));
 					break;
 				}
 				String var = text.substring(i1+startMarker.length(), i2);
 				String value = resolve(var, env);
 				if (value==null) {
-					value = "?" + var + "?";
+					value = startMarker + var + endMarker;
 				}
 				sb.append(value);
 				i = i2+1;				
