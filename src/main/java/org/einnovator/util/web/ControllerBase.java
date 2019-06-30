@@ -148,8 +148,7 @@ public abstract class ControllerBase {
 	}
 
 	protected String failure(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		error(msg, objs);
-		return info(Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes);
+		return error(msg, Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes);
 	}
 
 	protected String unauthorized(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
