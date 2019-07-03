@@ -46,11 +46,21 @@ public abstract class ControllerBase {
 					if (sb.length()>0) {
 						sb.append(" ");
 					}
-					sb.append(obj);				
+					sb.append(format(obj));				
 				}
 			}			
 		}
 		return sb.toString();
+	}
+	
+	protected String format(Object obj) {
+		if (obj==null) {
+			return null;
+		}
+		if (obj instanceof Class) {
+			return ((Class<?>)obj).getSimpleName();
+		}
+		return obj.toString();
 	}
 
 
@@ -62,7 +72,7 @@ public abstract class ControllerBase {
 			key = Messages.KEY_FORBIDDEN;
 			defaultMsg = Messages.MSG_FORBIDDEN;
 		}
-		return error (msg, key, args, defaultMsg, request, redirectAttributes);
+		return flashError (msg, key, args, defaultMsg, request, redirectAttributes);
 	}
 
 	protected <T> ResponseEntity<T> status(String msg, Throwable t, HttpServletResponse response, Object... objs) {
@@ -115,17 +125,6 @@ public abstract class ControllerBase {
 		return ResponseEntity.status(status).build();
 	}
 
-	protected String error(String msg, String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		if (logger.isErrorEnabled()) {
-			logger.error(String.format("%s: %s %s", msg, defaultMsg, format(objs)));			
-		}
-		return flash(Messages.ATTRIBUTE_ERROR, key, args, defaultMsg, request, redirectAttributes);
-	}
-
-	protected String info(String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes) {
-		return flash(Messages.ATTRIBUTE_INFO, key, args, defaultMsg, request, redirectAttributes);
-	}
-
 	protected String flash(String type, String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		String msg = defaultMsg;
 		if (messageSource!=null && key!=null) {
@@ -142,41 +141,96 @@ public abstract class ControllerBase {
 		return defaultMsg!=null ? defaultMsg : msg;
 	}
 
-	protected String success(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+
+	protected String flashError(String msg, String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		error(msg, objs);
+		return flash(Messages.ATTRIBUTE_ERROR, key, args, defaultMsg, request, redirectAttributes);
+	}
+
+	protected String flashInfo(String msg, String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
 		info(msg, objs);
-		return info(Messages.KEY_SUCCESS, null, Messages.MSG_SUCCESS, request, redirectAttributes);
+		return flash(Messages.ATTRIBUTE_INFO, key, args, defaultMsg, request, redirectAttributes);
 	}
 
-	protected String failure(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		return error(msg, Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes);
+	protected String flashError(String msg, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashError(msg, null, null, defaultMsg, request, redirectAttributes, objs);
 	}
 
-	protected String unauthorized(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		return error(msg, Messages.KEY_UNAUTHORIZED, null, Messages.MSG_UNAUTHORIZED, request, redirectAttributes, objs);		
+	protected String flashInfo(String msg, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashInfo(msg, null, null, defaultMsg, request, redirectAttributes, objs);
+	}
+
+	protected String flashError(String msg, String defaultMsg, RedirectAttributes redirectAttributes, Object... objs) {
+		error(msg, objs);
+		return flashError(msg, defaultMsg,  WebUtil.getHttpServletRequest(), redirectAttributes);
+	}
+
+	protected String flashInfo(String msg, String defaultMsg, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashInfo(msg, null, null, defaultMsg,  WebUtil.getHttpServletRequest(), redirectAttributes, objs);
+	}
+
+	protected String flash(String type, String key, Object[] args, String defaultMsg, RedirectAttributes redirectAttributes) {
+		return flash(type, key, args, defaultMsg, WebUtil.getHttpServletRequest(), redirectAttributes);
+	}
+
+	protected String flashSuccess(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashInfo(msg, Messages.KEY_SUCCESS, null, Messages.MSG_SUCCESS, request, redirectAttributes, objs);
+	}
+
+	protected String flashSuccess(String msg, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashSuccess(null, WebUtil.getHttpServletRequest(), redirectAttributes, objs);
+	}
+
+	protected String flashFailure(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashError(msg, Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes, objs);
+	}
+
+	protected String flashFailure(String msg, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashFailure(msg, WebUtil.getHttpServletRequest(), redirectAttributes, objs);
+	}
+
+	protected String flashUnauthorized(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashError(msg, Messages.KEY_UNAUTHORIZED, null, Messages.MSG_UNAUTHORIZED, request, redirectAttributes, objs);		
+	}
+	
+	protected String flashUnauthorized(String msg, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashUnauthorized(msg, WebUtil.getHttpServletRequest(), redirectAttributes, objs);		
 	}
 
 	protected <T> ResponseEntity<T> unauthorized(String msg, HttpServletResponse response, Object... objs) {
 		return status(msg, HttpStatus.UNAUTHORIZED, response, objs);		
 	}
 
-	protected String forbidden(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		return error(msg, Messages.KEY_FORBIDDEN, null, Messages.MSG_FORBIDDEN, request, redirectAttributes, objs);		
+	protected String flashForbidden(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashError(msg, Messages.KEY_FORBIDDEN, null, Messages.MSG_FORBIDDEN, request, redirectAttributes, objs);		
+	}
+	
+	protected String flashForbidden(String msg,RedirectAttributes redirectAttributes, Object... objs) {
+		return flashForbidden(msg, WebUtil.getHttpServletRequest(), redirectAttributes, objs);		
 	}
 
 	protected <T> ResponseEntity<T> forbidden(String msg, HttpServletResponse response, Object... objs) {
 		return status(msg, HttpStatus.FORBIDDEN, response, objs);		
 	}
 
-	protected String notfound(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		return error(msg, Messages.KEY_NOT_FOUND, null, Messages.MSG_NOT_FOUND, request, redirectAttributes, objs);		
+	protected String flashNotfound(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashError(msg, Messages.KEY_NOT_FOUND, null, Messages.MSG_NOT_FOUND, request, redirectAttributes, objs);		
 	}
-	
+
+	protected String flashNotfound(String msg, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashNotfound(msg, WebUtil.getHttpServletRequest(), redirectAttributes, objs);		
+	}
+
 	protected <T> ResponseEntity<T> notfound(String msg, HttpServletResponse response, Object... objs) {
 		return status(msg, HttpStatus.NOT_FOUND, response, objs);		
 	}
 
-	protected String badrequest(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
-		return error(msg, Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes, objs);		
+	protected String flashBadrequest(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashError(msg, Messages.KEY_FAILURE, null, Messages.MSG_FAILURE, request, redirectAttributes, objs);		
+	}
+	
+	protected String flashBadrequest(String msg, RedirectAttributes redirectAttributes, Object... objs) {
+		return flashBadrequest(msg, WebUtil.getHttpServletRequest(), redirectAttributes, objs);		
 	}
 	
 	protected <T> ResponseEntity<T> badrequest(String msg, HttpServletResponse response, Object... objs) {
