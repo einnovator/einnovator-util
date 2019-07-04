@@ -7,19 +7,19 @@ public class Messages {
 
 	public static final String KEY_CREATE_SUCCESS = "delete.success";
 	public static final String KEY_CREATE_FAILURE = "delete.failure";
-	public static final String MSG_CREATE_SUCCESS = "Deleted with Success.";
-	public static final String MSG_CREATE_FAILURE = "Delete Failed.";
+	
+	public static final String MSG_CREATE_SUCCESS = "Deleted with Success";
+	public static final String MSG_CREATE_FAILURE = "Delete Failed";
 
-	public static final String KEY_UPDATE_SUCCESS = "delete.success";
-	public static final String KEY_UPDATE_FAILURE = "delete.failure";
-	public static final String MSG_UPDATE_SUCCESS = "Deleted with Success.";
-	public static final String MSG_UPDATE_FAILURE = "Delete Failed.";
+	public static final String KEY_UPDATE_SUCCESS = "update.success";
+	public static final String KEY_UPDATE_FAILURE = "update.failure";
+	public static final String MSG_UPDATE_SUCCESS = "Updated with Success";
+	public static final String MSG_UPDATE_FAILURE = "Update Failed";
 
 	public static final String KEY_DELETE_FAILURE = "delete.failure";
-	public static final String MSG_DELETE_FAILURE = "Delete Failed.";
-
 	public static final String KEY_DELETE_SUCCESS = "delete.success";
-	public static final String MSG_DELETE_SUCCESS = "Deleted with Success.";
+	public static final String MSG_DELETE_FAILURE = "Delete Failed";
+	public static final String MSG_DELETE_SUCCESS = "Deleted with Success";
 
 
 	public static final String KEY_SUCCESS = "success";
