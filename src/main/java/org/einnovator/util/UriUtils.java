@@ -178,4 +178,22 @@ public class UriUtils {
 		return uri;
 	}
 
+	public static String encodeId(String userId) {
+		if (userId == null) {
+			return null;
+		}
+		userId = userId.replace(".", "@@");
+		userId = encode(userId);
+		return userId;
+	}
+
+	public static String decodeId(String userId) {
+		if (userId == null) {
+			return null;
+		}
+		userId = decode(userId);
+		userId = userId.replace("@@", ".");
+		userId = userId.replace(" ", "+");
+		return userId;
+	}
 }
