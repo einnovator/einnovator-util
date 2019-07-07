@@ -1,6 +1,8 @@
-package org.einnovator.util;
+package org.einnovator.util.script;
 
 import java.util.Map;
+
+import org.einnovator.util.MappingUtils;
 
 public class TextTemplates {
 
@@ -11,6 +13,8 @@ public class TextTemplates {
 
 	protected String endMarker = DEFAULT_END_MARKER;
 
+	protected VariableResolver resolver;
+	
 	/**
 	 * Create instance of {@code TextTemplates}.
 	 *
@@ -26,9 +30,19 @@ public class TextTemplates {
 		this.startMarker = startMarker;
 		this.endMarker = endMarker;
 	}
-
+	
+	public TextTemplates(String startMarker, String endMarker, VariableResolver resolver) {
+		this.startMarker = startMarker;
+		this.endMarker = endMarker;
+		this.resolver = resolver;
+	}
 
 	public String expand(String text, Map<String, Object> env) {
+		return expand(text, this.resolver, env);
+	}
+
+
+	public String expand(String text, VariableResolver resolver, Map<String, Object> env) {
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
 		while (i<text.length()) {
@@ -43,7 +57,7 @@ public class TextTemplates {
 					break;
 				}
 				String var = text.substring(i1+startMarker.length(), i2);
-				String value = resolve(var, env);
+				String value = resolve(var, resolver, env);
 				if (value==null) {
 					value = startMarker + var + endMarker;
 				}
@@ -56,7 +70,17 @@ public class TextTemplates {
 		}
 		return sb.toString();
 	}
-	
+
+	public String resolve(String var, VariableResolver resolver, Map<String, Object> env) {
+		if (resolver!=null) {
+			Object value = resolver.resolve(env, var);			
+			if (value!=null) {
+				return format(value);
+			}
+		}
+		return resolve(var, env);
+	}
+
 	@SuppressWarnings("unchecked")
 	public String resolve(String var,  Map<String, Object> env) {
 		var = var.trim();
@@ -85,5 +109,10 @@ public class TextTemplates {
 	}
 	
 	
-	
+	protected String format(Object obj) {
+		if (obj==null) {
+			return null;
+		}
+		return obj.toString();
+	}
 }

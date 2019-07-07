@@ -18,6 +18,8 @@ public class Application extends ObjectBase {
 
 	private String img;
 	
+	private String thumbnail;
+	
 	private String info;
 	
 	private String description;
@@ -159,6 +161,24 @@ public class Application extends ObjectBase {
 		this.description = description;
 	}
 
+	
+	/**
+	 * Get the value of property {@code thumbnail}.
+	 *
+	 * @return the thumbnail
+	 */
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	/**
+	 * Set the value of property {@code thumbnail}.
+	 *
+	 * @param thumbnail the thumbnail to set
+	 */
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 
 	@Override
 	public ToStringCreator toString0(ToStringCreator creator) {
@@ -168,6 +188,7 @@ public class Application extends ObjectBase {
 				.append("icon", icon)
 				.append("info", info)
 				.append("img", img)
+				.append("thumbnail", thumbnail)
 				;
 	}
 	

@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.einnovator.util.MappingUtils;
-import org.einnovator.util.TextTemplates;
+import org.einnovator.util.script.TextTemplates;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;

@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.util.Map;
 
+import org.einnovator.util.script.TextTemplates;
 import org.springframework.util.StringUtils;
 
 public class UriUtils {
