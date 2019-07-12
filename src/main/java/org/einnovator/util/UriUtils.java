@@ -197,4 +197,12 @@ public class UriUtils {
 		userId = userId.replace(" ", "+");
 		return userId;
 	}
+	
+	public static boolean isAbsolute(String uri) {
+		if (StringUtils.hasText(uri)) {
+			uri = uri.trim();
+			return uri.contains("://") || uri.startsWith("/");
+		}
+		return false;
+	}
 }
