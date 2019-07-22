@@ -1,5 +1,6 @@
 package org.einnovator.util;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,7 @@ public class PathUtil {
 		if (folder.endsWith(delimeter) && filename.startsWith(delimeter)) {
 			return filename.length()>1 ? folder + filename.substring(1) : folder;
 		}
-		String sep = folder.endsWith(delimeter) ||  filename.startsWith(delimeter) ? "" : delimeter;
+		String sep = folder.endsWith(delimeter) ||	filename.startsWith(delimeter) ? "" : delimeter;
 		return folder + sep + filename;
 	}
 
@@ -93,5 +94,16 @@ public class PathUtil {
 
 	public static boolean isRoot(String path) {
 		return path==null || path.isEmpty() || DELIMITER.equals(path) || !StringUtils.hasText(path);
+	}
+	
+	public static String absolute(File relativeTo, String filename) {
+		if (filename == null) {
+			return null;
+		}
+		File file = new File(filename);
+		if (file.isAbsolute()) {
+			return file.getAbsolutePath();
+		}
+		return new File(relativeTo.getParentFile(), filename).getAbsolutePath();
 	}
 }

@@ -137,6 +137,7 @@ public abstract class ControllerBase {
 			}
 			msg = messageSource.getMessage(key, args, defaultMsg, locale);
 		}
+		request.setAttribute(type, msg);
 		redirectAttributes.addFlashAttribute(type, msg);
 		return defaultMsg!=null ? defaultMsg : msg;
 	}
@@ -178,7 +179,7 @@ public abstract class ControllerBase {
 	}
 
 	protected String flashSuccess(String msg, RedirectAttributes redirectAttributes, Object... objs) {
-		return flashSuccess(null, WebUtil.getHttpServletRequest(), redirectAttributes, objs);
+		return flashSuccess(msg, WebUtil.getHttpServletRequest(), redirectAttributes, objs);
 	}
 
 	protected String flashFailure(String msg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {

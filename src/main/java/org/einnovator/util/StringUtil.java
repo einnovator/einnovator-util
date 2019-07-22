@@ -5,6 +5,7 @@ import static org.einnovator.util.CharacterUtil.isUpperCase;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -402,8 +403,11 @@ public class StringUtil {
 	}
 
 	
-	public static boolean contains(String[] array, String s) {
-		for (String s2: array) {
+	public static boolean contains(String[] ss, String s) {
+		if (ss==null) {
+			return false;
+		}
+		for (String s2: ss) {
 			if (s==s2) {
 				return true;
 			}
@@ -414,8 +418,42 @@ public class StringUtil {
 		return false;
 	}
 	
-	public static boolean containsIgnoreCase(String[] l, String s) {
-		for (String s2: l) {
+	public static boolean containsIgnoreCase(String[] ss, String s) {
+		if (ss==null) {
+			return false;
+		}
+		for (String s2: ss) {
+			if (s==s2) {
+				return true;
+			}
+			if (s!=null && s.equalsIgnoreCase(s2)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	public static boolean contains(Collection<String> ss, String s) {
+		if (ss==null) {
+			return false;
+		}
+		for (String s2: ss) {
+			if (s==s2) {
+				return true;
+			}
+			if (s!=null && s.equals(s2)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean containsIgnoreCase(Collection<String> ss, String s) {
+		if (ss==null) {
+			return false;
+		}
+		for (String s2: ss) {
 			if (s==s2) {
 				return true;
 			}

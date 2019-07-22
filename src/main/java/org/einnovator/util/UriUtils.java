@@ -14,7 +14,9 @@ import org.springframework.util.StringUtils;
 public class UriUtils {
 	
 	public static final String DEFAULT_ENCODING = "UTF-8";
+	public static final String[] SUBROOT_DOMAINS = {"com", "co", "gov", "edu", "net", "org"};
 	
+
 	public static URI makeURI(String uri) {
 		try {
 			return new URI(uri);
@@ -205,4 +207,71 @@ public class UriUtils {
 		}
 		return false;
 	}
+	
+	public static String getHost(String uri) {
+		URI uri_ = makeURI(uri);
+		if (uri_==null) {
+			return null;
+		}
+		String host =  uri_.getHost();
+		host = host.trim().toLowerCase();
+		if (host.length()>1 && host.endsWith(".")) {
+			host = host.substring(0, host.length()-1);
+		}
+		return host;
+	}
+
+	public static String getDomain(String uri) {
+		String host = getHost(uri);
+		if (host==null) {
+			return null;
+		}
+		int n = StringUtils.countOccurrencesOf(host, ".");
+		if (n<=1) {
+			return host;
+		}
+		int i = host.indexOf(".");
+		if (i>0 && i<host.length()-1) {
+			return host.substring(i+1);
+		}
+		return host;
+	}
+	
+	
+	public static String getProperDomain(String uri) {
+		String domain = getDomain(uri);
+		if (domain==null) {
+			return null;
+		}
+		int i = domain.lastIndexOf(".");
+		if (i>0 && i<domain.length()-1) {
+			domain = domain.substring(0, i);
+		}
+		i = domain.lastIndexOf(".");
+		if (i>0 && i<domain.length()-1) {
+			if (subrootDomain(domain.substring(i+1))) {
+				domain = domain.substring(0, i);				
+			}
+		}
+		domain = domain.replace('.', ' ').trim();
+		return domain;
+	}
+	
+	public static String getDomainName(String uri) {
+		String domain = getProperDomain(uri);
+		int i = domain.lastIndexOf(".");
+		if (i>0 && i<domain.length()-1) {
+			domain = domain.substring(i+1);
+		}
+		return domain;
+	}
+
+	public static boolean subrootDomain(String domain) {
+		if (ArrayUtil.contains(SUBROOT_DOMAINS, domain)) {
+			return true;
+		}
+		return false;
+	}
+
+
 }

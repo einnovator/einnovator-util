@@ -25,6 +25,12 @@ public class AuthorityBuilder extends EntityBase {
 	private Boolean manage;
 
 	private List<String> permissions;
+	
+	protected Object userData;
+
+	protected Object groupData;
+
+	protected Object roleData;
 
 	public AuthorityBuilder user(String user) {
 		this.user = user;
@@ -92,6 +98,21 @@ public class AuthorityBuilder extends EntityBase {
 	public AuthorityBuilder manage() {
 		return manage(true);
 	}
+	
+	public AuthorityBuilder userData(Object userData) {
+		this.userData = userData;
+		return this;
+	}
+
+	public AuthorityBuilder groupData(Object groupData) {
+		this.groupData = groupData;
+		return this;
+	}
+
+	public AuthorityBuilder roleData(Object roleData) {
+		this.roleData = roleData;
+		return this;
+	}
 
 	public Authority build() {
 		Authority authority = new Authority();
@@ -104,6 +125,10 @@ public class AuthorityBuilder extends EntityBase {
 		authority.setRead(read);
 		authority.setWrite(write);
 		authority.setManage(manage);
+		authority.setUserData(userData);
+		authority.setGroupData(groupData);
+		authority.setRoleData(roleData);
+
 		return authority;
 	}
 }

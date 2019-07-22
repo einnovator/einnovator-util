@@ -47,5 +47,32 @@ public class MapUtil {
 		sb.append(" }");
 		return sb.toString();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static Object resolve(String var,  Map<String, Object> env) {
+		var = var.trim();
+		Object value = env.get(var);
+		if (value!=null) {
+			return value.toString();
+		}
+		if (var.contains(".")) {
+			String[] a = var.split("\\.");
+			int i = 0;
+			for (String s: a) {
+				value = env.get(s);
+				if (value instanceof Map) {
+					env = (Map<String, Object>) value;
+				} else if (i<a.length-1) {
+					env = MappingUtils.toMap(value);
+				}
+				if (value==null) {
+					return null;
+				}
+				i++;
+			}
+			return value;			
+		}
+		return null;
+	}
 
 }

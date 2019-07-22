@@ -1,8 +1,14 @@
 package org.einnovator.util.script;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
-import org.einnovator.util.MappingUtils;
+import org.apache.commons.io.IOUtils;
+import org.einnovator.util.MapUtil;
+import org.springframework.core.io.Resource;
 
 public class TextTemplates {
 
@@ -35,6 +41,35 @@ public class TextTemplates {
 		this.startMarker = startMarker;
 		this.endMarker = endMarker;
 		this.resolver = resolver;
+	}
+	
+	public InputStream expandAsStream(InputStream in, Map<String, Object> env) {
+		String s = expand(in, env);
+		if (s==null) {
+			return null;
+		}
+		return new ByteArrayInputStream(s.getBytes());
+	}
+	
+	public String expand(InputStream in, Map<String, Object> env) {
+		try {
+			List<String> lines;
+			lines = IOUtils.readLines(in);
+			String s = String.join("\n", lines);
+			return expand(s, env);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public String expand(Resource resource, Map<String, Object> env) {
+		try {
+			return expand(resource.getInputStream(), env);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public String expand(String text, Map<String, Object> env) {
@@ -81,31 +116,8 @@ public class TextTemplates {
 		return resolve(var, env);
 	}
 
-	@SuppressWarnings("unchecked")
 	public String resolve(String var,  Map<String, Object> env) {
-		var = var.trim();
-		Object value = env.get(var);
-		if (value!=null) {
-			return value.toString();
-		}
-		if (var.contains(".")) {
-			String[] a = var.split("\\.");
-			int i = 0;
-			for (String s: a) {
-				value = env.get(s);
-				if (value instanceof Map) {
-					env = (Map<String, Object>) value;
-				} else if (i<a.length-1) {
-					env = MappingUtils.toMap(value);
-				}
-				if (value==null) {
-					return null;
-				}
-				i++;
-			}
-			return value!=null ? value.toString() : null;			
-		}
-		return null;
+		return format(MapUtil.resolve(var, env));
 	}
 	
 	

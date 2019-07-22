@@ -308,6 +308,26 @@ public class Authority extends EntityBase {
 	public void setPermissionData(Map<String, Object> permissionData) {
 		this.permissionData = permissionData;
 	}
+	
+	
+
+	/**
+	 * Get the value of property {@code groupData}.
+	 *
+	 * @return the groupData
+	 */
+	public Object getGroupData() {
+		return groupData;
+	}
+
+	/**
+	 * Set the value of property {@code groupData}.
+	 *
+	 * @param groupData the groupData to set
+	 */
+	public void setGroupData(Object groupData) {
+		this.groupData = groupData;
+	}
 
 	@JsonIgnore
 	public boolean canOther() {
