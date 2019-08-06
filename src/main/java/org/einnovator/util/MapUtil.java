@@ -3,7 +3,9 @@
  */
 package org.einnovator.util;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,51 @@ import java.util.Map;
  */
 public class MapUtil {
 
+
+	
+	public static String toQName(Map<String, Object> map) {
+		StringBuilder sb = new StringBuilder();
+		for (Map.Entry<String, Object> e: map.entrySet()) {
+			if (e.getValue()==null) {
+				continue;
+			}
+			if (sb.length()>0) {
+				sb.append(",");
+			}
+			sb.append(e.getKey());
+			sb.append("=");
+			sb.append(format(e.getValue()));
+		}
+		return sb.toString();
+	}
+
+	public static Map<String, String> parseQName(String qname) {
+		if (qname==null) {
+			return null;
+		}
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		String[] a= qname.split(",");
+		for (String s: a) {
+			String key = s.trim();
+			if (key.isEmpty()) {
+				continue;
+			}
+			String value = "";
+			int i = s.indexOf("=");
+			if (i==0) {
+				continue;
+			}
+			if (i==s.length()-1) {
+				key = s.substring(0, s.length()-1);
+			} else {
+				key = s.substring(0, i);
+				value = s.substring(i+1);
+			}
+			map.put(key, value);
+			
+		}
+		return map;
+	}
 
 	public static Map<String, List<String>> mapToListValues(Map<String, String> map) {
 		Map<String, List<String>> map2 = new LinkedHashMap<String, List<String>>();
@@ -73,6 +120,34 @@ public class MapUtil {
 			return value;			
 		}
 		return null;
+	}
+	
+	public static String format(Object value) {
+		if (value==null) {
+			return "";
+		}
+		if (value.getClass().isArray()) {
+			return Arrays.toString((Object[])value);
+		}
+		return value.toString();		
+	}
+	
+	public static void print(Map<?, ?> map, PrintStream out) {
+		if (map!=null) {
+			for (Map.Entry<?, ?> e: map.entrySet()) {
+				out.print(e.getKey());
+				out.print("=");
+				if (e.getValue()!=null) {
+					out.println(format(e.getValue()));					
+				} else {
+					out.println();
+				}
+			}			
+		}
+	}
+	
+	public static void print(Map<?, ?> map) {
+		print(map, System.out);
 	}
 
 }

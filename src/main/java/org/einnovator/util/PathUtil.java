@@ -30,7 +30,26 @@ public class PathUtil {
 		return folder + sep + filename;
 	}
 
-
+	public static String concatAll(String... names) {
+		StringBuilder sb = new StringBuilder();
+		boolean endsWithDeliter = false;
+		for (String name: names) {
+			if (StringUtils.hasText(name)) {
+				if (sb.length()> 0 && !endsWithDeliter && !name.startsWith(DELIMITER)) {
+					sb.append(DELIMITER);
+				}
+				if (endsWithDeliter && name.startsWith(DELIMITER)) {
+					name = name.length()>1 ? name.substring(1) : name;
+					if (!StringUtils.hasText(name)) {
+						continue;
+					}
+				}
+				sb.append(name);
+				endsWithDeliter = name.endsWith(DELIMITER);
+			}			
+		}
+		return sb.toString();
+	}
 
 	public static List<Map<String, String>> crumbs(String path, String delimiter) {
 		List<Map<String, String>> crumbs = new ArrayList<>();
