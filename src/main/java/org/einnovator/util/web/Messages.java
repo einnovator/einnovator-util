@@ -5,11 +5,10 @@ public class Messages {
 	public static final String ATTRIBUTE_INFO = "info";
 	public static final String ATTRIBUTE_ERROR = "error";
 
-	public static final String KEY_CREATE_SUCCESS = "delete.success";
-	public static final String KEY_CREATE_FAILURE = "delete.failure";
-	
-	public static final String MSG_CREATE_SUCCESS = "Deleted with Success";
-	public static final String MSG_CREATE_FAILURE = "Delete Failed";
+	public static final String KEY_CREATE_SUCCESS = "create.success";
+	public static final String KEY_CREATE_FAILURE = "create.failure";
+	public static final String MSG_CREATE_SUCCESS = "Create with Success";
+	public static final String MSG_CREATE_FAILURE = "Create Failed";
 
 	public static final String KEY_UPDATE_SUCCESS = "update.success";
 	public static final String KEY_UPDATE_FAILURE = "update.failure";
@@ -20,7 +19,6 @@ public class Messages {
 	public static final String KEY_DELETE_SUCCESS = "delete.success";
 	public static final String MSG_DELETE_FAILURE = "Delete Failed";
 	public static final String MSG_DELETE_SUCCESS = "Deleted with Success";
-
 
 	public static final String KEY_SUCCESS = "success";
 	public static final String KEY_FAILURE = "failure";

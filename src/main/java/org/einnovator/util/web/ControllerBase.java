@@ -1,6 +1,7 @@
 package org.einnovator.util.web;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.Locale;
 import java.util.Map;
 
@@ -60,6 +61,9 @@ public abstract class ControllerBase {
 		if (obj instanceof Class) {
 			return ((Class<?>)obj).getSimpleName();
 		}
+		if (obj instanceof Principal) {
+			return ((Principal)obj).getName();
+		}
 		return obj.toString();
 	}
 
@@ -114,8 +118,8 @@ public abstract class ControllerBase {
 	protected <T> ResponseEntity<T> status(String msg, HttpStatus status, HttpServletResponse response, Object... objs) {
 		response.setStatus(status.value());
 		if (status.is2xxSuccessful() || status.is3xxRedirection()) {
-			if (logger.isInfoEnabled()) {
-				logger.info(String.format("%s %s %s", msg, format(status), format(objs)));				
+			if (logger.isDebugEnabled()) {
+				logger.debug(String.format("%s %s %s", msg, format(status), format(objs)));				
 			}
 		} else {
 			if (logger.isErrorEnabled()) {
@@ -236,6 +240,10 @@ public abstract class ControllerBase {
 	
 	protected <T> ResponseEntity<T> badrequest(String msg, HttpServletResponse response, Object... objs) {
 		return status(msg, HttpStatus.BAD_REQUEST, response, objs);		
+	}
+	
+	protected <T> ResponseEntity<T> internalerror(String msg, HttpServletResponse response, Object... objs) {
+		return status(msg, HttpStatus.INTERNAL_SERVER_ERROR, response, objs);		
 	}
 
 	protected <T> ResponseEntity<T> conflict(String msg, HttpServletResponse response, Object... objs) {
