@@ -8,11 +8,9 @@ import org.einnovator.util.model.EntityBase;
 
 public class AuthorityBuilder extends EntityBase {
 
-	private String user;
+	private String username;
 
-	private String group;
-
-	private String role;
+	private String groupId;
 
 	private String connection;
 
@@ -24,6 +22,8 @@ public class AuthorityBuilder extends EntityBase {
 
 	private Boolean manage;
 
+	private List<String> roles;
+
 	private List<String> permissions;
 	
 	protected Object userData;
@@ -32,18 +32,37 @@ public class AuthorityBuilder extends EntityBase {
 
 	protected Object roleData;
 
-	public AuthorityBuilder user(String user) {
-		this.user = user;
+	public AuthorityBuilder username(String username) {
+		this.username = username;
 		return this;
 	}
 	
 	public AuthorityBuilder group(String group) {
-		this.group = group;
+		this.groupId = group;
 		return this;
 	}
 
-	public AuthorityBuilder role(String role) {
-		this.role = role;
+	public AuthorityBuilder roles(String... roles) {
+		return roles(Arrays.asList(roles));
+	}
+	
+	public AuthorityBuilder roles(List<String> roles) {
+		if (this.roles==null) {
+			this.roles = new ArrayList<>();
+		}
+		this.roles.addAll(roles);
+		return this;
+	}
+
+	public AuthorityBuilder permissions(String... permissions) {
+		return permissions(Arrays.asList(permissions));
+	}
+
+	public AuthorityBuilder permissions(List<String> permissions) {
+		if (this.permissions==null) {
+			this.permissions = new ArrayList<>();
+		}
+		this.permissions.addAll(permissions);
 		return this;
 	}
 
@@ -52,15 +71,6 @@ public class AuthorityBuilder extends EntityBase {
 		return this;
 	}
 
-	public AuthorityBuilder permissions(String... permissions) {
-		if (permissions!=null) {
-			if (this.permissions==null) {
-				this.permissions = new ArrayList<>();
-			}
-			this.permissions.addAll(Arrays.asList(permissions));
-		}
-		return this;
-	}
 
 	public AuthorityBuilder other(Boolean other) {
 		this.other = other;
@@ -116,9 +126,9 @@ public class AuthorityBuilder extends EntityBase {
 
 	public Authority build() {
 		Authority authority = new Authority();
-		authority.setUser(user);
-		authority.setGroup(group);
-		authority.setRole(role);
+		authority.setUsername(username);
+		authority.setGroupId(groupId);
+		authority.setRoles(roles);
 		authority.setPermissions(permissions);		
 		authority.setConnection(connection);
 		authority.setOther(other);
