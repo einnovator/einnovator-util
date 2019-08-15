@@ -60,6 +60,13 @@ public class TextTemplates {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
 	}
 

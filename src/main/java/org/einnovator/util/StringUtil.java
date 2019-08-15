@@ -742,4 +742,17 @@ public class StringUtil {
 		}
 		return sb.toString();
 	}
+
+	public static int indexOf(String s, char c1, char c2) {
+		int i1 = s.indexOf(c1);
+		int i2 = s.indexOf(c2);
+		if (i1<0) {
+			return i2;
+		}
+		if (i2<0) {
+			return i1;
+		}
+		return i1<=i2 ? i1 : i2;		
+	}
+
 }
