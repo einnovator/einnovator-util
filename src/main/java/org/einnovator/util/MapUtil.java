@@ -122,6 +122,13 @@ public class MapUtil {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static Object resolve(String var,  Object env) {
+		Map<String, Object> map = MappingUtils.convert(env, Map.class);
+		return resolve(var, map);
+	}
+
+	
 	public static String format(Object value) {
 		if (value==null) {
 			return "";
