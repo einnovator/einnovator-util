@@ -4,7 +4,7 @@
 package org.einnovator.util.event;
 
 /**
- * @author jsima
+ * @author support@einnovator.org
  *
  */
 public interface EventFactory {

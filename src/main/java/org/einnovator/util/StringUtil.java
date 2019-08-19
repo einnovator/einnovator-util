@@ -755,4 +755,77 @@ public class StringUtil {
 		return i1<=i2 ? i1 : i2;		
 	}
 
+
+	public static String normalizeIdentifier(String s, char separator, char[] acceptChars) {
+		return normalizeIdentifier(s, separator, acceptChars, null, false);
+	}
+
+	/**
+	 * Normalize String as possibly multi-word identifier to have only accepted characters.
+	 * 
+	 * Characters that are not accepted are repaced by separator, except ignored chars.
+	 * 
+	 * @param s the input String
+	 * @param separator word separator
+	 * @param acceptChars character to accept
+	 * @param ignoreChars character to ignore
+	 * @param capitalizeWords capitalize first letter of each word
+	 * @return the normalized identifier
+	 */
+	public static String normalizeIdentifier(String s, char separator, char[] acceptChars, char[] ignoreChars, boolean capitalizeWords) {
+		if (s==null) {
+			return null;
+		}
+		s = s.trim();
+		StringBuilder sb = new StringBuilder();
+		boolean lastSeparator = false, lastIgnored = false;
+		for (int i=0; i<s.length(); i++) {
+			char c = s.charAt(i);
+			if (CharacterUtil.contains(ignoreChars, c)) {
+				lastIgnored = true;
+				continue;
+			}
+			if (Character.isAlphabetic(c) || Character.isDigit(c) || CharacterUtil.contains(acceptChars, c)) {
+				if (capitalizeWords && (lastIgnored || lastSeparator)) {
+					c = Character.toUpperCase(c);
+				}
+				sb.append(c);
+				if (c!=separator) {
+					lastSeparator = false;					
+				}
+			} else {
+				if (separator!='\0' && sb.length()>0 && !lastSeparator) {
+					if (sb.charAt(sb.length()-1)!=separator) {
+						sb.append(separator);				
+						lastSeparator = true;
+					}
+				}
+			}
+			lastIgnored = false;
+		}
+		s = sb.toString();
+		if (!s.isEmpty()) {
+			if (s.charAt(s.length()-1)==separator) {
+				if (s.length()==1) {
+					return "";
+				}
+				return s.substring(0, s.length()-1);
+			}
+			
+		}
+		return s;
+	}
+	
+	public static String normalizeJavaIdentifier(String name) {
+		return StringUtil.normalizeIdentifier(name, '\0', new char[] {'_'}, new char[] {' '}, true);
+	}
+
+	public static String normalizeCommonIdentifier(String name) {
+		String identifier = StringUtil.normalizeIdentifier(name, '-', new char[] {'_'}, null, false);
+		if (identifier!=null) {
+			identifier = identifier.toLowerCase();
+		}
+		return identifier;
+	}
+
 }

@@ -6,7 +6,7 @@ package org.einnovator.util;
 /**
  * Miscellaneous utility operations with characters.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class CharacterUtil {
 
@@ -118,6 +118,25 @@ public class CharacterUtil {
 			default:
 				return 0;
 		}
+	}
+
+	/**
+	 * Check if character array contains specified character.
+	 * 
+	 * @param chars the character array
+	 * @param c the char to find
+	 * @return true, if char is found
+	 */
+	public static boolean contains(char[] chars, char c) {
+		if (chars==null) {
+			return false;
+		}
+		for (int i=0; i<chars.length; i++) {
+			if (chars[i]==c) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

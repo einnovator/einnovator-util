@@ -2,10 +2,17 @@ package org.einnovator.util;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Writer;
+import java.util.List;
+
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.Resource;
 
 /**
  * Miscellaneous utilities for reading and writing on stream.
@@ -133,7 +140,34 @@ public class IOUtil {
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);	
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+			}
 		}
 		return sb.toString();		
 	}
+
+	public static String readFile(InputStream in) {
+		return readFully(new BufferedReader(new InputStreamReader(in)));
+	}
+
+	public static String readFile(String path) {
+		try {
+			return readFile(new FileInputStream(path));
+		} catch (FileNotFoundException e) {
+			return null;
+		}
+	}
+
+	public static String readFile(Resource resource) {
+		try {
+			return readFile(resource.getInputStream());
+		} catch (IOException e) {
+			return null;
+		}
+	}
+
+	
 }

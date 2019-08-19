@@ -24,7 +24,7 @@ import org.einnovator.util.types.TypeUtil;
 /**
  * Miscellaneous collection operations.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class CollectionUtil {
 	static public <T> List<T> filterAsList(Collection<T> in, Predicate<T> predicate) {

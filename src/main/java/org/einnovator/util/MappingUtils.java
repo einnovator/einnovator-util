@@ -23,6 +23,10 @@ public class MappingUtils {
 		//mapper.setSerializationInclusion(SerializationFeature.FAIL_ON_EMPTY_BEANS)		
 	}
 
+	public static ObjectMapper getSingletonMapper() {
+		return mapper;
+	}
+	
 	public static <T> T readJson(Resource resource, Class<T> type) {
 		try {
 			return readJson(resource.getInputStream(), type);
@@ -45,6 +49,14 @@ public class MappingUtils {
 	public static String toJson(Object obj) {
 		try {
 			return mapper.writeValueAsString(obj);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static String toJsonPrettyPrint(Object obj) {
+		try {
+			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

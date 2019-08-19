@@ -6,7 +6,7 @@ package org.einnovator.util;
 /**
  * A ClassCastException.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class ClassCastException extends RuntimeException {
 

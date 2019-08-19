@@ -6,7 +6,7 @@ package org.einnovator.util;
 /**
  * A NotSupportedException.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class NotSupportedException extends RuntimeException {
 

@@ -13,7 +13,7 @@ import org.einnovator.util.MappingUtils;
 import org.junit.Test;
 
 /**
- * @author jsima
+ * @author support@einnovator.org
  *
  */
 public class AuthorityTests {

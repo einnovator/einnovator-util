@@ -7,7 +7,7 @@ package org.einnovator.util.meta;
 /**
  * A NoSuchPropertyException.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class NoSuchPropertyException extends MetaException {
 

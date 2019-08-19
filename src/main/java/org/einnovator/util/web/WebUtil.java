@@ -13,7 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * @author jsima
+ * @author support@einnovator.org
  *
  */
 public class WebUtil {

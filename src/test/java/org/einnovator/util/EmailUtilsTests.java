@@ -10,7 +10,7 @@ import static org.einnovator.util.EmailUtils.*;
 import org.junit.Test;
 
 /**
- * @author jsima
+ * @author support@einnovator.org
  *
  */
 public class EmailUtilsTests {

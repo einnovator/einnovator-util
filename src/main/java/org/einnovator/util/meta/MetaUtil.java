@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
 /**
  * Miscellaneous reflection utilities.
  * 
- * @author jsimao
+ * @author support@einnovator.orgo
  */
 public class MetaUtil {
 

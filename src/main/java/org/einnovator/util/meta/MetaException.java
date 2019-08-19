@@ -6,7 +6,7 @@ package org.einnovator.util.meta;
 /**
  * A MetaException.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class MetaException extends RuntimeException {
 

@@ -23,7 +23,7 @@ import org.einnovator.util.meta.MetaUtil;
 /**
  * Miscellaneous type utility operations.
  *  
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class TypeUtil {
 	

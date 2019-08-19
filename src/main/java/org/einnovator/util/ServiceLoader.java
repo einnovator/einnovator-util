@@ -25,7 +25,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * A loader for service providers.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  * @param <T> the type of the service
  */
 public class ServiceLoader<T> {

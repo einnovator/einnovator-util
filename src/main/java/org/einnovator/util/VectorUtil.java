@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * A VectorUtil.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class VectorUtil {
 

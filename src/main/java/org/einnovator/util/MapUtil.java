@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * A {@code MapUtil}.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class MapUtil {
 
@@ -155,6 +155,15 @@ public class MapUtil {
 	
 	public static void print(Map<?, ?> map) {
 		print(map, System.out);
+	}
+
+	public static String replaceAll(String s, Map<String, Object> env) {
+		if (s!=null && env!=null) {
+			for (Map.Entry<String, Object> e: env.entrySet()) {
+				s = s.replaceAll(e.getKey(), e.getValue().toString());
+			}			
+		}
+		return s;
 	}
 
 }

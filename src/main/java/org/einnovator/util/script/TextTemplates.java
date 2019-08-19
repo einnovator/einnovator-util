@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
+import org.einnovator.util.IOUtil;
 import org.einnovator.util.MapUtil;
 import org.springframework.core.io.Resource;
 
@@ -52,22 +53,11 @@ public class TextTemplates {
 	}
 	
 	public String expand(InputStream in, Map<String, Object> env) {
-		try {
-			List<String> lines;
-			lines = IOUtils.readLines(in);
-			String s = String.join("\n", lines);
-			return expand(s, env);
-		} catch (IOException e) {
-			e.printStackTrace();
+		String s = IOUtil.readFile(in);
+		if (s==null) {
 			return null;
-		} finally {
-			try {
-				in.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
 		}
+		return expand(s, env);
 	}
 
 	public String expand(Resource resource, Map<String, Object> env) {

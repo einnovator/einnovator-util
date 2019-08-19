@@ -6,7 +6,7 @@ package org.einnovator.util;
 /**
  * A {@code NotImplementedException}.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class NotImplementedException extends RuntimeException {
 

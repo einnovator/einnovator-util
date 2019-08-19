@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author jsima
+ * @author support@einnovator.org
  *
  */
 public class PageResult<T> {

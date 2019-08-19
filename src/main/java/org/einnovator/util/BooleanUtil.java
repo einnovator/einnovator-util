@@ -6,7 +6,7 @@ package org.einnovator.util;
 /**
  * Miscellaneous boolean operations.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class BooleanUtil {
 

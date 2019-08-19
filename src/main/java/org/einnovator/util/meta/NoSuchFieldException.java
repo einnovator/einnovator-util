@@ -6,7 +6,7 @@ package org.einnovator.util.meta;
 /**
  * A NoSuchFieldException.
  *
- * @author Jorge Simao, {@code jorge.simao@einnovator.org}
+ * @author  {@code support@einnovator.org}
  */
 public class NoSuchFieldException extends MetaException {
 	private static final long serialVersionUID = 1L;

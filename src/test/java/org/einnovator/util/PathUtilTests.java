@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author jsima
+ * @author support@einnovator.org
  *
  */
 public class PathUtilTests {
