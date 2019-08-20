@@ -214,6 +214,37 @@ public class MappingUtils {
 		return current;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static <T> T updateObjectFromNonNullNoOverwrite(T current, Object obj) {
+		if (obj==null) {
+			return current;
+		}
+		if (obj instanceof Map && !(current instanceof Map)) {
+			return fromMap(current, (Map<String, Object>)obj);
+		}
+
+		try {
+			NullAwareBeanUtilsBean.singletonNoOverwrite.copyProperties(current, obj);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+		}
+		return current;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T updateObjectFromNonNullNoOverwriteIgnoreCollections(T current, Object obj) {
+		if (obj==null) {
+			return current;
+		}
+		if (obj instanceof Map && !(current instanceof Map)) {
+			return fromMap(current, (Map<String, Object>)obj);
+		}
+		try {
+			NullAwareBeanUtilsBean.singletonNoOverwriteIgnoreCollections.copyProperties(current, obj);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+		}
+		return current;
+	}
+	
 	public static <T> T get(String key, Map<String, Object> map, T defaultValue) {
 		@SuppressWarnings("unchecked")
 		T value = (T)map.get(key);

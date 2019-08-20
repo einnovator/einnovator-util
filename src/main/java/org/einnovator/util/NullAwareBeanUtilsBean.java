@@ -8,10 +8,12 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 public class NullAwareBeanUtilsBean extends BeanUtilsBean {
 
 	private boolean ignoreCollections;
-	
+
+	private boolean overwrite;
+
 	public NullAwareBeanUtilsBean() {
 	}
-	public NullAwareBeanUtilsBean(boolean ignoreCollections) {
+	public NullAwareBeanUtilsBean(boolean ignoreCollections, boolean overwrite) {
 		this.ignoreCollections = ignoreCollections;
 	}
 
@@ -27,7 +29,10 @@ public class NullAwareBeanUtilsBean extends BeanUtilsBean {
         super.copyProperty(dest, name, value);
     }
     
-    public static NullAwareBeanUtilsBean singleton = new NullAwareBeanUtilsBean();
-    public static NullAwareBeanUtilsBean singletonIgnoreCollections = new NullAwareBeanUtilsBean(true);
+    public static NullAwareBeanUtilsBean singleton = new NullAwareBeanUtilsBean(false, true);
+    public static NullAwareBeanUtilsBean singletonIgnoreCollections = new NullAwareBeanUtilsBean(true, true);
+
+    public static NullAwareBeanUtilsBean singletonNoOverwrite = new NullAwareBeanUtilsBean(false, false);
+    public static NullAwareBeanUtilsBean singletonNoOverwriteIgnoreCollections = new NullAwareBeanUtilsBean(true, false);
 
 }
