@@ -10,10 +10,11 @@ import org.springframework.util.StringUtils;
 
 public class PathUtil {
 
-	public static final String DELIMITER = "/";
+	public static final String SEPARATOR = "/";
+	public static final String DELIMITER = SEPARATOR;
 
 	public static String concat(String folder, String filename) {
-		return concat(folder, filename, DELIMITER);
+		return concat(folder, filename, SEPARATOR);
 	}
 
 	public static String concat(String folder, String filename, String delimeter) {
@@ -35,17 +36,17 @@ public class PathUtil {
 		boolean endsWithDeliter = false;
 		for (String name: names) {
 			if (StringUtils.hasText(name)) {
-				if (sb.length()> 0 && !endsWithDeliter && !name.startsWith(DELIMITER)) {
-					sb.append(DELIMITER);
+				if (sb.length()> 0 && !endsWithDeliter && !name.startsWith(SEPARATOR)) {
+					sb.append(SEPARATOR);
 				}
-				if (endsWithDeliter && name.startsWith(DELIMITER)) {
+				if (endsWithDeliter && name.startsWith(SEPARATOR)) {
 					name = name.length()>1 ? name.substring(1) : name;
 					if (!StringUtils.hasText(name)) {
 						continue;
 					}
 				}
 				sb.append(name);
-				endsWithDeliter = name.endsWith(DELIMITER);
+				endsWithDeliter = name.endsWith(SEPARATOR);
 			}			
 		}
 		return sb.toString();
@@ -53,7 +54,7 @@ public class PathUtil {
 
 	public static List<Map<String, String>> crumbs(String path, String delimiter) {
 		List<Map<String, String>> crumbs = new ArrayList<>();
-		String[] a = path.split("/");
+		String[] a = path.split(SEPARATOR);
 		StringBuilder sb = new StringBuilder();
 		for (String s : a) {
 			sb.append(s);
@@ -68,7 +69,7 @@ public class PathUtil {
 
 	
 	public static String getFolder(String path) {
-		return getFolder(path, DELIMITER);
+		return getFolder(path, SEPARATOR);
 	}
 		
 	public static String getFolder(String path, String delimiter) {
@@ -83,7 +84,7 @@ public class PathUtil {
 	}
 
 	public static String getFolderParent(String path) {
-		return getFolderParent(path, DELIMITER);
+		return getFolderParent(path, SEPARATOR);
 	}
 
 	public static String getFolderParent(String path, String delimiter) {
@@ -101,7 +102,7 @@ public class PathUtil {
 	}
 
 	public static boolean isFolder(String path) {
-		return isFolder(path, DELIMITER);
+		return isFolder(path, SEPARATOR);
 	}
 
 	public static boolean isFolder(String path, String delimiter) {
@@ -112,7 +113,7 @@ public class PathUtil {
 	}
 
 	public static boolean isRoot(String path) {
-		return path==null || path.isEmpty() || DELIMITER.equals(path) || !StringUtils.hasText(path);
+		return path==null || path.isEmpty() || SEPARATOR.equals(path) || !StringUtils.hasText(path);
 	}
 	
 	public static String absolute(File relativeTo, String filename) {
@@ -124,5 +125,16 @@ public class PathUtil {
 			return file.getAbsolutePath();
 		}
 		return new File(relativeTo.getParentFile(), filename).getAbsolutePath();
+	}
+
+	public static String getFilename(String path) {
+		if (path==null) {
+			return null;
+		}
+		int i = path.lastIndexOf(SEPARATOR);
+		if (i>=0 && i<path.length()-1) {
+			return path.substring(i+1);
+		}
+		return path;
 	}
 }
