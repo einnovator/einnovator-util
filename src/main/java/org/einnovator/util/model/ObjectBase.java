@@ -40,18 +40,45 @@ public abstract class ObjectBase {
 	}
 
 	public void updateFrom(Object obj) {		
-		updateFrom(obj, true);
+		update(obj, true);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void updateFrom(Object obj, boolean ignoreCollections) {
-		if (obj instanceof Map) {
-			MappingUtils.fromMap(this, (Map<String, Object>)obj);
-		} else if (ignoreCollections) {
-			MappingUtils.updateObjectFromNonNullIgnoreCollections(this, obj);			
+		update(obj, ignoreCollections);
+	}
+	
+	public void updateFrom(Object obj, boolean ignoreCollections, boolean overwrite) {
+		update(obj, ignoreCollections, overwrite);
+	}
+	
+	public void update(Object from) {
+		update(from, true, true);
+	}
+	
+	public void update(Object obj, boolean ignoreCollections) {
+		update(obj, ignoreCollections, true);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void update(Object from, boolean ignoreCollections, boolean overwrite) {
+		if (from instanceof Map) {
+			MappingUtils.fromMap(this, (Map<String, Object>)from);
+			return;
+		} 
+		if (overwrite) {
+			if (ignoreCollections) {
+				MappingUtils.updateObjectFromNonNullIgnoreCollections(this, from);							
+			} else {
+				MappingUtils.updateObjectFromNonNull(this, from);											
+			}
 		} else {
-			MappingUtils.updateObjectFromNonNull(this, obj);						
+			if (ignoreCollections) {
+				MappingUtils.updateObjectFromNonNullNoOverwriteIgnoreCollections(this, from);
+			} else {
+				MappingUtils.updateObjectFromNonNullNoOverwrite(this, from);				
+			}
 		}
 	}
+
 
 }
