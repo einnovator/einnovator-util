@@ -77,6 +77,9 @@ public class PathUtil {
 			return path;
 		}
 		int i = path.lastIndexOf(delimiter);
+		if (i<0) {
+			return SEPARATOR;
+		}
 		if (i > 0 && i<path.length()-1) {
 			path = path.substring(0, i + 1);
 		}
