@@ -828,4 +828,81 @@ public class StringUtil {
 		return identifier;
 	}
 
+
+	public static String toWords(String s) {
+		if (s==null) {
+			return null;
+		}
+		s = s.trim();
+		StringBuilder sb = new StringBuilder();
+		boolean wordStarted = false, lastSpace = false;
+		for (int i=0; i<s.length(); i++) {
+			char c = s.charAt(i);
+			if (!wordStarted || lastSpace) {
+				if (Character.isAlphabetic(c) || Character.isDigit(c)) {
+					if (Character.isAlphabetic(c)) {
+						c = Character.toUpperCase(c);
+					}
+					sb.append(c);
+					lastSpace = false;
+					wordStarted = true;					
+				}
+			} else {
+				if (Character.isAlphabetic(c) || Character.isDigit(c)) {
+					if (Character.isAlphabetic(c)) {
+						c = Character.toLowerCase(c);
+					}
+					sb.append(c);
+					lastSpace = false;
+				} else {
+					if (!lastSpace) {
+						sb.append(' ');
+						lastSpace = true;
+					}
+				}
+		
+			}
+		}
+		s = sb.toString();
+		return s;
+	}
+
+
+	public static String camelcaseToWords(String s, char sep) {
+		if (s==null) {
+			return null;
+		}
+		s = s.trim();
+		StringBuilder sb = new StringBuilder();
+		boolean wordStart = true;
+		for (int i=0; i<s.length(); i++) {
+			char c = s.charAt(i);
+			if (wordStart) {
+				sb.append(c);				
+				wordStart = false;
+			} else {
+				if (Character.isUpperCase(c)) {
+					if (sb.length()>0 && sb.charAt(sb.length()-1)!=sep) {
+						sb.append(sep);				
+					}
+					sb.append(c);
+					wordStart = true;
+				} else {
+					sb.append(c);
+				}
+			}
+		}
+		s = sb.toString();
+		if (!s.isEmpty()) {
+			if (s.charAt(s.length()-1)==sep) {
+				if (s.length()==1) {
+					return "";
+				}
+				return s.substring(0, s.length()-1);
+			}
+			
+		}
+		return s;
+	}
+
 }

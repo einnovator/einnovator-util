@@ -140,4 +140,15 @@ public class PathUtil {
 		}
 		return path;
 	}
+
+	public static String removeExt(String name) {
+		if (name!=null) {
+			int i = name.lastIndexOf(".");
+			if (i>0) {
+				name = name.substring(0, i);
+			}
+		}		
+		return name;
+	}
+
 }

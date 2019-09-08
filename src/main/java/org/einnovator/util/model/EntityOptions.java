@@ -19,6 +19,15 @@ public class EntityOptions<T> extends ObjectBase implements Options<T> {
 
 
 	/**
+	 * Create instance of {@code EntityOptions}.
+	 *
+	 * @param obj a prototype
+	 */
+	public EntityOptions(Object obj) {
+		super(obj);
+	}
+
+	/**
 	 * Get the value of property {@code runAs}.
 	 *
 	 * @return the runAs
@@ -91,6 +100,7 @@ public class EntityOptions<T> extends ObjectBase implements Options<T> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("rawtypes")
 		EntityOptions other = (EntityOptions) obj;
 		if (admin == null) {
 			if (other.admin != null)
