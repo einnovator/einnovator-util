@@ -15,6 +15,7 @@ public class TextTemplates {
 
 	public static final String DEFAULT_START_MARKER = "${";
 	public static final String DEFAULT_END_MARKER = "}";
+	public static final String DEFAULT_VALUE_SEPARATOR = ":";
 	
 	protected String startMarker = DEFAULT_START_MARKER;
 
@@ -114,7 +115,19 @@ public class TextTemplates {
 	}
 
 	public String resolve(String var,  Map<String, Object> env) {
-		return format(MapUtil.resolve(var, env));
+		String defaultValue = null;
+		if (var!=null) {
+			int i = var.indexOf(DEFAULT_VALUE_SEPARATOR);
+			if (i>0 && i<var.length()-1) {
+				defaultValue = var.substring(i+1);
+				var = var.substring(0,i);
+			}
+		}
+		Object value = MapUtil.resolve(var, env);
+		if (value==null) {
+			value = defaultValue;
+		}
+		return format(value);
 	}
 	
 	
