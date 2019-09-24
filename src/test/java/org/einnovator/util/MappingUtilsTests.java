@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Map;
 
 import org.einnovator.util.MappingUtils;
+import org.einnovator.util.script.TestUser;
 import org.junit.Test;
 
 

@@ -1,4 +1,4 @@
-package org.einnovator.util;
+package org.einnovator.util.script;
 
 public class TestUser {
 	String id;

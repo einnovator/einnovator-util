@@ -21,7 +21,7 @@ public class TextTemplates {
 
 	protected String endMarker = DEFAULT_END_MARKER;
 
-	protected VariableResolver resolver;
+	protected ExpressionResolver resolver;
 	
 	/**
 	 * Create instance of {@code TextTemplates}.
@@ -39,10 +39,14 @@ public class TextTemplates {
 		this.endMarker = endMarker;
 	}
 	
-	public TextTemplates(String startMarker, String endMarker, VariableResolver resolver) {
+	public TextTemplates(String startMarker, String endMarker, ExpressionResolver resolver) {
 		this.startMarker = startMarker;
 		this.endMarker = endMarker;
 		this.resolver = resolver;
+	}
+	
+	public TextTemplates(ExpressionResolver resolver) {
+		this(DEFAULT_START_MARKER, DEFAULT_END_MARKER, resolver);
 	}
 	
 	public InputStream expandAsStream(InputStream in, Map<String, Object> env) {
@@ -75,7 +79,7 @@ public class TextTemplates {
 	}
 
 
-	public String expand(String text, VariableResolver resolver, Map<String, Object> env) {
+	public String expand(String text, ExpressionResolver resolver, Map<String, Object> env) {
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
 		while (i<text.length()) {
@@ -104,9 +108,9 @@ public class TextTemplates {
 		return sb.toString();
 	}
 
-	public String resolve(String var, VariableResolver resolver, Map<String, Object> env) {
+	public String resolve(String var, ExpressionResolver resolver, Map<String, Object> env) {
 		if (resolver!=null) {
-			Object value = resolver.resolve(env, var);			
+			Object value = resolver.eval(var, env);			
 			if (value!=null) {
 				return format(value);
 			}

@@ -8,7 +8,7 @@ import org.springframework.core.env.Environment;
 /**
  *
  */
-public class EnvironmentVariableResolver implements VariableResolver {
+public class EnvironmentVariableResolver implements ExpressionResolver {
 
 	private Environment env;
 	
@@ -21,8 +21,8 @@ public class EnvironmentVariableResolver implements VariableResolver {
 	}
 	
 	@Override
-	public Object resolve(Object obj, String name) {
-		return env.getProperty(name);
+	public Object eval(String expression, Object context) {
+		return env.getProperty(expression);
 	}
 
 }
