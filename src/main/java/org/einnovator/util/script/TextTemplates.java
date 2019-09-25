@@ -49,6 +49,60 @@ public class TextTemplates {
 		this(DEFAULT_START_MARKER, DEFAULT_END_MARKER, resolver);
 	}
 	
+	/**
+	 * Get the value of property {@code startMarker}.
+	 *
+	 * @return the startMarker
+	 */
+	public String getStartMarker() {
+		return startMarker;
+	}
+
+	/**
+	 * Set the value of property {@code startMarker}.
+	 *
+	 * @param startMarker the startMarker to set
+	 */
+	public void setStartMarker(String startMarker) {
+		this.startMarker = startMarker;
+	}
+
+	/**
+	 * Get the value of property {@code endMarker}.
+	 *
+	 * @return the endMarker
+	 */
+	public String getEndMarker() {
+		return endMarker;
+	}
+
+	/**
+	 * Set the value of property {@code endMarker}.
+	 *
+	 * @param endMarker the endMarker to set
+	 */
+	public void setEndMarker(String endMarker) {
+		this.endMarker = endMarker;
+	}
+
+	/**
+	 * Get the value of property {@code resolver}.
+	 *
+	 * @return the resolver
+	 */
+	public ExpressionResolver getResolver() {
+		return resolver;
+	}
+
+	/**
+	 * Set the value of property {@code resolver}.
+	 *
+	 * @param resolver the resolver to set
+	 */
+	public void setResolver(ExpressionResolver resolver) {
+		this.resolver = resolver;
+	}
+
 	public InputStream expandAsStream(InputStream in, Map<String, Object> env) {
 		String s = expand(in, env);
 		if (s==null) {
