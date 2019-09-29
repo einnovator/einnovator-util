@@ -107,6 +107,8 @@ public class TextTemplatesTests {
 		assertEquals("xx3.0yy", templates.expand("xx${a+b}yy", env));
 		assertEquals("xx3Cyy", templates.expand("xx${a+b+c}yy", env));
 
+		assertEquals("x", templates.expand("${a==0 ? 0 : 'x'}", env));
+		
 	}
 	
 	public String makeTestMessage() {

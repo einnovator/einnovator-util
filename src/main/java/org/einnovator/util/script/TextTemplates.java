@@ -3,10 +3,8 @@ package org.einnovator.util.script;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.einnovator.util.IOUtil;
 import org.einnovator.util.MapUtil;
 import org.springframework.core.io.Resource;
@@ -162,14 +160,17 @@ public class TextTemplates {
 		return sb.toString();
 	}
 
-	public String resolve(String var, ExpressionResolver resolver, Map<String, Object> env) {
+	public String resolve(String expr, ExpressionResolver resolver, Map<String, Object> env) {
 		if (resolver!=null) {
-			Object value = resolver.eval(var, env);			
+			Object value = resolver.eval(expr, env);			
 			if (value!=null) {
-				return format(value);
+				String result = format(value);
+				if (!result.equals(expr)) {
+					return result;					
+				}
 			}
 		}
-		return resolve(var, env);
+		return resolve(expr, env);
 	}
 
 	public String resolve(String var,  Map<String, Object> env) {
