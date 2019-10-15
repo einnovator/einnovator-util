@@ -20,6 +20,21 @@ public class Messages {
 	public static final String MSG_DELETE_FAILURE = "Delete Failed";
 	public static final String MSG_DELETE_SUCCESS = "Deleted with Success";
 
+	public static final String KEY_ENTITY_CREATE_SUCCESS = "create.success";
+	public static final String KEY_ENTITY_CREATE_FAILURE = "create.failure";
+	public static final String MSG_ENTITY_CREATE_SUCCESS = "Create with Success";
+	public static final String MSG_ENTITY_CREATE_FAILURE = "Create Failed";
+
+	public static final String KEY_ENTITY_UPDATE_SUCCESS = "update.success";
+	public static final String KEY_ENTITY_UPDATE_FAILURE = "update.failure";
+	public static final String MSG_ENTITY_UPDATE_SUCCESS = "Updated with Success";
+	public static final String MSG_ENTITY_UPDATE_FAILURE = "Update Failed";
+
+	public static final String KEY_ENTITY_DELETE_FAILURE = "delete.failure";
+	public static final String KEY_ENTITY_DELETE_SUCCESS = "delete.success";
+	public static final String MSG_ENTITY_DELETE_FAILURE = "Delete Failed";
+	public static final String MSG_ENTITY_DELETE_SUCCESS = "Deleted with Success";
+
 	public static final String KEY_SUCCESS = "success";
 	public static final String KEY_FAILURE = "failure";
 	public static final String MSG_SUCCESS = "Operation Completed with Success";

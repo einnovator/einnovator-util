@@ -132,6 +132,9 @@ public class TextTemplates {
 
 
 	public String expand(String text, ExpressionResolver resolver, Map<String, Object> env) {
+		if (text==null) {
+			return null;
+		}
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
 		while (i<text.length()) {

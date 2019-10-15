@@ -32,9 +32,28 @@ public class ResourceUtils {
 	}
 	
 	public static String readResource(String filename) {
+		Resource resource = new ClassPathResource(filename);
+		return readResource(resource);
+	}
+	
+	public static String readResource(Resource resource) {
 		try {
-			Resource resource = new ClassPathResource(filename);
-			InputStream inputStream = resource.getInputStream();
+			return readResource(resource.getInputStream());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static String readOptionalResource(Resource resource) {
+		try {
+			return readResource(resource.getInputStream());
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
+	public static String readResource(InputStream inputStream) {
+		try {
 			StringWriter writer = new StringWriter();
 			IOUtils.copy(inputStream, writer, Charset.forName("UTF-8"));
 			String s = writer.toString();
