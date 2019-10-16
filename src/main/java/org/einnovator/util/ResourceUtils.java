@@ -1,5 +1,6 @@
 package org.einnovator.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -70,6 +71,17 @@ public class ResourceUtils {
 			IOUtils.copy(inputStream, writer, Charset.forName("UTF-8"));
 			String s = writer.toString();
 			return s;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static byte[] readUrlResourceBytes(String uri) {
+		try {
+			InputStream inputStream = new UrlResource(uri).getInputStream();
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			IOUtils.copy(inputStream, out);
+			return out.toByteArray();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

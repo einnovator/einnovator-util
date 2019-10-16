@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -71,6 +72,19 @@ public class IOUtil {
 			throw new RuntimeException(e);
 		}
 	}
+	
+
+	public static boolean writeBytes(String path, byte[] bytes) {
+		try (FileOutputStream out = new FileOutputStream(path)) {
+			out.write(bytes);
+			return true;
+		} catch (FileNotFoundException e) {
+			return false;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+	
 
 	public static void writeBytes(InputStream in, OutputStream out) {
 		writeBytes(in, out, bufferSize);
