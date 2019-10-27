@@ -905,4 +905,44 @@ public class StringUtil {
 		return s;
 	}
 
+	
+	public static String capitalize(String s) {
+		if (s.isEmpty()) {
+			return s;
+		}
+		if (s.length()==1) {
+			return s.toUpperCase();
+		}
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
+	}
+
+	public static String uncapitalize(String s) {
+		if (s.isEmpty()) {
+			return s;
+		}
+		if (s.length()==1) {
+			return s.toLowerCase();
+		}
+		return s.substring(0, 1).toLowerCase() + s.substring(1);
+	}
+	
+	/**
+	 * Check if {@code String} is <code>null</code> or empty.
+	 * 
+	 * @param s the string
+	 * @return <code>true</code>, if the {@code String} is <code>null</code> or empty; <code>false</code>, otherwise.
+	 */
+	public static boolean isEmpty(String s) {
+		return s==null || s.isEmpty();
+	}
+
+	/**
+	 * Check if {@code String} has any non-blank text content.
+	 * 
+	 * @param s the string
+	 * @return <code>true</code>, if the {@code String} is has non-blank text content; <code>false</code>, otherwise.
+	 */
+	public static boolean hasText(String s) {
+		return s!=null && !s.trim().isEmpty();
+	}
 }

@@ -173,7 +173,7 @@ public class TextTemplates {
 				}
 			}
 		}
-		return resolve(expr, env);
+		return env!=null ? resolve(expr, env) : expr;
 	}
 
 	public String resolve(String var,  Map<String, Object> env) {
