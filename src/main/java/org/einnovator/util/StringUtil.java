@@ -945,4 +945,22 @@ public class StringUtil {
 	public static boolean hasText(String s) {
 		return s!=null && !s.trim().isEmpty();
 	}
+	
+	public static String tail(String s, int n) {
+		if (s==null) {
+			return null;
+		}
+		int k = 0;
+		int i = s.length();
+		while (n>-1 && i>0) {
+			i = s.lastIndexOf("\n", i);
+			if (i<0) {
+				return s.substring(0);
+			}
+			k = i+1;
+			i--;
+			n--;
+		}
+		return s.substring(k);
+	}
 }
