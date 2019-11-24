@@ -54,8 +54,8 @@ public class EmailUtils {
 	
 	public static String emailToUsername(String email) {
 		int i = email.indexOf("@");
-		if (i<0 || i==email.length()-1) {
-			return null;
+		if (i<0) {
+			return email;
 		}
 		String username = email.substring(0, i);
 		return username.trim();
