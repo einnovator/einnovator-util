@@ -130,6 +130,13 @@ public abstract class ControllerBase {
 	}
 
 	protected String flash(String type, String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		String msg = makeMessage(key, args, defaultMsg, request);
+		request.setAttribute(type, msg);
+		redirectAttributes.addFlashAttribute(type, msg);
+		return defaultMsg!=null ? defaultMsg : msg;
+	}
+
+	protected String makeMessage(String key, Object[] args, String defaultMsg, HttpServletRequest request) {
 		String msg = defaultMsg;
 		if (messageSource!=null && key!=null) {
 			Locale locale = null;
@@ -141,11 +148,8 @@ public abstract class ControllerBase {
 			}
 			msg = messageSource.getMessage(key, args, defaultMsg, locale);
 		}
-		request.setAttribute(type, msg);
-		redirectAttributes.addFlashAttribute(type, msg);
-		return defaultMsg!=null ? defaultMsg : msg;
+		return StringUtils.hasText(msg) ? msg : defaultMsg;
 	}
-
 
 	protected String flashError(String msg, String key, Object[] args, String defaultMsg, HttpServletRequest request, RedirectAttributes redirectAttributes, Object... objs) {
 		error(msg, objs);
