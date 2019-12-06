@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 
 public class SecurityUtil {
 
@@ -65,6 +66,9 @@ public class SecurityUtil {
 		return false;
 	}
 
-
+	public static boolean isAnonymous() {
+		Authentication authentication = getAuthentication();
+		return authentication!=null && authentication instanceof AnonymousAuthenticationToken;		
+	}
 
 }
