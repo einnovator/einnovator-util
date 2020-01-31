@@ -9,5 +9,5 @@ package org.einnovator.util.event;
  */
 public interface EventFactory {
 
-	Object makeEvent(String principal, Object source, String actionType, Object... targets);
+	Object makeEvent(String principal, Object source, Object param, String actionType, Object... targets);
 }

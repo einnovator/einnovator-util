@@ -19,7 +19,14 @@ public class TextTemplates {
 
 	protected String endMarker = DEFAULT_END_MARKER;
 
+	protected String separator = DEFAULT_VALUE_SEPARATOR;
+
 	protected ExpressionResolver resolver;
+
+	protected boolean fallback = true;
+
+	protected boolean defaults = true;
+
 	
 	/**
 	 * Create instance of {@code TextTemplates}.
@@ -47,6 +54,42 @@ public class TextTemplates {
 		this(DEFAULT_START_MARKER, DEFAULT_END_MARKER, resolver);
 	}
 	
+	/**
+	 * Get the value of property {@code fallback}.
+	 *
+	 * @return the fallback
+	 */
+	public boolean isFallback() {
+		return fallback;
+	}
+
+	/**
+	 * Set the value of property {@code fallback}.
+	 *
+	 * @param fallback the value of {@code fallback}
+	 */
+	public void setFallback(boolean fallback) {
+		this.fallback = fallback;
+	}
+
+	/**
+	 * Get the value of property {@code defaults}.
+	 *
+	 * @return the defaults
+	 */
+	public boolean isDefaults() {
+		return defaults;
+	}
+
+	/**
+	 * Set the value of property {@code defaults}.
+	 *
+	 * @param defaults the value of {@code defaults}
+	 */
+	public void setDefaults(boolean defaults) {
+		this.defaults = defaults;
+	}
+
 	/**
 	 * Get the value of property {@code startMarker}.
 	 *
@@ -99,6 +142,24 @@ public class TextTemplates {
 	 */
 	public void setResolver(ExpressionResolver resolver) {
 		this.resolver = resolver;
+	}
+
+	/**
+	 * Get the value of property {@code separator}.
+	 *
+	 * @return the separator
+	 */
+	public String getSeparator() {
+		return separator;
+	}
+
+	/**
+	 * Set the value of property {@code separator}.
+	 *
+	 * @param separator the value of property separator
+	 */
+	public void setSeparator(String separator) {
+		this.separator = separator;
 	}
 
 	public InputStream expandAsStream(InputStream in, Map<String, Object> env) {
@@ -164,27 +225,45 @@ public class TextTemplates {
 	}
 
 	public String resolve(String expr, ExpressionResolver resolver, Map<String, Object> env) {
+		if (expr==null || expr.isEmpty()) {
+			return expr;
+		}
+		String defaultValue = null;
+		if (defaults) {
+			int i = expr.indexOf(separator);
+			if (i>0 && i<expr.length()-separator.length()) {
+				defaultValue = expr.substring(i+separator.length());
+				expr = expr.substring(0,i);
+			}
+		}
 		if (resolver!=null) {
-			Object value = resolver.eval(expr, env);			
-			if (value!=null) {
-				String result = format(value);
-				if (!result.equals(expr)) {
-					return result;					
+			try {
+				Object value = resolver.eval(expr, env);							
+				if (value!=null) {
+					String result = format(value);
+					if (!result.equals(expr)) {
+						return result;					
+					}
+				}
+				if (!fallback) {
+					return null;
+				}
+			} catch (RuntimeException e) {
+				if (!fallback) {
+					throw e;
 				}
 			}
 		}
-		return env!=null ? resolve(expr, env) : expr;
+		if (env==null) {
+			if (defaultValue!=null) {
+				return defaultValue;
+			}
+			return expr;
+		}
+		return resolve(expr, env, defaultValue);
 	}
 
-	public String resolve(String var,  Map<String, Object> env) {
-		String defaultValue = null;
-		if (var!=null) {
-			int i = var.indexOf(DEFAULT_VALUE_SEPARATOR);
-			if (i>0 && i<var.length()-1) {
-				defaultValue = var.substring(i+1);
-				var = var.substring(0,i);
-			}
-		}
+	public String resolve(String var, Map<String, Object> env, String defaultValue) {
 		Object value = MapUtil.resolve(var, env);
 		if (value==null) {
 			value = defaultValue;

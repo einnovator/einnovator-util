@@ -10,6 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 /**
  * A {@code MapUtil}.
  *
@@ -134,7 +136,24 @@ public class MapUtil {
 			return "";
 		}
 		if (value.getClass().isArray()) {
-			return Arrays.toString((Object[])value);
+			if (value instanceof boolean[]) {
+				value = ArrayUtils.toObject((boolean[])value);
+			} else if (value instanceof int[]) {
+				value = ArrayUtils.toObject((int[])value);
+			} else if (value instanceof long[]) {
+				value = ArrayUtils.toObject((long[])value);
+			} else if (value instanceof double[]) {
+				value = ArrayUtils.toObject((double[])value);
+			} else if (value instanceof float[]) {
+				value = ArrayUtils.toObject((float[])value);
+			} else if (value instanceof char[]) {
+				value = ArrayUtils.toObject((char[])value);
+			} else if (value instanceof byte[]) {
+				value = ArrayUtils.toObject((byte[])value);
+			} else if (value instanceof short[]) {
+				value = ArrayUtils.toObject((short[])value);
+			}
+			return Arrays.deepToString((Object[])value);
 		}
 		return value.toString();		
 	}

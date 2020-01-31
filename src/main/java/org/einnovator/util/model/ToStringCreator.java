@@ -8,7 +8,7 @@ import org.springframework.util.Assert;
  * with pluggable styling conventions. By default, ToStringCreator adheres
  * to EInnovator {@code toString()} styling conventions.
  *
- * @author Jorge Simao {jorge.simao@einnovator.org}
+ * @author  {support@einnovator.org}
  */
 public class ToStringCreator {
 

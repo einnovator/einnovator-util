@@ -15,7 +15,7 @@ import org.springframework.util.ObjectUtils;
  * <p>This class is used by {@link ToStringCreator} to style {@code toString()}
  * output in a consistent manner according to EInnovator conventions.
  *
- * @author Jorge Simao {jorge.simao@einnovator.org}
+ * @author  {support@einnovator.org}
  */
 public class DefaultToStringStyler2 implements ToStringStyler2 {
 

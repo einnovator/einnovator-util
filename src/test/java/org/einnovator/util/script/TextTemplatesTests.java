@@ -73,6 +73,19 @@ public class TextTemplatesTests {
 		String s = t.expand("/home/{username}", env);
 		assertEquals("/home/"+env.get("username"), s);
 	}
+	
+	
+	@Test
+	public void expandWithDefaultTest() {
+		Map<String, Object> env = new LinkedHashMap<>();
+		TextTemplates t = new TextTemplates();
+		String s = t.expand("ab${x:123}", env);
+		assertEquals("ab123", s);
+		TextTemplates t2 = new TextTemplates();
+		t2.setSeparator("::");
+		String s2 = t2.expand("ab${x::123}", env);
+		assertEquals("ab123", s2);
+	}
 
 	@Test
 	public void scriptTest() {
@@ -113,8 +126,7 @@ public class TextTemplatesTests {
 	
 	public String makeTestMessage() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Welcome, ${name}!\n\n");
-		sb.append("Follow the link below to activate you account:\n\n");
+		sb.append("Test, ${name}!\n\n");
 		String link = "${link-confirm}?username=${username}&token=${token}";
 		sb.append("<a href=\"" + link+"\">"+link + "</a>\n\n");
 		sb.append("${a.x}");
