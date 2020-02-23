@@ -1,17 +1,11 @@
 package org.einnovator.util.security;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
-import org.einnovator.util.CollectionUtil;
-import org.einnovator.util.StringUtil;
 import org.einnovator.util.model.EntityBase;
 import org.einnovator.util.model.OwnerType;
 import org.einnovator.util.model.ToStringCreator;
-import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -30,11 +24,17 @@ public class Authority extends EntityBase {
 
 	protected String groupId;
 
-	protected String connection;
+	protected String connectionId;
 
 	protected Boolean other;
 
-	//Roles (Builtin and Custom) and  Permissions
+	protected Object user;
+
+	protected Object group;
+
+	protected Object connection;
+	
+	//Roles
 
 	protected Boolean read;
 
@@ -42,17 +42,7 @@ public class Authority extends EntityBase {
 
 	protected Boolean manage;
 
-	protected List<String> roles;
-
-	protected List<String> permissions;
-
-	protected Object user;
-
-	protected Object group;
-
-	protected Object role;
-
-	protected Map<String, Object> permission;
+	protected Boolean comment;
 
 
 	public Authority(Boolean other) {
@@ -193,58 +183,21 @@ public class Authority extends EntityBase {
 	}
 
 	/**
-	 * Get the value of property {@code roles}.
+	 * Get the value of property {@code connectionId}.
 	 *
-	 * @return the roles
+	 * @return the connectionId
 	 */
-	public List<String> getRoles() {
-		return roles;
+	public String getConnectionId() {
+		return connectionId;
 	}
 
 	/**
-	 * Set the value of property {@code roles}.
+	 * Set the value of property {@code connectionId}.
 	 *
-	 * @param roles the roles to set
+	 * @param connectionId the connectionId to set
 	 */
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
-
-	/**
-	 * Get the value of property {@code connection}.
-	 *
-	 * @return the connection
-	 */
-	public String getConnection() {
-		return connection;
-	}
-
-	/**
-	 * Set the value of property {@code connection}.
-	 *
-	 * @param connection the connection to set
-	 */
-	public void setConnection(String connection) {
-		this.connection = connection;
-	}
-
-
-	/**
-	 * Get the value of property {@code permissions}.
-	 *
-	 * @return the permissions
-	 */
-	public List<String> getPermissions() {
-		return permissions;
-	}
-
-	/**
-	 * Set the value of property {@code permissions}.
-	 *
-	 * @param permissions the permissions to set
-	 */
-	public void setPermissions(List<String> permissions) {
-		this.permissions = permissions;
+	public void setConnectionId(String connectionId) {
+		this.connectionId = connectionId;
 	}
 
 	/**
@@ -283,42 +236,6 @@ public class Authority extends EntityBase {
 		this.group = group;
 	}
 
-	/**
-	 * Get the value of property {@code role}.
-	 *
-	 * @return the role
-	 */
-	public Object getRole() {
-		return role;
-	}
-
-	/**
-	 * Set the value of property {@code role}.
-	 *
-	 * @param role the role to set
-	 */
-	public void setRole(Object role) {
-		this.role = role;
-	}
-
-	/**
-	 * Get the value of property {@code permission}.
-	 *
-	 * @return the permission
-	 */
-	public Map<String, Object> getPermission() {
-		return permission;
-	}
-
-	/**
-	 * Set the value of property {@code permission}.
-	 *
-	 * @param permission the permission to set
-	 */
-	public void setPermission(Map<String, Object> permission) {
-		this.permission = permission;
-	}
-	
 	
 	// With
 	
@@ -327,45 +244,31 @@ public class Authority extends EntityBase {
 		return this;
 	}
 	
+	public Authority withConnectionId(String connectionId) {
+		this.connectionId = connectionId;
+		return this;
+	}
+
+
+	public Authority withUser(Object user) {
+		this.user = user;
+		return this;
+	}
+	
 	public Authority withGroupId(String groupId) {
 		this.groupId = groupId;
 		return this;
 	}
 
-	public Authority withRoles(String... roles) {
-		return withRoles(Arrays.asList(roles));
-	}
-	
-	public Authority withRoles(List<String> roles) {
-		if (this.roles==null) {
-			this.roles = new ArrayList<>();
-		}
-		this.roles.addAll(roles);
-		return this;
-	}
-
-	public Authority withPermissions(String... permissions) {
-		return withPermissions(Arrays.asList(permissions));
-	}
-
-	public Authority withPermissions(List<String> permissions) {
-		if (this.permissions==null) {
-			this.permissions = new ArrayList<>();
-		}
-		this.permissions.addAll(permissions);
-		return this;
-	}
-
-	public Authority withConnection(String connection) {
-		this.connection = connection;
-		return this;
-	}
-
-
 	public Authority withOther(Boolean other) {
 		this.other = other;
 		return this;
 	}
+
+	public Authority withOther() {
+		return withOther(true);
+	}
+	
 
 	public Authority withRead(Boolean read) {
 		this.read = read;
@@ -383,8 +286,9 @@ public class Authority extends EntityBase {
 		return this;
 	}
 
-	public Authority withOther() {
-		return withOther(true);
+	public Authority withComment(Boolean comment) {
+		this.comment = comment;
+		return this;
 	}
 
 	public Authority withRead() {
@@ -399,33 +303,22 @@ public class Authority extends EntityBase {
 		return withManage(true);
 	}
 	
-	public Authority withUser(Object user) {
-		this.user = user;
-		return this;
+	public Authority withComment() {
+		return withComment(true);
 	}
 
-	public Authority withGroup(Object group) {
-		this.group = group;
-		return this;
-	}
-
-	public Authority withRole(Object role) {
-		this.role = role;
-		return this;
-	}
 
 	@Override
 	public ToStringCreator toString1(ToStringCreator creator) {
 		return super.toString1(creator)
 			.append("username", username)
 			.append("groupId", groupId)
+			.append("connectionId", connectionId)
 			.append("other", other)
-			.append("connection", connection)
 			.append("read", read)
 			.append("write", write)
 			.append("manage", manage)
-			.append("roles", roles)	
-			.append("permissions", permissions)
+			.append("comment", comment)
 			;
 	}
 	
@@ -445,72 +338,45 @@ public class Authority extends EntityBase {
 	}
 
 	@JsonIgnore
-	public boolean canRole(String role) {
-		return StringUtil.containsIgnoreCase(this.roles, role);
-	}
-
-	@JsonIgnore
-	public boolean canGlobalRole(String role) {
-		return groupId==null && canRole(role);
-	}
-
-	@JsonIgnore
 	public boolean canConnection(String connection) {
-		return this.connection!=null && this.connection.equals(connection);
+		return this.connectionId!=null && this.connectionId.equals(connection);
 	}
 
 	@JsonIgnore
-	public boolean canRead() {
+	public boolean isRead() {
 		return Boolean.TRUE.equals(read);
 	}
 
 	@JsonIgnore
-	public boolean canWrite() {
+	public boolean isWrite() {
 		return Boolean.TRUE.equals(write);
 	}
 
 	@JsonIgnore
-	public boolean canManage() {
+	public boolean isManage() {
 		return Boolean.TRUE.equals(manage);
 	}
 
 	@JsonIgnore
-	public boolean hasPermission(String permission) {
-		return this.permissions!=null && this.permissions.contains(permission);
+	public boolean isComment() {
+		return Boolean.TRUE.equals(comment);
 	}
 
-	public boolean anyRWM() {
-		return canRead() || canWrite() || canManage();
-	}
-
-	public boolean anyPermission() {
-		return anyRWM() || (this.permissions!=null && !this.permissions.isEmpty());
-	}
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((groupId == null) ? 0 : groupId.hashCode());
-		result = prime * result + ((manage == null) ? 0 : manage.hashCode());
-		result = prime * result + ((other == null) ? 0 : other.hashCode());
-		result = prime * result + ((permissions == null) ? 0 : permissions.hashCode());
-		result = prime * result + ((read == null) ? 0 : read.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
-		result = prime * result + ((connection == null) ? 0 : connection.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((groupId == null) ? 0 : groupId.hashCode());
+		result = prime * result + ((connectionId == null) ? 0 : connectionId.hashCode());
+		result = prime * result + ((other == null) ? 0 : other.hashCode());
+		result = prime * result + ((read == null) ? 0 : read.hashCode());
 		result = prime * result + ((write == null) ? 0 : write.hashCode());
+		result = prime * result + ((manage == null) ? 0 : manage.hashCode());
+		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -520,52 +386,65 @@ public class Authority extends EntityBase {
 		if (getClass() != obj.getClass())
 			return false;
 		Authority other = (Authority) obj;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
 		if (groupId == null) {
 			if (other.groupId != null)
 				return false;
 		} else if (!groupId.equals(other.groupId))
 			return false;
-		if (manage == null) {
-			if (other.manage != null)
+		if (connectionId == null) {
+			if (other.connectionId != null)
 				return false;
-		} else if (!manage.equals(other.manage))
+		} else if (!connectionId.equals(other.connectionId))
 			return false;
 		if (this.other == null) {
 			if (other.other != null)
 				return false;
 		} else if (!this.other.equals(other.other))
 			return false;
-		if (permissions == null) {
-			if (other.permissions != null)
-				return false;
-		} else if (!permissions.equals(other.permissions))
-			return false;
 		if (read == null) {
 			if (other.read != null)
 				return false;
 		} else if (!read.equals(other.read))
 			return false;
-		if (roles == null) {
-			if (other.roles != null)
+		if (manage == null) {
+			if (other.manage != null)
 				return false;
-		} else if (!roles.equals(other.roles))
-			return false;
-		if (connection == null) {
-			if (other.connection != null)
-				return false;
-		} else if (!connection.equals(other.connection))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
+		} else if (!manage.equals(other.manage))
 			return false;
 		if (write == null) {
 			if (other.write != null)
 				return false;
 		} else if (!write.equals(other.write))
 			return false;
+		if (comment == null) {
+			if (other.comment != null)
+				return false;
+		} else if (!comment.equals(other.comment))
+			return false;
 		return true;
+	}
+
+	// static util builders
+	
+	public static Authority user(String user, Boolean read, Boolean write, Boolean manage, Boolean comment) {
+		return new Authority().withUsername(user).withRead(read).withWrite(write).withManage(manage).withComment(comment);
+	}
+
+	public static Authority other(Boolean read, Boolean write, Boolean manage, Boolean comment) {
+		return new Authority().withOther(true).withRead(read).withWrite(write).withManage(manage).withComment(comment);
+	}
+
+	public static Authority group(String group, Boolean read, Boolean write, Boolean manage, Boolean comment) {
+		return new Authority().withGroupId(group).withRead(read).withWrite(write).withManage(manage).withComment(comment);
+	}
+
+	public static Authority connection(String connection, Boolean read, Boolean write, Boolean manage, Boolean comment) {
+		return new Authority().withConnectionId(connection).withRead(read).withWrite(write).withManage(manage).withComment(comment);
 	}
 
 	public static Authority user(String user, Boolean read, Boolean write, Boolean manage) {
@@ -577,21 +456,12 @@ public class Authority extends EntityBase {
 	}
 
 	public static Authority group(String group, Boolean read, Boolean write, Boolean manage) {
-		return new Authority().withGroup(group).withRead(read).withWrite(write).withManage(manage);
-	}
-
-	public static Authority group(String group, String role, Boolean read, Boolean write, Boolean manage) {
-		return new Authority().withGroup(group).withRoles(role).withRead(read).withWrite(write).withManage(manage);
-	}
-	
-	public static Authority role(String role, Boolean read, Boolean write, Boolean manage) {
-		return new Authority().withRoles(role).withRead(read).withWrite(write).withManage(manage);
+		return new Authority().withGroupId(group).withRead(read).withWrite(write).withManage(manage);
 	}
 
 	public static Authority connection(String connection, Boolean read, Boolean write, Boolean manage) {
-		return new Authority().withConnection(connection).withRead(read).withWrite(write).withManage(manage);
+		return new Authority().withConnectionId(connection).withRead(read).withWrite(write).withManage(manage);
 	}
-
 
 	public static boolean isPublic(List<Authority> permissions) {
 		if (permissions!=null) {
@@ -604,80 +474,51 @@ public class Authority extends EntityBase {
 		return false;
 	}
 	
-	public boolean can(Collection<? extends GrantedAuthority> authorities) {
-		if (!CollectionUtil.isEmpty(this.roles) || !CollectionUtil.isEmpty(this.permissions)) {
-			if (authorities!=null) {
-				for (GrantedAuthority authority: authorities) {
-					if (this.roles!=null) {
-						for (String role: this.roles) {
-							if (role.equalsIgnoreCase(authority.toString())) {
-								return true;
-							}
-						}
-					}
-					if (this.permissions!=null) {
-						for (String role: this.permissions) {
-							if (role.equalsIgnoreCase(authority.toString())) {
-								return true;
-							}
-						}
-					}
-				}	
-			}
-			return false;
-		}
-		return true;
-	}
-
-	public boolean can(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	
+	public boolean can(String user, List<String> groups) {
 		if (user==null) {
 			user = SecurityUtil.getPrincipalName();
-		}
-		if (authorities==null && user==null) {
-			authorities = SecurityUtil.getAuthorities();
 		}
 		if (this.username!=null && this.username.equals(user)) {
 			return true;
 		}
 		if (groupId!=null) {
 			if (groups!=null && groups.contains(groupId)) {
-				return can(authorities);
+				return true;
 			}
-		} else {
-			return can(authorities);			
 		}
 		return false;		
 	}
 
-	public boolean canRead(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public boolean canRead(String user, List<String> groups) {
 		if (Boolean.TRUE.equals(other)) {
 			return true;
 		}
 		if (!Boolean.TRUE.equals(read)) {
 			return false;
 		}
-		return can(user, groups, authorities);
+		return can(user, groups);
 	}
 
-	public boolean canWrite(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public boolean canWrite(String user, List<String> groups) {
 		if (!Boolean.TRUE.equals(write)) {
 			return false;
 		}
-		return can(user, groups, authorities);		
+		return can(user, groups);		
 	}
 
-	public boolean canManage(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public boolean canManage(String user, List<String> groups) {
 		if (!Boolean.TRUE.equals(manage)) {
 			return false;
 		}
-		return can(user, groups, authorities);
+		return can(user, groups);
 	}
 
 	
-	public static boolean canRead(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public static boolean canRead(List<Authority> authorities0, String user, List<String> groups) {
 		if (authorities0!=null) {
 			for (Authority authority: authorities0) {
-				if (authority.canRead(user, groups, authorities)) {
+				if (authority.canRead(user, groups)) {
 					return true;
 				}
 			}
@@ -685,10 +526,10 @@ public class Authority extends EntityBase {
 		return false;
 	}
 
-	public static boolean canWrite(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public static boolean canWrite(List<Authority> authorities0, String user, List<String> groups) {
 		if (authorities0!=null) {
 			for (Authority authority: authorities0) {
-				if (authority.canWrite(user, groups, authorities)) {
+				if (authority.canWrite(user, groups)) {
 					return true;
 				}
 			}
@@ -696,10 +537,10 @@ public class Authority extends EntityBase {
 		return false;
 	}
 
-	public static boolean canManage(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public static boolean canManage(List<Authority> authorities0, String user, List<String> groups) {
 		if (authorities0!=null) {
 			for (Authority authority: authorities0) {
-				if (authority.canManage(user, groups, authorities)) {
+				if (authority.canManage(user, groups)) {
 					return true;
 				}
 			}
@@ -744,4 +585,15 @@ public class Authority extends EntityBase {
 		return false;
 	}
 
+
+	public Object[] makeTargets() {
+		List<Object> targets = new ArrayList<>();
+		if (username!=null) {
+			targets.add(username);
+		}
+		if (groupId!=null) {
+			targets.add("@" + groupId);
+		}
+		return targets.toArray();
+	}
 }
