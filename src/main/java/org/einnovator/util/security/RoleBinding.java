@@ -83,8 +83,6 @@ public class RoleBinding extends ObjectBase {
 		this.groupId = group;
 	}
 
-	
-
 	/**
 	 * Get the value of property {@code user}.
 	 *
@@ -191,6 +189,16 @@ public class RoleBinding extends ObjectBase {
 	
 	public RoleBinding withGroupId(String groupId) {
 		this.groupId = groupId;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code group}.
+	 *
+	 * @param group the group to set
+	 */
+	public RoleBinding withGroup(Object group) {
+		this.group = group;
 		return this;
 	}
 
