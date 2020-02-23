@@ -299,9 +299,9 @@ public abstract class EntityBase extends ObjectBase {
 	}
 
 	public static <T extends EntityBase> T findByUuid(String uuid, Iterable<T> it) {
-		if (it!=null) {
+		if (uuid!=null && it!=null) {
 			for (T obj: it) {
-				if (uuid.equals(obj.getId())) {
+				if (uuid.equals(obj.getUuid())) {
 					return obj;
 				}
 			}			

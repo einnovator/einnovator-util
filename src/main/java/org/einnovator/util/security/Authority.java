@@ -1,6 +1,7 @@
 package org.einnovator.util.security;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -45,13 +46,13 @@ public class Authority extends EntityBase {
 
 	protected List<String> permissions;
 
-	protected Object userData;
+	protected Object user;
 
-	protected Object groupData;
+	protected Object group;
 
-	protected Object roleData;
+	protected Object role;
 
-	protected Map<String, Object> permissionData;
+	protected Map<String, Object> permission;
 
 
 	public Authority(Boolean other) {
@@ -185,12 +186,11 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code manage}.
 	 *
-	 * @param manage the manage to set
+	 * @param manage the value of property manage
 	 */
 	public void setManage(Boolean manage) {
 		this.manage = manage;
 	}
-
 
 	/**
 	 * Get the value of property {@code roles}.
@@ -248,97 +248,171 @@ public class Authority extends EntityBase {
 	}
 
 	/**
-	 * Get the value of property {@code userData}.
+	 * Get the value of property {@code user}.
 	 *
-	 * @return the userData
+	 * @return the user
 	 */
-	public Object getUserData() {
-		return userData;
+	public Object getUser() {
+		return user;
 	}
 
 	/**
-	 * Set the value of property {@code userData}.
+	 * Set the value of property {@code user}.
 	 *
-	 * @param userData the userData to set
+	 * @param user the user to set
 	 */
-	public void setUserData(Object userData) {
-		this.userData = userData;
+	public void setUser(Object user) {
+		this.user = user;
 	}
 
 	/**
-	 * Get the value of property {@code groupData}.
+	 * Get the value of property {@code group}.
 	 *
-	 * @return the groupData
+	 * @return the group
 	 */
-	public Object getStringData() {
-		return groupData;
+	public Object getGroup() {
+		return group;
 	}
 
 	/**
-	 * Set the value of property {@code groupData}.
+	 * Set the value of property {@code group}.
 	 *
-	 * @param groupData the groupData to set
+	 * @param group the group to set
 	 */
-	public void setStringData(Object groupData) {
-		this.groupData = groupData;
+	public void setGroup(Object group) {
+		this.group = group;
 	}
 
 	/**
-	 * Get the value of property {@code roleData}.
+	 * Get the value of property {@code role}.
 	 *
-	 * @return the roleData
+	 * @return the role
 	 */
-	public Object getRoleData() {
-		return roleData;
+	public Object getRole() {
+		return role;
 	}
 
 	/**
-	 * Set the value of property {@code roleData}.
+	 * Set the value of property {@code role}.
 	 *
-	 * @param roleData the roleData to set
+	 * @param role the role to set
 	 */
-	public void setRoleData(Object roleData) {
-		this.roleData = roleData;
+	public void setRole(Object role) {
+		this.role = role;
 	}
 
 	/**
-	 * Get the value of property {@code permissionData}.
+	 * Get the value of property {@code permission}.
 	 *
-	 * @return the permissionData
+	 * @return the permission
 	 */
-	public Map<String, Object> getPermissionData() {
-		return permissionData;
+	public Map<String, Object> getPermission() {
+		return permission;
 	}
 
 	/**
-	 * Set the value of property {@code permissionData}.
+	 * Set the value of property {@code permission}.
 	 *
-	 * @param permissionData the permissionData to set
+	 * @param permission the permission to set
 	 */
-	public void setPermissionData(Map<String, Object> permissionData) {
-		this.permissionData = permissionData;
+	public void setPermission(Map<String, Object> permission) {
+		this.permission = permission;
 	}
 	
 	
-
-	/**
-	 * Get the value of property {@code groupData}.
-	 *
-	 * @return the groupData
-	 */
-	public Object getGroupData() {
-		return groupData;
+	// With
+	
+	public Authority withUsername(String username) {
+		this.username = username;
+		return this;
+	}
+	
+	public Authority withGroupId(String groupId) {
+		this.groupId = groupId;
+		return this;
 	}
 
-	/**
-	 * Set the value of property {@code groupData}.
-	 *
-	 * @param groupData the groupData to set
-	 */
-	public void setGroupData(Object groupData) {
-		this.groupData = groupData;
+	public Authority withRoles(String... roles) {
+		return withRoles(Arrays.asList(roles));
+	}
+	
+	public Authority withRoles(List<String> roles) {
+		if (this.roles==null) {
+			this.roles = new ArrayList<>();
+		}
+		this.roles.addAll(roles);
+		return this;
 	}
 
+	public Authority withPermissions(String... permissions) {
+		return withPermissions(Arrays.asList(permissions));
+	}
+
+	public Authority withPermissions(List<String> permissions) {
+		if (this.permissions==null) {
+			this.permissions = new ArrayList<>();
+		}
+		this.permissions.addAll(permissions);
+		return this;
+	}
+
+	public Authority withConnection(String connection) {
+		this.connection = connection;
+		return this;
+	}
+
+
+	public Authority withOther(Boolean other) {
+		this.other = other;
+		return this;
+	}
+
+	public Authority withRead(Boolean read) {
+		this.read = read;
+		return this;
+	}
+
+
+	public Authority withWrite(Boolean write) {
+		this.write = write;
+		return this;
+	}
+
+	public Authority withManage(Boolean manage) {
+		this.manage = manage;
+		return this;
+	}
+
+	public Authority withOther() {
+		return withOther(true);
+	}
+
+	public Authority withRead() {
+		return withRead(true);
+	}
+
+	public Authority withWrite() {
+		return withWrite(true);
+	}
+
+	public Authority withManage() {
+		return withManage(true);
+	}
+	
+	public Authority withUser(Object user) {
+		this.user = user;
+		return this;
+	}
+
+	public Authority withGroup(Object group) {
+		this.group = group;
+		return this;
+	}
+
+	public Authority withRole(Object role) {
+		this.role = role;
+		return this;
+	}
 
 	@Override
 	public ToStringCreator toString1(ToStringCreator creator) {
@@ -412,6 +486,8 @@ public class Authority extends EntityBase {
 	public boolean anyPermission() {
 		return anyRWM() || (this.permissions!=null && !this.permissions.isEmpty());
 	}
+	
+	
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -493,31 +569,27 @@ public class Authority extends EntityBase {
 	}
 
 	public static Authority user(String user, Boolean read, Boolean write, Boolean manage) {
-		return Authority.builder().username(user).read(read).write(write).manage(manage).build();
+		return new Authority().withUsername(user).withRead(read).withWrite(write).withManage(manage);
 	}
 
 	public static Authority other(Boolean read, Boolean write, Boolean manage) {
-		return Authority.builder().other().read(read).write(write).manage(manage).build();
+		return new Authority().withOther(true).withRead(read).withWrite(write).withManage(manage);
 	}
 
 	public static Authority group(String group, Boolean read, Boolean write, Boolean manage) {
-		return Authority.builder().group(group).read(read).write(write).manage(manage).build();
+		return new Authority().withGroup(group).withRead(read).withWrite(write).withManage(manage);
 	}
 
 	public static Authority group(String group, String role, Boolean read, Boolean write, Boolean manage) {
-		return Authority.builder().group(group).roles(role).read(read).write(write).manage(manage).build();
+		return new Authority().withGroup(group).withRoles(role).withRead(read).withWrite(write).withManage(manage);
 	}
 	
 	public static Authority role(String role, Boolean read, Boolean write, Boolean manage) {
-		return Authority.builder().roles(role).read(read).write(write).manage(manage).build();
+		return new Authority().withRoles(role).withRead(read).withWrite(write).withManage(manage);
 	}
 
 	public static Authority connection(String connection, Boolean read, Boolean write, Boolean manage) {
-		return Authority.builder().connection(connection).read(read).write(write).manage(manage).build();
-	}
-
-	public static AuthorityBuilder builder() {
-		return new AuthorityBuilder();
+		return new Authority().withConnection(connection).withRead(read).withWrite(write).withManage(manage);
 	}
 
 

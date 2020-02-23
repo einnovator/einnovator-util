@@ -68,16 +68,13 @@ public class PathUtil {
 	}
 
 	
-	public static String getFolder(String path) {
-		return getFolder(path, SEPARATOR);
-	}
-		
+
 	public static String getFolder(String path, String delimiter) {
 		if (isFolder(path, delimiter)) {
 			return path;
 		}
 		int i = path.lastIndexOf(delimiter);
-		if (i<0) {
+		if (i<=0) {
 			return SEPARATOR;
 		}
 		if (i > 0 && i<path.length()-1) {
@@ -86,8 +83,12 @@ public class PathUtil {
 		return path;
 	}
 
+	public static String getFolder(String path) {
+		return getFolder(path, PathUtil.SEPARATOR);
+	}
+	
 	public static String getFolderParent(String path) {
-		return getFolderParent(path, SEPARATOR);
+		return getFolderParent(path, PathUtil.SEPARATOR);
 	}
 
 	public static String getFolderParent(String path, String delimiter) {
@@ -98,12 +99,14 @@ public class PathUtil {
 			}
 		}
 		int i = path.lastIndexOf(delimiter);
+		if (i<=0) {
+			return PathUtil.SEPARATOR;
+		}
 		if (i > 0) {
 			path = path.substring(0, i + 1);
 		}
 		return path;
 	}
-
 	public static boolean isFolder(String path) {
 		return isFolder(path, SEPARATOR);
 	}
@@ -115,8 +118,12 @@ public class PathUtil {
 		return false;
 	}
 
-	public static boolean isRoot(String path) {
-		return path==null || path.isEmpty() || SEPARATOR.equals(path) || !StringUtils.hasText(path);
+	public static final boolean isRoot(String path) {
+		if (path==null) {
+			return true;
+		}
+		path = path.trim();
+		return path.isEmpty() || path.equals(SEPARATOR);
 	}
 	
 	public static String absolute(File relativeTo, String filename) {
@@ -151,4 +158,5 @@ public class PathUtil {
 		return name;
 	}
 
+	
 }
