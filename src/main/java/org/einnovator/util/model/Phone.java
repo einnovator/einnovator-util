@@ -18,47 +18,142 @@ public class Phone extends ObjectBase {
 
 	protected String country;
 
+	/**
+	 * Create instance of {@code Phone}.
+	 *
+	 */
 	public Phone() {
 	}
 
+	/**
+	 * Create instance of {@code Phone}.
+	 *
+	 * @param obj a prototype
+	 */
 	public Phone(Object obj) {
 		super(obj);
 	}
 	
-	public Phone(String number) {
-		this.number = number;
-	}
-
+	/**
+	 * Get the value of property {@code number}.
+	 *
+	 * @return the number
+	 */
 	public String getNumber() {
 		return number;
 	}
 
+	/**
+	 * Set the value of property {@code number}.
+	 *
+	 * @param number the value of property number
+	 */
 	public void setNumber(String number) {
 		this.number = number;
 	}
 
+	/**
+	 * Get the value of property {@code area}.
+	 *
+	 * @return the area
+	 */
 	public String getArea() {
 		return area;
 	}
 
+	/**
+	 * Set the value of property {@code area}.
+	 *
+	 * @param area the value of property area
+	 */
 	public void setArea(String area) {
 		this.area = area;
 	}
 
+	/**
+	 * Get the value of property {@code countryCode}.
+	 *
+	 * @return the countryCode
+	 */
 	public String getCountryCode() {
 		return countryCode;
 	}
 
+	/**
+	 * Set the value of property {@code countryCode}.
+	 *
+	 * @param countryCode the value of property countryCode
+	 */
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
 
+	/**
+	 * Get the value of property {@code country}.
+	 *
+	 * @return the country
+	 */
 	public String getCountry() {
 		return country;
 	}
 
+	/**
+	 * Set the value of property {@code country}.
+	 *
+	 * @param country the value of property country
+	 */
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	/**
+	 * Create instance of {@code Phone}.
+	 *
+	 * @param number the number
+	 */
+	public Phone(String number) {
+		this.number = number;
+	}
+
+	
+	/**
+	 * Set the value of property {@code number}.
+	 *
+	 * @param number the value of property number
+	 */
+	public Phone withNumber(String number) {
+		this.number = number;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code area}.
+	 *
+	 * @param area the value of property area
+	 */
+	public Phone withArea(String area) {
+		this.area = area;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code countryCode}.
+	 *
+	 * @param countryCode the value of property countryCode
+	 */
+	public Phone withCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code country}.
+	 *
+	 * @param country the value of property country
+	 */
+	public Phone withCountry(String country) {
+		this.country = country;
+		return this;
 	}
 
 	@Override

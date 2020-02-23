@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.einnovator.util.CollectionUtil;
-import org.einnovator.util.SecurityUtil;
 import org.einnovator.util.StringUtil;
 import org.einnovator.util.model.EntityBase;
 import org.einnovator.util.model.OwnerType;
@@ -533,7 +532,7 @@ public class Authority extends EntityBase {
 		return false;
 	}
 	
-	public boolean isAllowed(Collection<? extends GrantedAuthority> authorities) {
+	public boolean can(Collection<? extends GrantedAuthority> authorities) {
 		if (!CollectionUtil.isEmpty(this.roles) || !CollectionUtil.isEmpty(this.permissions)) {
 			if (authorities!=null) {
 				for (GrantedAuthority authority: authorities) {
@@ -558,7 +557,7 @@ public class Authority extends EntityBase {
 		return true;
 	}
 
-	public boolean isAllowed(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public boolean can(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
 		if (user==null) {
 			user = SecurityUtil.getPrincipalName();
 		}
@@ -570,43 +569,43 @@ public class Authority extends EntityBase {
 		}
 		if (groupId!=null) {
 			if (groups!=null && groups.contains(groupId)) {
-				return isAllowed(authorities);
+				return can(authorities);
 			}
 		} else {
-			return isAllowed(authorities);			
+			return can(authorities);			
 		}
 		return false;		
 	}
 
-	public boolean isAllowedRead(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public boolean canRead(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
 		if (Boolean.TRUE.equals(other)) {
 			return true;
 		}
 		if (!Boolean.TRUE.equals(read)) {
 			return false;
 		}
-		return isAllowed(user, groups, authorities);
+		return can(user, groups, authorities);
 	}
 
-	public boolean isAllowedWrite(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public boolean canWrite(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
 		if (!Boolean.TRUE.equals(write)) {
 			return false;
 		}
-		return isAllowed(user, groups, authorities);		
+		return can(user, groups, authorities);		
 	}
 
-	public boolean isAllowedManage(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public boolean canManage(String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
 		if (!Boolean.TRUE.equals(manage)) {
 			return false;
 		}
-		return isAllowed(user, groups, authorities);
+		return can(user, groups, authorities);
 	}
 
 	
-	public static boolean isAllowedRead(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public static boolean canRead(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
 		if (authorities0!=null) {
 			for (Authority authority: authorities0) {
-				if (authority.isAllowedRead(user, groups, authorities)) {
+				if (authority.canRead(user, groups, authorities)) {
 					return true;
 				}
 			}
@@ -614,10 +613,10 @@ public class Authority extends EntityBase {
 		return false;
 	}
 
-	public static boolean isAllowedWrite(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public static boolean canWrite(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
 		if (authorities0!=null) {
 			for (Authority authority: authorities0) {
-				if (authority.isAllowedWrite(user, groups, authorities)) {
+				if (authority.canWrite(user, groups, authorities)) {
 					return true;
 				}
 			}
@@ -625,10 +624,10 @@ public class Authority extends EntityBase {
 		return false;
 	}
 
-	public static boolean isAllowedManage(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
+	public static boolean canManage(List<Authority> authorities0, String user, List<String> groups, Collection<? extends GrantedAuthority> authorities) {
 		if (authorities0!=null) {
 			for (Authority authority: authorities0) {
-				if (authority.isAllowedManage(user, groups, authorities)) {
+				if (authority.canManage(user, groups, authorities)) {
 					return true;
 				}
 			}
@@ -637,7 +636,7 @@ public class Authority extends EntityBase {
 	}	
 
 	
-	public static boolean isAllowedByMembership(String group, List<String> groups, List<Authority> authorities) {
+	public static boolean canByMembership(String group, List<String> groups, List<Authority> authorities) {
 		return group!=null && groups!=null && groups.contains(group) && !refersGroup(group, authorities);
 	}
 

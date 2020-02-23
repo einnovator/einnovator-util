@@ -214,6 +214,9 @@ public class UriUtils {
 			return null;
 		}
 		String host =  uri_.getHost();
+		if (host==null) {
+			return null;
+		}
 		host = host.trim().toLowerCase();
 		if (host.length()>1 && host.endsWith(".")) {
 			host = host.substring(0, host.length()-1);
@@ -224,7 +227,7 @@ public class UriUtils {
 	public static String getDomain(String uri) {
 		String host = getHost(uri);
 		if (host==null) {
-			return null;
+			return uri;
 		}
 		int n = StringUtils.countOccurrencesOf(host, ".");
 		if (n<=1) {
@@ -241,7 +244,7 @@ public class UriUtils {
 	public static String getProperDomain(String uri) {
 		String domain = getDomain(uri);
 		if (domain==null) {
-			return null;
+			return uri;
 		}
 		int i = domain.lastIndexOf(".");
 		if (i>0 && i<domain.length()-1) {

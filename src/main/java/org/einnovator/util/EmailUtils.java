@@ -47,7 +47,7 @@ public class EmailUtils {
 	public static String emailToProperDomain(String email) {
 		String domain = emailToDomain(email);
 		if (domain==null) {
-			return null;
+			return email;
 		}
 		return UriUtils.getProperDomain(domain);
 	}

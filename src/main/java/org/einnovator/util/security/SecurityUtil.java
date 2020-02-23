@@ -1,13 +1,16 @@
-package org.einnovator.util;
+package org.einnovator.util.security;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 public class SecurityUtil {
 
@@ -71,4 +74,20 @@ public class SecurityUtil {
 		return authentication!=null && authentication instanceof AnonymousAuthenticationToken;		
 	}
 
+	public static final Map<String, Object> getPrincipalDetails() {
+		Authentication authentication = SecurityUtil.getAuthentication();
+		if (authentication==null) {
+			return null;
+		}
+		if (authentication instanceof OAuth2Authentication) {
+			OAuth2Authentication authentication2 = (OAuth2Authentication)authentication;
+			if (authentication2.getUserAuthentication() instanceof UsernamePasswordAuthenticationToken) {
+				UsernamePasswordAuthenticationToken authToken = (UsernamePasswordAuthenticationToken)authentication2.getUserAuthentication();
+				@SuppressWarnings("unchecked")
+				Map<String, Object> details = (Map<String, Object>)authToken.getDetails();
+				return details;				
+			}
+		}
+		return null;
+	}
 }

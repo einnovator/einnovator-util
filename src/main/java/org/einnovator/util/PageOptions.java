@@ -3,6 +3,8 @@ package org.einnovator.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.einnovator.util.model.ObjectBase;
+import org.einnovator.util.model.ToStringCreator;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,7 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.util.StringUtils;
 
-public class PageOptions {
+public class PageOptions extends ObjectBase {
 
 	public static final Integer DEFAULT_PAGESIZE = 50;
 	
@@ -20,77 +22,153 @@ public class PageOptions {
 
 	protected String sort;
 	
-	protected String marker;
-	
+	/**
+	 * Create instance of {@code PageOptions}.
+	 *
+	 */
 	public PageOptions() {
 	}
 	
+	/**
+	 * Create instance of {@code PageOptions}.
+	 *
+	 * @param options a prototype
+	 */
 	public PageOptions(PageOptions options) {
 		this.page = options.page;
 		this.pageSize = options.pageSize;
-		this.marker = options.marker;
 		this.sort = options.sort;
 	}
 
-	
-	public PageOptions(String marker, Integer pageSize) {
-		this.marker = marker;
-		this.pageSize = pageSize;
-	}
-
+	/**
+	 * Create instance of {@code PageOptions}.
+	 *
+	 * @param marker the marker
+	 * @param pageSize the pageSize
+	 */
 	public PageOptions(Integer page, Integer pageSize) {
 		this.page = page;
 		this.pageSize = pageSize;
 	}	
 
+	/**
+	 * Create instance of {@code PageOptions}.
+	 *
+	 * @param page the page
+	 * @param pageSize the pageSize
+	 * @param sort the sort
+	 */
 	public PageOptions(Integer page, Integer pageSize, String sort) {
 		this.page = page;
 		this.pageSize = pageSize;
 		this.sort = sort;
 	}	
 
+	/**
+	 * Create instance of {@code PageOptions}.
+	 *
+	 * @param pageable a Pageable
+	 */
 	public PageOptions(Pageable pageable) {
 		this.page = pageable.getPageNumber();
 		this.pageSize = pageable.getPageSize();
 		this.sort = toSort(pageable.getSort());
 	}	
 
-	public PageOptions(Object obj) {
-		MappingUtils.updateObjectFrom(this, obj);
-	}
-
+	/**
+	 * Get the value of property {@code page}.
+	 *
+	 * @return the page
+	 */
 	public Integer getPage() {
 		return page;
 	}
 
+	/**
+	 * Set the value of property {@code page}.
+	 *
+	 * @param page the value of property page
+	 */
 	public void setPage(Integer page) {
 		this.page = page;
 	}
 
+	/**
+	 * Get the value of property {@code pageSize}.
+	 *
+	 * @return the pageSize
+	 */
 	public Integer getPageSize() {
 		return pageSize;
 	}
 
+	/**
+	 * Set the value of property {@code pageSize}.
+	 *
+	 * @param pageSize the value of property pageSize
+	 */
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 
+	/**
+	 * Get the value of property {@code sort}.
+	 *
+	 * @return the sort
+	 */
 	public String getSort() {
 		return sort;
 	}
 
+	/**
+	 * Set the value of property {@code sort}.
+	 *
+	 * @param sort the value of property sort
+	 */
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
 
-	public String getMarker() {
-		return marker;
+	/**
+	 * Create instance of {@code PageOptions}.
+	 *
+	 * @param obj a prototype
+	 */
+	public PageOptions(Object obj) {
+		MappingUtils.updateObjectFrom(this, obj);
 	}
 
-	public void setMarker(String marker) {
-		this.marker = marker;
+	
+
+	/**
+	 * Set the value of property {@code page}.
+	 *
+	 * @param page the value of property page
+	 */
+	public PageOptions withPage(Integer page) {
+		this.page = page;
+		return this;
 	}
 
+	/**
+	 * Set the value of property {@code pageSize}.
+	 *
+	 * @param pageSize the value of property pageSize
+	 */
+	public PageOptions withPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code sort}.
+	 *
+	 * @param sort the value of property sort
+	 */
+	public PageOptions withSort(String sort) {
+		this.sort = sort;
+		return this;
+	}
 
 	public PageOptions applyDefaultPageSize(Integer pageSize, boolean force) {
 		if ((force || this.pageSize==null) && pageSize!=null) {
@@ -123,13 +201,12 @@ public class PageOptions {
 	}
 
 	@Override
-	public String toString() {
-		return this.getClass().getSimpleName() + " ["
-				+ (page != null ? "page=" + page + ", " : "")
-				+ (pageSize != null ? "pageSize=" + pageSize + ", " : "") 
-				+ (sort != null ? "sort=" + sort + ", " : "")
-				+ (marker != null ? "marker=" + marker : "") 
-				+ "]";
+	public ToStringCreator toString(ToStringCreator creator) {
+		return super.toString(creator)
+			.append("page", page)
+			.append("pageSize", pageSize)
+			.append("sort", sort);
+
 	}
 
 	

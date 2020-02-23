@@ -7,7 +7,7 @@ import java.security.Principal;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.einnovator.util.SecurityUtil;
+import org.einnovator.util.security.SecurityUtil;
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.util.StringUtils;

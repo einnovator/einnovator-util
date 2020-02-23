@@ -27,66 +27,93 @@ public abstract class EntityBase extends ObjectBase {
 	
 	private String lastModifiedBy;
 
+	/**
+	 * Create instance of {@code EntityBase}.
+	 *
+	 */
 	public EntityBase() {
 	}
 
+	/**
+	 * Create instance of {@code EntityBase}.
+	 *
+	 * @param obj a prototype
+	 */
 	public EntityBase(Object obj) {
 		updateFrom(obj, false);
 	}
 
+
+	/**
+	 * Get the value of property {@code id}.
+	 *
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * Set the value of property {@code id}.
+	 *
+	 * @param id the value of property id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * Get the value of property {@code uuid}.
+	 *
+	 * @return the uuid
+	 */
 	public String getUuid() {
 		return uuid;
 	}
 
+	/**
+	 * Set the value of property {@code uuid}.
+	 *
+	 * @param uuid the value of property uuid
+	 */
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
+	/**
+	 * Get the value of property {@code creationDate}.
+	 *
+	 * @return the creationDate
+	 */
 	public Date getCreationDate() {
 		return creationDate;
 	}
 
+	/**
+	 * Set the value of property {@code creationDate}.
+	 *
+	 * @param creationDate the value of property creationDate
+	 */
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
+	/**
+	 * Get the value of property {@code lastModified}.
+	 *
+	 * @return the lastModified
+	 */
 	public Date getLastModified() {
 		return lastModified;
 	}
 
+	/**
+	 * Set the value of property {@code lastModified}.
+	 *
+	 * @param lastModified the value of property lastModified
+	 */
 	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
-	}
-	
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public void setLastModifiedBy(String lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	@Override
-	public ToStringCreator toString0(ToStringCreator creator) {
-		return creator
-				.append("id", id)
-				.append("uuid", uuid);
 	}
 
 	/**
@@ -101,7 +128,7 @@ public abstract class EntityBase extends ObjectBase {
 	/**
 	 * Set the value of property {@code creationDateFormatted}.
 	 *
-	 * @param creationDateFormatted the creationDateFormatted to set
+	 * @param creationDateFormatted the value of property creationDateFormatted
 	 */
 	public void setCreationDateFormatted(String creationDateFormatted) {
 		this.creationDateFormatted = creationDateFormatted;
@@ -119,12 +146,135 @@ public abstract class EntityBase extends ObjectBase {
 	/**
 	 * Set the value of property {@code lastModifiedFormatted}.
 	 *
-	 * @param lastModifiedFormatted the lastModifiedFormatted to set
+	 * @param lastModifiedFormatted the value of property lastModifiedFormatted
 	 */
 	public void setLastModifiedFormatted(String lastModifiedFormatted) {
 		this.lastModifiedFormatted = lastModifiedFormatted;
 	}
 
+	/**
+	 * Get the value of property {@code createdBy}.
+	 *
+	 * @return the createdBy
+	 */
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * Set the value of property {@code createdBy}.
+	 *
+	 * @param createdBy the value of property createdBy
+	 */
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	/**
+	 * Get the value of property {@code lastModifiedBy}.
+	 *
+	 * @return the lastModifiedBy
+	 */
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedBy}.
+	 *
+	 * @param lastModifiedBy the value of property lastModifiedBy
+	 */
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	/**
+	 * Set the value of property {@code id}.
+	 *
+	 * @param id the value of property id
+	 */
+	public EntityBase withId(String id) {
+		this.id = id;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code uuid}.
+	 *
+	 * @param uuid the value of property uuid
+	 */
+	public EntityBase withUuid(String uuid) {
+		this.uuid = uuid;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code creationDate}.
+	 *
+	 * @param creationDate the value of property creationDate
+	 */
+	public EntityBase withCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code lastModified}.
+	 *
+	 * @param lastModified the value of property lastModified
+	 */
+	public EntityBase withLastModified(Date lastModified) {
+		this.lastModified = lastModified;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code creationDateFormatted}.
+	 *
+	 * @param creationDateFormatted the value of property creationDateFormatted
+	 */
+	public EntityBase withCreationDateFormatted(String creationDateFormatted) {
+		this.creationDateFormatted = creationDateFormatted;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedFormatted}.
+	 *
+	 * @param lastModifiedFormatted the value of property lastModifiedFormatted
+	 */
+	public EntityBase withLastModifiedFormatted(String lastModifiedFormatted) {
+		this.lastModifiedFormatted = lastModifiedFormatted;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code createdBy}.
+	 *
+	 * @param createdBy the value of property createdBy
+	 */
+	public EntityBase withCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedBy}.
+	 *
+	 * @param lastModifiedBy the value of property lastModifiedBy
+	 */
+	public EntityBase withLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+		return this;
+	}
+
+
+	@Override
+	public ToStringCreator toString0(ToStringCreator creator) {
+		return creator
+				.append("id", id)
+				.append("uuid", uuid);
+	}
 	@Override
 	public ToStringCreator toString2(ToStringCreator creator) {
 		return creator
@@ -137,26 +287,26 @@ public abstract class EntityBase extends ObjectBase {
 				;
 	}
 
-	public static <T extends EntityBase> boolean findById(String id, Iterable<T> it) {
+	public static <T extends EntityBase> T findById(String id, Iterable<T> it) {
 		if (it!=null) {
 			for (T obj: it) {
 				if (id.equals(obj.getId())) {
-					return true;
+					return obj;
 				}
 			}			
 		}
-		return false;
+		return null;
 	}
 
-	public static <T extends EntityBase> boolean findByUuid(String uuid, Iterable<T> it) {
+	public static <T extends EntityBase> T findByUuid(String uuid, Iterable<T> it) {
 		if (it!=null) {
 			for (T obj: it) {
 				if (uuid.equals(obj.getId())) {
-					return true;
+					return obj;
 				}
 			}			
 		}
-		return false;
+		return null;
 	}
 
 	public static <T extends EntityBase> List<String> getIds(Iterable<T> it) {
