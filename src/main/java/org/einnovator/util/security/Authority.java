@@ -260,6 +260,16 @@ public class Authority extends EntityBase {
 		return this;
 	}
 
+	public Authority withGroup(Object group) {
+		this.group = group;
+		return this;
+	}
+
+	public Authority withConnection(Object connection) {
+		this.connection = connection;
+		return this;
+	}
+	
 	public Authority withOther(Boolean other) {
 		this.other = other;
 		return this;

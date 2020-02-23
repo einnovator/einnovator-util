@@ -188,6 +188,8 @@ public abstract class EntityBase extends ObjectBase {
 		this.lastModifiedBy = lastModifiedBy;
 	}
 
+	// With
+	
 	/**
 	 * Set the value of property {@code id}.
 	 *

@@ -46,6 +46,27 @@ public class Address extends ObjectBase {
 	 * Create instance of {@code Address}.
 	 *
 	 * @param country the country
+	 * @param state sthe tate
+	 */
+	public Address(String country, String state) {
+		this.country = country;
+		this.state = state;
+	}
+
+
+	/**
+	 * Create instance of {@code Address}.
+	 *
+	 * @param obj a prototype
+	 */
+	public Address(Object obj) {
+		updateFrom(obj);			
+	}
+
+	/**
+	 * Create instance of {@code Address}.
+	 *
+	 * @param country the country
 	 * @param postalCode the postalCode
 	 * @param city the city
 	 * @param line1 the line1
@@ -263,25 +284,6 @@ public class Address extends ObjectBase {
 	}
 
 	// With
-	/**
-	 * Create instance of {@code Address}.
-	 *
-	 * @param country the country
-	 * @param state sthe tate
-	 */
-	public Address(String country, String state) {
-		this.country = country;
-		this.state = state;
-	}
-
-	/**
-	 * Create instance of {@code Address}.
-	 *
-	 * @param obj a prototype
-	 */
-	public Address(Object obj) {
-		updateFrom(obj);			
-	}
 
 	/**
 	 * Set the value of property {@code country}.
