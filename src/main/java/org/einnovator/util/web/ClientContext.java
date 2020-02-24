@@ -21,6 +21,8 @@ public class ClientContext extends ObjectBase {
 	
 	protected Object result;
 	
+	protected boolean singleton;
+	
 	/**
 	 * Create instance of {@code ClientRequestContext}.
 	 *
@@ -82,7 +84,72 @@ public class ClientContext extends ObjectBase {
 		this.runAs = runAs;
 	}
 	
+
+	/**
+	 * Get the value of property {@code singleton}.
+	 *
+	 * @return the singleton
+	 */
+	public boolean isSingleton() {
+		return singleton;
+	}
+
+	/**
+	 * Set the value of property {@code singleton}.
+	 *
+	 * @param singleton the value of property singleton
+	 */
+	public void setSingleton(boolean singleton) {
+		this.singleton = singleton;
+	}
+	
+	/**
+	 * Get the value of property {@code result}.
+	 *
+	 * @return the result
+	 */
+	public Object getResult() {
+		return result;
+	}
+
+	/**
+	 * Set the value of property {@code result}.
+	 *
+	 * @param result the value of property result
+	 */
+	public void setResult(Object result) {
+		this.result = result;
+	}
+	
+	/**
+	 * Get the result unwrapped by unwrapping a {@code Result}..
+	 *
+	 * @return the unwrapped result if wrapped in {@code Result}, or plain result value if not
+	 */
+	public Object getResultUnwrapped() {
+		return result instanceof Result ? ((Result<?>)result).getResult() : result;
+	}
+	
+	/**
+	 * Get exception by unwrapping a {@code Result}.
+	 *
+	 * @return the result
+	 */
+	public Exception getResultException() {
+		return result instanceof Result ? ((Result<?>)result).getException() : null;
+	}
+	
+	/**
+	 * Check if result is error by unwrapping a {@code Result}.
+	 *
+	 * @return the result
+	 */
+	public boolean isError() {
+		return result instanceof Result ? ((Result<?>)result).isError() : null;
+	}
+	
 	// With
+
 
 	/**
 	 * Set the value of property {@code restTemplate}.
@@ -114,25 +181,27 @@ public class ClientContext extends ObjectBase {
 		return this;
 	}
 	
-	
 	/**
-	 * Get the value of property {@code result}.
+	 * Set the value of property {@code singleton}.
 	 *
-	 * @return the result
+	 * @param singleton the value of property singleton
 	 */
-	public Object getResult() {
-		return result;
+	public ClientContext withSingleton(boolean singleton) {
+		this.singleton = singleton;
+		return this;
 	}
+
 
 	/**
 	 * Set the value of property {@code result}.
 	 *
 	 * @param result the value of property result
 	 */
-	public void setResult(Object result) {
+	public ClientContext withResult(Object result) {
 		this.result = result;
+		return this;
 	}
-
+	
 	/**
 	 * @param creator
 	 * @return
