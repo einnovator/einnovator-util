@@ -559,17 +559,6 @@ public class Authority extends EntityBase {
 	}	
 
 	
-	public static boolean canByMembership(String group, List<String> groups, List<Authority> authorities) {
-		return group!=null && groups!=null && groups.contains(group) && !refersGroup(group, authorities);
-	}
-
-
-
-	/**
-	 * @param group2
-	 * @param authorities
-	 * @return
-	 */
 	public static List<Authority> filterByString(String group, List<Authority> authorities) {
 		if (authorities==null) {
 			return null;
