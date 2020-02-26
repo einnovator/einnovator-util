@@ -36,7 +36,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Create instance of {@code Application}.
 	 *
-	 * @param obj
+	 * @param obj a prototype
 	 */
 	public Application(Object obj) {
 		super(obj);

@@ -120,6 +120,7 @@ public class Phone extends ObjectBase {
 	 * Set the value of property {@code number}.
 	 *
 	 * @param number the value of property number
+	 * @return this {@code Phone}
 	 */
 	public Phone withNumber(String number) {
 		this.number = number;
@@ -130,6 +131,7 @@ public class Phone extends ObjectBase {
 	 * Set the value of property {@code area}.
 	 *
 	 * @param area the value of property area
+	 * @return this {@code Phone}
 	 */
 	public Phone withArea(String area) {
 		this.area = area;
@@ -140,6 +142,7 @@ public class Phone extends ObjectBase {
 	 * Set the value of property {@code countryCode}.
 	 *
 	 * @param countryCode the value of property countryCode
+	 * @return this {@code Phone}
 	 */
 	public Phone withCountryCode(String countryCode) {
 		this.countryCode = countryCode;
@@ -150,6 +153,7 @@ public class Phone extends ObjectBase {
 	 * Set the value of property {@code country}.
 	 *
 	 * @param country the value of property country
+	 * @return this {@code Phone}
 	 */
 	public Phone withCountry(String country) {
 		this.country = country;

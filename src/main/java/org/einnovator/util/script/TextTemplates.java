@@ -38,12 +38,21 @@ public class TextTemplates {
 	/**
 	 * Create instance of {@code TextTemplates}.
 	 *
+	 * @param startMarker expressions start marker
+	 * @param endMarker expressions end marker
 	 */
 	public TextTemplates(String startMarker, String endMarker) {
 		this.startMarker = startMarker;
 		this.endMarker = endMarker;
 	}
-	
+
+	/**
+	 * Create instance of {@code TextTemplates}.
+	 *
+	 * @param startMarker expressions start marker
+	 * @param endMarker expressions end marker
+	 * @param resolver a {@code resolver}
+	 */
 	public TextTemplates(String startMarker, String endMarker, ExpressionResolver resolver) {
 		this.startMarker = startMarker;
 		this.endMarker = endMarker;

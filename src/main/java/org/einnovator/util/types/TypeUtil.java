@@ -639,12 +639,12 @@ public class TypeUtil {
 	 * @return <code>true</code>, if the actual parameter types are compatible with the
 	 * actual parameterTypes; <code>false</code>, otherwise.
 	 */
-	public static boolean assignableFrom(Class<?>[] formalParameterTypes, Class<?>[] actualParameterTypes) {
-		if (formalParameterTypes.length!=actualParameterTypes.length) {
+	public static boolean assignableFrom(Class<?>[] formalTypes, Class<?>[] actualTypes) {
+		if (formalTypes.length!=actualTypes.length) {
 			return false;
 		}
-		for (int i=0; i<formalParameterTypes.length; i++) {
-			if (formalParameterTypes[i].isAssignableFrom(actualParameterTypes[i])) {
+		for (int i=0; i<actualTypes.length; i++) {
+			if (formalTypes[i].isAssignableFrom(actualTypes[i])) {
 				return false;
 			}
 		}

@@ -55,6 +55,7 @@ public class EntityOptions<T> extends RequestOptions implements Options<T> {
 	 * Set the value of property {@code fetch}.
 	 *
 	 * @param fetch the value of property fetch
+	 * @return this {@code EntityOptions}
 	 */
 	public EntityOptions<T> withFetch(boolean fetch) {
 		this.fetch = fetch;

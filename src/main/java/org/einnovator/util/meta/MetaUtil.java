@@ -39,6 +39,7 @@ public class MetaUtil {
 	/**
 	 * Find an annotation with a certain type in an array of annotations.
 	 * 
+	 * @param <T> the annotation type
 	 * @param annotationType the annotation type
 	 * @param annotations the array of annotations
 	 * @return the found annotation; <code>null</code>, if none with matching type is found.
@@ -87,6 +88,7 @@ public class MetaUtil {
 	/**
 	 * Get annotation of the specified type from method, or if not found from the class declaring the method.
 	 * 
+	 * @param <T> the annotation type
 	 * @param method the method
 	 * @param annotationType the annotation type
 	 * @return the annotation; or <code>null</code>, if not found.
@@ -250,6 +252,7 @@ public class MetaUtil {
 
 	/**
 	 * Set field value for object.
+	 * 
 	 * @param field the field.
 	 * @param obj the object.
 	 * @param value the value.
@@ -281,6 +284,7 @@ public class MetaUtil {
 	
 	/**
 	 * Get field value for object.
+	 * 
 	 * @param field the field.
 	 * @param obj the object.
 	 * @return the value.
@@ -1245,6 +1249,7 @@ public class MetaUtil {
 	/**
 	 * Get the constructor for a type with the specified variable number of parameter types.
 	 * 
+	 * @param <T> a type
 	 * @param type the type
 	 * @param parameterTypes the array of parameter types
 	 * @return the no-arguments constructor; or <code>null</code>, if the type does not have none
@@ -1260,6 +1265,7 @@ public class MetaUtil {
 	/**
 	 * Get the constructor for a type with the specified variable number of parameter types.
 	 * 
+	 * @param <T> a type
 	 * @param type the type
 	 * @param parameterTypes the array of parameter types
 	 * @return the constructor
@@ -1276,6 +1282,7 @@ public class MetaUtil {
 	/**
 	 * Get the no-arguments constructor for a type.
 	 * 
+	 * @param <T> a type
 	 * @param type the type
 	 * @return the no-arguments constructor; or <code>null</code>, if the type does not have none
 	 */
@@ -1290,6 +1297,7 @@ public class MetaUtil {
 	/**
 	 * Get the no-arguments constructor for a type.
 	 * 
+	 * @param <T> a type
 	 * @param type the type
 	 * @throws NoSuchMethodException if the type does not have a no-arguments constructor
 	 * @return the no-arguments constructor
@@ -1309,6 +1317,7 @@ public class MetaUtil {
 	/**
 	 * Create a new instance of a type using the no-arguments constructor.
 	 * 
+	 * @param <T> a type
 	 * @param type the type
 	 * @return the new instance
 	 * @throws NoSuchMethodException if the type does not have a no-arguments constructor
@@ -1636,6 +1645,7 @@ public class MetaUtil {
 	 * The list of methods with the same signature is get by calling
 	 * {@link #getSameSignatureMethods(Method)};
 	 * 
+	 * @param <T> a type
 	 * @param map the method map
 	 * @param type the type of the bean
 	 * @return the expanded map with the original entries plus new entries

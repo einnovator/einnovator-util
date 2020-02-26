@@ -157,6 +157,7 @@ public class RequestOptions extends ObjectBase {
 	 * Set the value of property {@code runAs}.
 	 *
 	 * @param runAs the runAs to with
+	 * @return this {@code RequestOptions}
 	 */
 	public RequestOptions withRunAs(String runAs) {
 		this.runAs = runAs;
@@ -167,6 +168,7 @@ public class RequestOptions extends ObjectBase {
 	 * Set the value of property {@code admin}.
 	 *
 	 * @param admin the admin to with
+	 * @return this {@code RequestOptions}
 	 */
 	public RequestOptions withAdmin(Boolean admin) {
 		this.admin = admin;
@@ -177,6 +179,7 @@ public class RequestOptions extends ObjectBase {
 	 * Set the value of property {@code fullstate}.
 	 *
 	 * @param fullstate the value of property fullstate
+	 * @return this {@code RequestOptions}
 	 */
 	public RequestOptions withFullstate(Boolean fullstate) {
 		this.fullstate = fullstate;
@@ -187,6 +190,7 @@ public class RequestOptions extends ObjectBase {
 	 * Set the value of property {@code silent}.
 	 *
 	 * @param silent the value of property silent
+	 * @return this {@code RequestOptions}
 	 */
 	public RequestOptions withSilent(boolean silent) {
 		this.silent = silent;
@@ -197,6 +201,7 @@ public class RequestOptions extends ObjectBase {
 	 * Set the value of property {@code publish}.
 	 *
 	 * @param publish the value of property publish
+	 * @return this {@code RequestOptions}
 	 */
 	public RequestOptions withPublish(Boolean publish) {
 		this.publish = publish;

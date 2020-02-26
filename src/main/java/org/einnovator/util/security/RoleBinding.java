@@ -176,17 +176,33 @@ public class RoleBinding extends ObjectBase {
 	// With
 	
 	
+	/**
+	 * Set the value of property {@code username}.
+	 *
+	 * @param username the username to set
+	 * @return this {@code RoleBinding}
+	 */
 	public RoleBinding withUsername(String username) {
 		this.username = username;
 		return this;
 	}
 	
-
+	/**
+	 * Set the value of property {@code user}.
+	 *
+	 * @param user the user to set
+	 * @return this {@code RoleBinding}
+	 */
 	public RoleBinding withUser(Object user) {
 		this.user = user;
 		return this;
 	}
-	
+	/**
+	 * Set the value of property {@code groupId}.
+	 *
+	 * @param groupId the group id to set
+	 * @return this {@code RoleBinding}
+	 */
 	public RoleBinding withGroupId(String groupId) {
 		this.groupId = groupId;
 		return this;
@@ -196,6 +212,7 @@ public class RoleBinding extends ObjectBase {
 	 * Set the value of property {@code group}.
 	 *
 	 * @param group the group to set
+	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withGroup(Object group) {
 		this.group = group;
@@ -206,6 +223,7 @@ public class RoleBinding extends ObjectBase {
 	 * Set the value of property {@code roleId}.
 	 *
 	 * @param roleId the value of property roleId
+	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withRoleId(String roleId) {
 		this.roleId = roleId;
@@ -216,6 +234,7 @@ public class RoleBinding extends ObjectBase {
 	 * Set the value of property {@code roleName}.
 	 *
 	 * @param roleName the value of property roleName
+	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withRoleName(String roleName) {
 		this.roleName = roleName;
@@ -226,6 +245,7 @@ public class RoleBinding extends ObjectBase {
 	 * Set the value of property {@code role}.
 	 *
 	 * @param role the value of property role
+	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withRole(Object role) {
 		this.role = role;
@@ -242,10 +262,6 @@ public class RoleBinding extends ObjectBase {
 			;
 	}
 
-	/**
-	 * @return
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -256,11 +272,6 @@ public class RoleBinding extends ObjectBase {
 		return result;
 	}
 
-	/**
-	 * @param obj
-	 * @return
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

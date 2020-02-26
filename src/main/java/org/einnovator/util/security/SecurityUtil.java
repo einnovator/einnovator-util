@@ -16,11 +16,21 @@ public class SecurityUtil {
 
 	public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
+	/**
+	 * Get the {@code Principal} name.
+	 * 
+	 * @return the name
+	 */
 	public static String getPrincipalName() {
 		Principal principal = getPrincipal();
 		return principal!=null ? principal.getName() : null;
 	}
 
+	/**
+	 * Get the {@code Principal} name in the {@code SecurityContext}..
+	 * 
+	 * @return the principal
+	 */
 	public static Principal getPrincipal() {
 		Authentication authentication = getAuthentication();
 		if (authentication != null) {
@@ -34,6 +44,11 @@ public class SecurityUtil {
 		return null;
 	}
 
+	/**
+	 * Get the {@code GrantedAuthority}  of the principal in the {@code SecurityContext}..
+	 * 
+	 * @return the principal
+	 */
 	public static Collection<? extends GrantedAuthority> getAuthorities() {
 		Authentication authentication = getAuthentication();
 		if (authentication != null) {
@@ -42,6 +57,11 @@ public class SecurityUtil {
 		return null;
 	}
 
+	/**
+	 * Get {@code Authentication} in {@code SecurityContext}.
+	 * 
+	 * @return the {@code Authentication}
+	 */
 	public static  Authentication getAuthentication() {
 		SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
@@ -53,9 +73,9 @@ public class SecurityUtil {
 	/**
 	 * Check if role or authority exists in {@link Collection}.
 	 * 
-	 * @param role
-	 * @param authorities
-	 * @return
+	 * @param role the role
+	 * @param authorities the authorities
+	 * @return true if found
 	 */
 	public static boolean hasAuthority(String role, Collection<? extends GrantedAuthority> authorities) {
 		if (role==null || authorities==null) {
@@ -69,6 +89,11 @@ public class SecurityUtil {
 		return false;
 	}
 
+	/**
+	 * Check if [{@code Principal} is anonymous.
+	 * 
+	 * @return true if principal is anonymous
+	 */
 	public static boolean isAnonymous() {
 		Authentication authentication = getAuthentication();
 		return authentication!=null && authentication instanceof AnonymousAuthenticationToken;		

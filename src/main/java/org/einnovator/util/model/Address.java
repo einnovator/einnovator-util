@@ -344,6 +344,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code line1}.
 	 *
 	 * @param line1 the value of property line1
+	 * @return this {@code Address}
 	 */
 	public Address withLine1(String line1) {
 		this.line1 = line1;
@@ -365,6 +366,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code state}.
 	 *
 	 * @param state the value of property state
+	 * @return this {@code Address}
 	 */
 	public Address withState(String state) {
 		this.state = state;
@@ -386,6 +388,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code latitude}.
 	 *
 	 * @param latitude the value of property latitude
+	 * @return this {@code Address}
 	 */
 	public Address withLatitude(String latitude) {
 		this.latitude = latitude;

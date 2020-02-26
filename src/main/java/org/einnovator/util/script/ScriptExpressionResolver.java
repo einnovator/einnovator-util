@@ -26,6 +26,8 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	/**
 	 * Create instance of {@code ScriptExpressionResolver}.
 	 *
+	 * @param engine the {@code ScriptEngine}
+	 * @param silent true if expression evaluation errors should return true
 	 */
 	public ScriptExpressionResolver(ScriptEngine engine, boolean silent) {
 		this.engine = engine;
@@ -35,6 +37,8 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	/**
 	 * Create instance of {@code ScriptExpressionResolver}.
 	 *
+	 * @param engineFactory the {@code engineFactory}
+	 * @param silent true if expression evaluation errors should return true
 	 */
 	public ScriptExpressionResolver(ScriptEngineFactory engineFactory, boolean silent) {
 		this(engineFactory.getScriptEngine(), silent);
@@ -43,6 +47,9 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	/**
 	 * Create instance of {@code ScriptExpressionResolver}.
 	 *
+	 * @param lang a language
+	 * @param manager a {@code ScriptEngineManager}
+	 * @param silent true if expression evaluation errors should return true
 	 */
 	public ScriptExpressionResolver(String lang, ScriptEngineManager manager, boolean silent) {
 		this(getScriptEngine(lang, manager), silent);
@@ -52,6 +59,12 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	 * Create instance of {@code ScriptExpressionResolver}.
 	 *
 	 */
+	/**
+	 * Create instance of {@code ScriptExpressionResolver}.
+	 *
+	 * @param lang a language
+	 * @param silent true if expression evaluation errors should return true
+	 */
 	public ScriptExpressionResolver(String lang, boolean silent) {
 		this(getScriptEngine(lang, new ScriptEngineManager()), silent);
 	}
@@ -59,7 +72,7 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	/**
 	 * Create instance of {@code ScriptExpressionResolver}.
 	 *
-	 * @param lang language
+	 * @param lang a language
 	 * @param silent true if expression evaluation errors should return true
 	 * @param context optional context
 	 */

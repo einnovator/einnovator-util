@@ -66,7 +66,6 @@ public class StringUtil {
 	 * 
 	 * @param sb a {@code StringBuilder}
 	 * @param n the number of blanks
-	 * @return the {@code String} with blanks
 	 */
 	public static void hspace(StringBuilder sb, int n) {
 		repeat(' ', n, sb);

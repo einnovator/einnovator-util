@@ -155,6 +155,7 @@ public class ClientContext extends ObjectBase {
 	 * Set the value of property {@code restTemplate}.
 	 *
 	 * @param restTemplate the value of property restTemplate
+	 * @return this {@code ClientContext}
 	 */
 	public ClientContext withRestTemplate(OAuth2RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
@@ -165,6 +166,7 @@ public class ClientContext extends ObjectBase {
 	 * Set the value of property {@code admin}.
 	 *
 	 * @param admin the value of property admin
+	 * @return this {@code ClientContext}
 	 */
 	public ClientContext withAdmin(boolean admin) {
 		this.admin = admin;
@@ -175,6 +177,7 @@ public class ClientContext extends ObjectBase {
 	 * Set the value of property {@code runAs}.
 	 *
 	 * @param runAs the value of property runAs
+	 * @return this {@code ClientContext}
 	 */
 	public ClientContext withRunAs(String runAs) {
 		this.runAs = runAs;
@@ -185,6 +188,7 @@ public class ClientContext extends ObjectBase {
 	 * Set the value of property {@code singleton}.
 	 *
 	 * @param singleton the value of property singleton
+	 * @return this {@code ClientContext}
 	 */
 	public ClientContext withSingleton(boolean singleton) {
 		this.singleton = singleton;
@@ -196,17 +200,13 @@ public class ClientContext extends ObjectBase {
 	 * Set the value of property {@code result}.
 	 *
 	 * @param result the value of property result
+	 * @return this {@code ClientContext}
 	 */
 	public ClientContext withResult(Object result) {
 		this.result = result;
 		return this;
 	}
-	
-	/**
-	 * @param creator
-	 * @return
-	 * @see org.einnovator.util.model.ObjectBase#toString1(org.einnovator.util.model.ToStringCreator)
-	 */
+
 	@Override
 	public ToStringCreator toString1(ToStringCreator creator) {
 		return super.toString1(creator)

@@ -15,6 +15,7 @@ public class EnvironmentVariableResolver implements ExpressionResolver {
 	/**
 	 * Create instance of {@code EnvironmentVariableResolver}.
 	 *
+	 * @param env a {@code Environment}
 	 */
 	public EnvironmentVariableResolver(Environment env) {
 		this.env = env;

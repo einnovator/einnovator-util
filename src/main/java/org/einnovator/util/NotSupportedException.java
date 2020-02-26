@@ -23,8 +23,8 @@ public class NotSupportedException extends RuntimeException {
 	/**
 	 * Create instance of NotSupportedException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public NotSupportedException(String message, Throwable cause) {
 		super(message, cause);
@@ -33,7 +33,7 @@ public class NotSupportedException extends RuntimeException {
 	/**
 	 * Create instance of NotSupportedException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public NotSupportedException(String message) {
 		super(message);
@@ -42,7 +42,7 @@ public class NotSupportedException extends RuntimeException {
 	/**
 	 * Create instance of NotSupportedException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public NotSupportedException(Throwable cause) {
 		super(cause);
