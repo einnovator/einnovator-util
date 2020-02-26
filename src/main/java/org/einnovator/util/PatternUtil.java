@@ -21,7 +21,7 @@ public class PatternUtil {
 	 * 
 	 * @param pattern pattern to match
 	 * @param s string to match
-	 * @return
+	 * @return true if there is a match
 	 */
 	public static boolean matchText(String pattern, String s) {
 		if (pattern.isEmpty()) {

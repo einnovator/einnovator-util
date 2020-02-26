@@ -24,8 +24,8 @@ public class NoSuchPropertyException extends MetaException {
 	/**
 	 * Create instance of NoSuchPropertyException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public NoSuchPropertyException(String message, Throwable cause) {
 		super(message, cause);
@@ -34,7 +34,7 @@ public class NoSuchPropertyException extends MetaException {
 	/**
 	 * Create instance of NoSuchPropertyException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public NoSuchPropertyException(String message) {
 		super(message);
@@ -43,7 +43,7 @@ public class NoSuchPropertyException extends MetaException {
 	/**
 	 * Create instance of NoSuchPropertyException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public NoSuchPropertyException(Throwable cause) {
 		super(cause);

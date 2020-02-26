@@ -28,8 +28,8 @@ public class NotImplementedException extends RuntimeException {
 	/**
 	 * Create instance of {@code NotImplementedException}.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public NotImplementedException(String message, Throwable cause) {
 		super(message, cause);
@@ -39,7 +39,7 @@ public class NotImplementedException extends RuntimeException {
 	/**
 	 * Create instance of {@code NotImplementedException}.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public NotImplementedException(String message) {
 		super(message);
@@ -49,7 +49,7 @@ public class NotImplementedException extends RuntimeException {
 	/**
 	 * Create instance of {@code NotImplementedException}.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public NotImplementedException(Throwable cause) {
 		super(cause);

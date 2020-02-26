@@ -78,7 +78,7 @@ public class Result<T> extends ObjectBase {
 	/**
 	 * Create instance of {@code Result}.
 	 *
-	 * @param result a result or exception
+	 * @param value a result or exception
 	 * @param error true, if error; if null infer from value parameter (set true if value is exception)
 	 */
 	@SuppressWarnings("unchecked")
@@ -163,7 +163,7 @@ public class Result<T> extends ObjectBase {
 	}
 	
 	/**
-	 * Set the value of property {@code exception} and {@code status).
+	 * Set the value of property {@code exception} and {@code status}.
 	 *
 	 * @param exception the value of property exception
 	 * @param status the {@code HttpStatus}
@@ -174,7 +174,7 @@ public class Result<T> extends ObjectBase {
 	}
 	
 	/**
-	 * Set the value of property {@code exception} and {@code status).
+	 * Set the value of property {@code exception} and {@code status}.
 	 *
 	 * @param exception the value of property exception
 	 * @param status the {@code HttpStatus}
@@ -208,7 +208,9 @@ public class Result<T> extends ObjectBase {
 	/**
 	 * Set the value of property {@code error}.
 	 *
+	 * @param <T> the type of the wrapped value
 	 * @param error the value of property error
+	 * @param this {@code Result}
 	 */
 	public Result<T> withError(Boolean error) {
 		this.error = error;
@@ -219,7 +221,9 @@ public class Result<T> extends ObjectBase {
 	/**
 	 * Set the value of property {@code result}.
 	 *
+	 * @param <T> the type of the wrapped value
 	 * @param result the value of property result
+	 * @param this {@code Result}
 	 */
 	public Result<T> withResult(T result) {
 		this.result = result;
@@ -230,7 +234,9 @@ public class Result<T> extends ObjectBase {
 	/**
 	 * Set the value of property {@code exception}.
 	 *
+	 * @param <T> the type of the wrapped value
 	 * @param exception the value of property exception
+	 * @param this {@code Result}
 	 */
 	public Result<T> withException(Exception exception) {
 		this.exception = exception;
@@ -241,7 +247,9 @@ public class Result<T> extends ObjectBase {
 	/**
 	 * Set the value of property {@code status}.
 	 *
+	 * @param <T> the type of the wrapped value
 	 * @param status the value of property status
+	 * @param this {@code Result}
 	 */
 	public Result<T> withStatus(HttpStatus status) {
 		this.status = status;
@@ -251,8 +259,10 @@ public class Result<T> extends ObjectBase {
 	/**
 	 * Set the value of property {@code exception} and {@code status).
 	 *
+	 * @param <T> the type of the wrapped value
 	 * @param exception the value of property exception
 	 * @param status the {@code HttpStatus}
+	 * @return this {@code Result}
 	 */
 	public Result<T> withExceptionAndStatus(Exception exception, HttpStatus status) {
 		this.exception = exception;
@@ -263,8 +273,9 @@ public class Result<T> extends ObjectBase {
 	/**
 	 * Set the value of property {@code exception} and {@code status).
 	 *
+	 * @param <T> the type of the wrapped value
 	 * @param exception the value of property exception
-	 * @param status the {@code HttpStatus}
+	 * @param this {@code Result}
 	 */
 	@JsonIgnore
 	public Result<T> withExceptionAndStatus(HttpStatusCodeException exception) {

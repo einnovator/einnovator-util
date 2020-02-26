@@ -7,7 +7,7 @@ import org.springframework.util.StringUtils;
 /**
  * Miscellaneous utility methods related with i18n.
  *
- * @author Jorge Sim�o, {@code jorge.simao@einnovator.org}
+ * @author {@code support@einnovator.org}
  *
  */
 public class I18nUtil {

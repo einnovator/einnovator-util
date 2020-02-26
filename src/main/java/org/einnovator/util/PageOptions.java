@@ -43,7 +43,7 @@ public class PageOptions extends ObjectBase {
 	/**
 	 * Create instance of {@code PageOptions}.
 	 *
-	 * @param marker the marker
+	 * @param page the page
 	 * @param pageSize the pageSize
 	 */
 	public PageOptions(Integer page, Integer pageSize) {
@@ -138,12 +138,16 @@ public class PageOptions extends ObjectBase {
 		MappingUtils.updateObjectFrom(this, obj);
 	}
 
+	//
+	// With
+	//
 	
 
 	/**
 	 * Set the value of property {@code page}.
 	 *
 	 * @param page the value of property page
+	 * @return this {@code PageOptions}
 	 */
 	public PageOptions withPage(Integer page) {
 		this.page = page;
@@ -154,7 +158,8 @@ public class PageOptions extends ObjectBase {
 	 * Set the value of property {@code pageSize}.
 	 *
 	 * @param pageSize the value of property pageSize
-	 */
+	 * @return this {@code PageOptions}
+	 */	
 	public PageOptions withPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 		return this;
@@ -164,6 +169,7 @@ public class PageOptions extends ObjectBase {
 	 * Set the value of property {@code sort}.
 	 *
 	 * @param sort the value of property sort
+	 * @return this {@code PageOptions}
 	 */
 	public PageOptions withSort(String sort) {
 		this.sort = sort;

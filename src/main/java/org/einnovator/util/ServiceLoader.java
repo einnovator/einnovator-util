@@ -47,8 +47,8 @@ public class ServiceLoader<T> {
 	/**
 	 * Create instance of ServiceLoader.
 	 *
-	 * @param type
-	 * @param serviceProviderFile
+	 * @param type the type of service
+	 * @param serviceProviderFile the service provider file
 	 */
 	public ServiceLoader(Class<T> type, String serviceProviderFile) {
 		this.type = type;
@@ -58,7 +58,7 @@ public class ServiceLoader<T> {
 	/**
 	 * Create instance of ServiceLoader.
 	 *
-	 * @param type
+	 * @param type the type of service
 	 */
 	public ServiceLoader(Class<T> type) {
 		this(type, SERVICE_PROVIDER_DIR + type.getName());

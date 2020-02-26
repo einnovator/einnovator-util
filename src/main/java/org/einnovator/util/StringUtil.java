@@ -64,6 +64,7 @@ public class StringUtil {
 	/**
 	 * Write the specified number of blanks (spaces) to a {@code StringBuilder}.
 	 * 
+	 * @param sb a {@code StringBuilder}
 	 * @param n the number of blanks
 	 * @return the {@code String} with blanks
 	 */

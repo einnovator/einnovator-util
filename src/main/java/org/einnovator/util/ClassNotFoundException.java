@@ -23,8 +23,8 @@ public class ClassNotFoundException extends RuntimeException {
 	/**
 	 * Create instance of ClassNotFoundException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public ClassNotFoundException(String message, Throwable cause) {
 		super(message, cause);
@@ -33,7 +33,7 @@ public class ClassNotFoundException extends RuntimeException {
 	/**
 	 * Create instance of ClassNotFoundException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public ClassNotFoundException(String message) {
 		super(message);
@@ -42,7 +42,7 @@ public class ClassNotFoundException extends RuntimeException {
 	/**
 	 * Create instance of ClassNotFoundException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public ClassNotFoundException(Throwable cause) {
 		super(cause);

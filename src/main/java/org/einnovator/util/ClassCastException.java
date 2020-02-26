@@ -23,8 +23,8 @@ public class ClassCastException extends RuntimeException {
 	/**
 	 * Create instance of ClassCastException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public ClassCastException(String message, Throwable cause) {
 		super(message, cause);
@@ -33,7 +33,7 @@ public class ClassCastException extends RuntimeException {
 	/**
 	 * Create instance of ClassCastException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public ClassCastException(String message) {
 		super(message);
@@ -42,7 +42,7 @@ public class ClassCastException extends RuntimeException {
 	/**
 	 * Create instance of ClassCastException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public ClassCastException(Throwable cause) {
 		super(cause);

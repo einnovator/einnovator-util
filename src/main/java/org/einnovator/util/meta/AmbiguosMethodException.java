@@ -23,8 +23,8 @@ public class AmbiguosMethodException extends MetaException {
 	/**
 	 * Create instance of AmbiguosMethod.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public AmbiguosMethodException(String message, Throwable cause) {
 		super(message, cause);
@@ -33,7 +33,7 @@ public class AmbiguosMethodException extends MetaException {
 	/**
 	 * Create instance of AmbiguosMethod.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public AmbiguosMethodException(String message) {
 		super(message);
@@ -42,7 +42,7 @@ public class AmbiguosMethodException extends MetaException {
 	/**
 	 * Create instance of AmbiguosMethod.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public AmbiguosMethodException(Throwable cause) {
 		super(cause);

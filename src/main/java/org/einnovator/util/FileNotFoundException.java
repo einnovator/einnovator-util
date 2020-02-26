@@ -23,8 +23,8 @@ public class FileNotFoundException extends RuntimeException {
 	/**
 	 * Create instance of FileNotFoundException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public FileNotFoundException(String message, Throwable cause) {
 		super(message, cause);
@@ -33,7 +33,7 @@ public class FileNotFoundException extends RuntimeException {
 	/**
 	 * Create instance of FileNotFoundException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public FileNotFoundException(String message) {
 		super(message);
@@ -42,7 +42,7 @@ public class FileNotFoundException extends RuntimeException {
 	/**
 	 * Create instance of FileNotFoundException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public FileNotFoundException(Throwable cause) {
 		super(cause);

@@ -23,7 +23,7 @@ public class NoSuchFieldException extends MetaException {
 	 * Create instance of NoSuchFieldException.
 	 *
 	 * @param message
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public NoSuchFieldException(String message, Throwable cause) {
 		super(message, cause);
@@ -41,7 +41,7 @@ public class NoSuchFieldException extends MetaException {
 	/**
 	 * Create instance of NoSuchFieldException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public NoSuchFieldException(Throwable cause) {
 		super(cause);

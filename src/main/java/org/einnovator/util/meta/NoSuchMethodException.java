@@ -22,8 +22,8 @@ public class NoSuchMethodException extends MetaException {
 	/**
 	 * Create instance of NoSuchMethodException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public NoSuchMethodException(String message, Throwable cause) {
 		super(message, cause);
@@ -32,7 +32,7 @@ public class NoSuchMethodException extends MetaException {
 	/**
 	 * Create instance of NoSuchMethodException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public NoSuchMethodException(String message) {
 		super(message);
@@ -41,7 +41,7 @@ public class NoSuchMethodException extends MetaException {
 	/**
 	 * Create instance of NoSuchMethodException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public NoSuchMethodException(Throwable cause) {
 		super(cause);

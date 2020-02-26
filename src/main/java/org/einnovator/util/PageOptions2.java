@@ -95,10 +95,15 @@ public class PageOptions2 extends PageOptions {
 		this.marker = marker;
 	}
 	
+	//
+	// With
+	//
+	
 	/**
 	 * Set the value of property {@code marker}.
 	 *
 	 * @param marker the value of property marker
+	 * @return this {@code PageOptions2}
 	 */
 	public PageOptions2 withMarker(String marker) {
 		this.marker = marker;

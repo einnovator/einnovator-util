@@ -115,10 +115,32 @@
 				</execution>
 				</executions>
 			</plugin>
-			
+				
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<detectLinks>true</detectLinks>
+					<links>
+						<link>https://docs.spring.io/spring-framework/docs/current/javadoc-api/</link>
+						<link>https://docs.spring.io/spring-security/site/docs/4.2.13.RELEASE/apidocs/</link>
+						<link>https://docs.spring.io/spring-security/oauth/apidocs/</link>
+						<link>https://docs.spring.io/spring-data/data-commons/docs/current/api/</link>
+					</links>
+					<author>support@einnovator.org</author>
+					<doctitle>
+					<![CDATA[EInnovator Utility Library<br/>${project.name} ${project.version} API]]>
+					</doctitle>
+					<top>
+					 <![CDATA[See: <a href="#overview">Description<a>]]> 
+					</top>
+					<description>
+					 <![CDATA[This is the documentation for Java Utility Library provide by Einnovator.]]> 
+					</description>
+					<bottom>
+						 <![CDATA[Copyright 2019, <a href="http://home.einnovator.org">EInnovator, LTD.<a>]]> 
+					</bottom>
+				</configuration>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -128,6 +150,7 @@
 					</execution>
 				</executions>
 			</plugin>
+		
 		
 		</plugins>
 

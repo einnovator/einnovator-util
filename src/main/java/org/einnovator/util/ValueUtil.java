@@ -3,7 +3,7 @@ package org.einnovator.util;
 /**
  * Miscellaneous utility methods related with object value.
  *
- * @author Jorge Sim�o, {@code jorge.simao@einnovator.org}
+ * @author {@code support@einnovator.org}
  *
  */
 public class ValueUtil {
@@ -11,6 +11,7 @@ public class ValueUtil {
 	/**
 	 * Return the input value unchanged if not <code>null</code>, or the default value if the input value is <code>null</code>.
 	 * 
+	 * @param <T> the result type
 	 * @param value the input value
 	 * @param defaultValue the default value
 	 * @return the input value if not <code>null</code>; or the default value, if input value in <code>null</code>.

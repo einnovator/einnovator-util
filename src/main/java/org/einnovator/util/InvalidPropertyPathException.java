@@ -23,8 +23,8 @@ public class InvalidPropertyPathException extends RuntimeException {
 	/**
 	 * Create instance of InvalidPropertyPathException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public InvalidPropertyPathException(String message, Throwable cause) {
 		super(message, cause);
@@ -33,7 +33,7 @@ public class InvalidPropertyPathException extends RuntimeException {
 	/**
 	 * Create instance of InvalidPropertyPathException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public InvalidPropertyPathException(String message) {
 		super(message);
@@ -42,7 +42,7 @@ public class InvalidPropertyPathException extends RuntimeException {
 	/**
 	 * Create instance of InvalidPropertyPathException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public InvalidPropertyPathException(Throwable cause) {
 		super(cause);

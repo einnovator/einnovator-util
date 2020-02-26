@@ -11,7 +11,7 @@ import java.net.URL;
 /**
  * Miscellaneous utility methods related with {@code File}.
  *
- * @author Jorge Sim�o, {@code jorge.simao@einnovator.org}
+ * @author {@code support@einnovator.org}
  *
  */
 public class FileUtil {

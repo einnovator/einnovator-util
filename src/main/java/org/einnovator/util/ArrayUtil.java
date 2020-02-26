@@ -142,6 +142,7 @@ public class ArrayUtil {
 	/**
 	 * Check the first object in a list that has the specified type.
 	 * 
+	 * @param <T> the type of result
 	 * @param list the list of objects
 	 * @param type the type of the object to search for
 	 * @return the object found, or {@code null} if none is found.
@@ -159,6 +160,7 @@ public class ArrayUtil {
 	/**
 	 * Find all objects in an array that has the specified type.
 	 * 
+	 * @param <T> the type of result
 	 * @param array the array
 	 * @param type the type of the object to search for
 	 * @return a new array with the object found
@@ -228,9 +230,9 @@ public class ArrayUtil {
 	 * Some possible outputs include: {@code [1,2,[3,4]]}, and {@code [1,2,[null,4], text]}
 	 * 
 	 * @param value the object or array
-	 * @param beginMarker
-	 * @param endMarker
-	 * @param elementSeparator
+	 * @param beginMarker the begin marker
+	 * @param endMarker the end marker
+	 * @param elementSeparator the element separator
 	 * @return the string representation of the object or array
 	 */
 	public static String toString(Object value, String beginMarker, String endMarker, String elementSeparator) {
@@ -262,7 +264,7 @@ public class ArrayUtil {
 	 * 
 	 * Unlike {@link #toString(Object)}, no recursion is applied.
 	 *  
-	 * @param value the object or array
+	 * @param obj the object or array
 	 * @return the string representation of the object or array
 	 */
 	public static String format(Object obj) {

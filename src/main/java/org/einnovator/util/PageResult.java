@@ -257,6 +257,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code number}.
 	 *
 	 * @param number the value of property number
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withNumber(Integer number) {
 		this.number = number;
@@ -267,6 +268,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code size}.
 	 *
 	 * @param size the value of property size
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withSize(Integer size) {
 		this.size = size;
@@ -277,6 +279,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code numberOfElements}.
 	 *
 	 * @param numberOfElements the value of property numberOfElements
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withNumberOfElements(Integer numberOfElements) {
 		this.numberOfElements = numberOfElements;
@@ -287,6 +290,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code totalPageResults}.
 	 *
 	 * @param totalPageResults the value of property totalPageResults
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withTotalPageResults(Integer totalPageResults) {
 		this.totalPageResults = totalPageResults;
@@ -297,6 +301,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code totalElements}.
 	 *
 	 * @param totalElements the value of property totalElements
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withTotalElements(Long totalElements) {
 		this.totalElements = totalElements;
@@ -307,6 +312,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code content}.
 	 *
 	 * @param content the value of property content
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withContent(List<T> content) {
 		this.content = content;
@@ -317,6 +323,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code type}.
 	 *
 	 * @param type the value of property type
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withType(Class<T> type) {
 		this.type = type;
@@ -327,6 +334,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code label}.
 	 *
 	 * @param label the value of property label
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withLabel(String label) {
 		this.label = label;
@@ -337,6 +345,7 @@ public class PageResult<T> extends ObjectBase {
 	 * Set the value of property {@code plural}.
 	 *
 	 * @param plural the value of property plural
+	 * @return this {@code PageResult}
 	 */
 	public PageResult<T> withPlural(String plural) {
 		this.plural = plural;

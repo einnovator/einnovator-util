@@ -56,6 +56,7 @@ public class MetaUtil {
 	/**
 	 * Find an annotation transitively from type.
 	 * 
+	 * @param <T> the annotation type
 	 * @param type the type
 	 * @param annotationType the annotation type
 	 * @return the found annotation; <code>null</code>, if none with matching type is found.
@@ -296,6 +297,7 @@ public class MetaUtil {
 	/**
 	 * Get field value for object and cast to specified type.
 	 * 
+	 * @param <T> the result type
 	 * @param field the field
 	 * @param obj the object
 	 * @param type the type to cast
@@ -1334,6 +1336,7 @@ public class MetaUtil {
 	/**
 	 * Create a new instance using a constructor and array of arguments.
 	 * 
+	 * @param <T> the result type
 	 * @param constructor the constructor
 	 * @param args the array arguments
 	 * @return the new instance
@@ -1358,6 +1361,7 @@ public class MetaUtil {
 	/**
 	 * Create a new instance using a constructor and variable number of arguments.
 	 * 
+	 * @param <T> the result type
 	 * @param constructor the constructor
 	 * @param args the variable number of arguments
 	 * @return the new instance
@@ -1382,6 +1386,7 @@ public class MetaUtil {
 	/**
 	 * Create a new instance of a class with specified type using the no-arguments constructor.
 	 * 
+	 * @param <T> the result type
 	 * @param className the className
 	 * @param type type to (upper-cast) the instance created
 	 * @return the new instance

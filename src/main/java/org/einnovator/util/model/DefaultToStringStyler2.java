@@ -39,6 +39,7 @@ public class DefaultToStringStyler2 implements ToStringStyler2 {
 
 	/**
 	 * Create a new DefaultToStringStyler.
+	 * 
 	 * @param valueStyler the ValueStyler to use
 	 */
 	public DefaultToStringStyler2(ValueStyler valueStyler) {
@@ -55,6 +56,8 @@ public class DefaultToStringStyler2 implements ToStringStyler2 {
 
 	/**
 	 * Return the ValueStyler used by this ToStringStyler.
+	 * 
+	 * @return the @{ValueStyler}
 	 */
 	protected final ValueStyler getValueStyler() {
 		return this.valueStyler;

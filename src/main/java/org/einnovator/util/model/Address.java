@@ -289,6 +289,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code country}.
 	 *
 	 * @param country the value of property country
+	 * @return this {@code Address}
 	 */
 	public Address withCountry(String country) {
 		this.country = country;
@@ -299,6 +300,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code countryCode2}.
 	 *
 	 * @param countryCode2 the value of property countryCode2
+	 * @return this {@code Address}
 	 */
 	public Address withCountryCode2(String countryCode2) {
 		this.countryCode2 = countryCode2;
@@ -309,6 +311,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code countryCode3}.
 	 *
 	 * @param countryCode3 the value of property countryCode3
+	 * @return this {@code Address}
 	 */
 	public Address withCountryCode3(String countryCode3) {
 		this.countryCode3 = countryCode3;
@@ -319,6 +322,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code postalCode}.
 	 *
 	 * @param postalCode the value of property postalCode
+	 * @return this {@code Address}
 	 */
 	public Address withPostalCode(String postalCode) {
 		this.postalCode = postalCode;
@@ -329,6 +333,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code city}.
 	 *
 	 * @param city the value of property city
+	 * @return this {@code Address}
 	 */
 	public Address withCity(String city) {
 		this.city = city;
@@ -349,6 +354,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code line2}.
 	 *
 	 * @param line2 the value of property line2
+	 * @return this {@code Address}
 	 */
 	public Address withLine2(String line2) {
 		this.line2 = line2;
@@ -369,6 +375,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code locality}.
 	 *
 	 * @param locality the value of property locality
+	 * @return this {@code Address}
 	 */
 	public Address withLocality(String locality) {
 		this.locality = locality;
@@ -389,6 +396,7 @@ public class Address extends ObjectBase {
 	 * Set the value of property {@code longitude}.
 	 *
 	 * @param longitude the value of property longitude
+	 * @return this {@code Address}
 	 */
 	public Address withLongitude(String longitude) {
 		this.longitude = longitude;

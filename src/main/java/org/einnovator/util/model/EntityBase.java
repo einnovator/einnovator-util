@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -23,9 +24,14 @@ public abstract class EntityBase extends ObjectBase {
 
 	protected String lastModifiedFormatted;
 	
-	private String createdBy;
+	protected String createdBy;
 	
-	private String lastModifiedBy;
+	protected String lastModifiedBy;
+	
+	protected Object lastModifiedByUser;
+
+	protected Object createdByUser;
+	
 
 	/**
 	 * Create instance of {@code EntityBase}.
@@ -188,12 +194,52 @@ public abstract class EntityBase extends ObjectBase {
 		this.lastModifiedBy = lastModifiedBy;
 	}
 
+	
+	/**
+	 * Get the value of property {@code lastModifiedByUser}.
+	 *
+	 * @return the lastModifiedByUser
+	 */
+	public Object getLastModifiedByUser() {
+		return lastModifiedByUser;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedByUser}.
+	 *
+	 * @param lastModifiedByUser the value of property lastModifiedByUser
+	 */
+	public void setLastModifiedByUser(Object lastModifiedByUser) {
+		this.lastModifiedByUser = lastModifiedByUser;
+	}
+
+	/**
+	 * Get the value of property {@code createdByUser}.
+	 *
+	 * @return the createdByUser
+	 */
+	public Object getCreatedByUser() {
+		return createdByUser;
+	}
+
+	/**
+	 * Set the value of property {@code createdByUser}.
+	 *
+	 * @param createdByUser the value of property createdByUser
+	 */
+	public void setCreatedByUser(Object createdByUser) {
+		this.createdByUser = createdByUser;
+	}
+
+	//
 	// With
+	//
 	
 	/**
 	 * Set the value of property {@code id}.
 	 *
 	 * @param id the value of property id
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withId(String id) {
 		this.id = id;
@@ -204,6 +250,7 @@ public abstract class EntityBase extends ObjectBase {
 	 * Set the value of property {@code uuid}.
 	 *
 	 * @param uuid the value of property uuid
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withUuid(String uuid) {
 		this.uuid = uuid;
@@ -214,6 +261,8 @@ public abstract class EntityBase extends ObjectBase {
 	 * Set the value of property {@code creationDate}.
 	 *
 	 * @param creationDate the value of property creationDate
+	 * @param this {@code EntityBase}
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
@@ -224,6 +273,8 @@ public abstract class EntityBase extends ObjectBase {
 	 * Set the value of property {@code lastModified}.
 	 *
 	 * @param lastModified the value of property lastModified
+	 * @param this {@code EntityBase}
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withLastModified(Date lastModified) {
 		this.lastModified = lastModified;
@@ -234,6 +285,7 @@ public abstract class EntityBase extends ObjectBase {
 	 * Set the value of property {@code creationDateFormatted}.
 	 *
 	 * @param creationDateFormatted the value of property creationDateFormatted
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withCreationDateFormatted(String creationDateFormatted) {
 		this.creationDateFormatted = creationDateFormatted;
@@ -244,6 +296,7 @@ public abstract class EntityBase extends ObjectBase {
 	 * Set the value of property {@code lastModifiedFormatted}.
 	 *
 	 * @param lastModifiedFormatted the value of property lastModifiedFormatted
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withLastModifiedFormatted(String lastModifiedFormatted) {
 		this.lastModifiedFormatted = lastModifiedFormatted;
@@ -254,6 +307,7 @@ public abstract class EntityBase extends ObjectBase {
 	 * Set the value of property {@code createdBy}.
 	 *
 	 * @param createdBy the value of property createdBy
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
@@ -264,9 +318,32 @@ public abstract class EntityBase extends ObjectBase {
 	 * Set the value of property {@code lastModifiedBy}.
 	 *
 	 * @param lastModifiedBy the value of property lastModifiedBy
+	 * @param this {@code EntityBase}
 	 */
 	public EntityBase withLastModifiedBy(String lastModifiedBy) {
 		this.lastModifiedBy = lastModifiedBy;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedByUser}.
+	 *
+	 * @param lastModifiedByUser the value of property lastModifiedByUser
+	 * @param this {@code EntityBase}
+	 */
+	public EntityBase withLastModifiedByUser(Object lastModifiedByUser) {
+		this.lastModifiedByUser = lastModifiedByUser;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code createdByUser}.
+	 *
+	 * @param createdByUser the value of property createdByUser
+	 * @param this {@code EntityBase}
+	 */
+	public EntityBase withCreatedByUser(Object createdByUser) {
+		this.createdByUser = createdByUser;
 		return this;
 	}
 

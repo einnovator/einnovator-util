@@ -23,8 +23,8 @@ public class MetaException extends RuntimeException {
 	/**
 	 * Create instance of MetaException.
 	 *
-	 * @param message
-	 * @param cause
+	 * @param message a message
+	 * @param cause the cause
 	 */
 	public MetaException(String message, Throwable cause) {
 		super(message, cause);
@@ -33,7 +33,7 @@ public class MetaException extends RuntimeException {
 	/**
 	 * Create instance of MetaException.
 	 *
-	 * @param message
+	 * @param message a message
 	 */
 	public MetaException(String message) {
 		super(message);
@@ -42,7 +42,7 @@ public class MetaException extends RuntimeException {
 	/**
 	 * Create instance of MetaException.
 	 *
-	 * @param cause
+	 * @param cause the cause
 	 */
 	public MetaException(Throwable cause) {
 		super(cause);

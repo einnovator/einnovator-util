@@ -101,7 +101,7 @@ public class CharacterUtil {
 	 * The escape character code is defined as the second character in the Java expression
 	 * that defined the character (e.g. 't' is mapped to '\t').
 	 * 
-	 * The following codes are accepted: {@code 't', 'n', 'b', 'r', 'f', '\'', '\"', '\\')
+	 * The following codes are accepted: {@code 't', 'n', 'b', 'r', 'f', '\'', '\"', '\\'}
 	 * @param c the escape character code
 	 * @return the escape character; or 0 if the input character code is not valid.
 	 */
