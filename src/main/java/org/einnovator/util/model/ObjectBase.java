@@ -3,17 +3,36 @@ package org.einnovator.util.model;
 import java.util.Map;
 
 import org.einnovator.util.MappingUtils;
+import org.einnovator.util.web.RequestOptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+/**
+ * Support type for framework and application objects.
+ *
+ * @author support@einnovator.org
+ */
 @JsonIgnoreProperties(ignoreUnknown=true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class ObjectBase {
+	
+	//
+	// Constructors
+	//
 
+	/**
+	 * Create instance of {@code ObjectBase}.
+	 *
+	 */
 	public ObjectBase() {
 	}
 	
+	/**
+	 * Create instance of {@code ObjectBase}.
+	 *
+	 * @param obj a prototype
+	 */
 	public ObjectBase(Object obj) {
 		updateFrom(obj, false);
 	}
@@ -39,6 +58,10 @@ public abstract class ObjectBase {
 		return creator;
 	}
 
+	//
+	// Update state using reflection
+	//
+	
 	public void updateFrom(Object obj) {		
 		update(obj, true);
 	}
@@ -80,5 +103,14 @@ public abstract class ObjectBase {
 		}
 	}
 
-
+	
+	/**
+	 * Returns this {@code Object} cast to specified type.
+	 * 
+	 * @return this {@code Object}
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends RequestOptions> T as(Class<T> type) {
+		return (T)this;
+	}
 }
