@@ -5,6 +5,8 @@ package org.einnovator.util.web;
 
 import org.einnovator.util.model.ObjectBase;
 import org.einnovator.util.model.ToStringCreator;
+import org.einnovator.util.security.SecurityUtil;
+import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -207,10 +209,23 @@ public class RequestOptions extends ObjectBase {
 		this.publish = publish;
 		return this;
 	}
+	
+	//
+	// Util
+	//
 
-	/* (non-Javadoc)
-	 * @see org.einnovator.util.model.ObjectBase#toString(org.einnovator.util.model.ToStringCreator)
-	 */
+	@JsonIgnore
+	public String getRequiredPrincipal() {
+		if (StringUtils.hasText(runAs)) {
+			return runAs;
+		}
+		if (SecurityUtil.getPrincipal()==null || SecurityUtil.isAnonymous()) {
+			return null;
+		}
+		return SecurityUtil.getPrincipalName();
+	}
+
+
 	@Override
 	public ToStringCreator toString2(ToStringCreator creator) {
 		return creator
@@ -261,4 +276,20 @@ public class RequestOptions extends ObjectBase {
 		return true;
 	}
 	
+	/**
+	 * Check if request is for an {@code /admin} endpoint.
+	 * 
+	 * @param options optional {@code RequestOptions}
+	 * @param context options {@code ClientContext}
+	 * @return true if request is for an admin endpoint, false otherwise
+	 */
+	public static boolean isAdminRequest(RequestOptions options, ClientContext context) {
+		if (options!=null && options.getAdmin()!=null) {
+			return Boolean.TRUE.equals(options.getAdmin());
+		}
+		if (context!=null && context.isAdmin()) {
+			return true;
+		}
+		return false;
+	}
 }

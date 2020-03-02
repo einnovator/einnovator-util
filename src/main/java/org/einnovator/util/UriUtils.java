@@ -6,9 +6,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.einnovator.util.script.TextTemplates;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 public class UriUtils {
@@ -17,6 +19,12 @@ public class UriUtils {
 	public static final String[] SUBROOT_DOMAINS = {"com", "co", "gov", "edu", "net", "org"};
 	
 
+	/**
+	 * Factory method to create {@code URI}.
+	 * 
+	 * @param uri the uri string
+	 * @return the {@code URI}
+	 */
 	public static URI makeURI(String uri) {
 		try {
 			return new URI(uri);
@@ -24,18 +32,14 @@ public class UriUtils {
 			throw new RuntimeException(e);
 		}		
 	}
-
-	public static URI appendQueryParameters(URI uri, Object... objs) {
-		for (Object obj: objs) {
-			uri = appendFormattedQueryParameters(uri, MappingUtils.toMap(obj));			
-		}
-		return uri;
-	}
-
-	public static URI appendQueryParameters(URI uri, Object obj) {
-		return appendFormattedQueryParameters(uri, MappingUtils.toMap(obj));
-	}
-
+	
+	/**
+	 * Append query parameters to URI taken from a {@code Map}.
+	 * 
+	 * @param uri the {@code URI}
+	 * @param params a {@code Map} with parameter name-value pairs
+	 * @return the processed {@code URI}
+	 */
 	public static URI appendQueryParameters(URI uri, Map<String, String> params) {
 		if (params!=null) {
 			for (Map.Entry<String, String> e: params.entrySet()) {
@@ -45,6 +49,13 @@ public class UriUtils {
 		return uri;
 	}
 	
+	/**
+	 * Append query parameters to URI taken from a {@code Map}.
+	 * 
+	 * @param uri the {@code URI}
+	 * @param params a {@code Map} with parameter name-value pairs
+	 * @return the processed {@code URI}
+	 */
 	public static URI appendFormattedQueryParameters(URI uri, Map<String, Object> params) {
 		if (params!=null) {
 			for (Map.Entry<String, Object> e: params.entrySet()) {
@@ -54,10 +65,27 @@ public class UriUtils {
 		return uri;
 	}
 
+	/**
+	 * Append query parameter to URI using default encoding.
+	 * 
+	 * @param uri the {@code URI}
+	 * @param name the parameter name
+	 * @param value the parameter value
+	 * @return the processed {@code URI}
+	 */
 	public static URI appendQueryParameter(URI uri, String name, Object value) {
 		return appendQueryParameter(uri, name, value, DEFAULT_ENCODING);
 	}
 
+	/**
+	 * Append query parameter to URI.
+	 * 
+	 * @param uri the {@code URI}
+	 * @param name the parameter name
+	 * @param value the parameter value
+	 * @param encoding the encoding to use for the value
+	 * @return the processed {@code URI}
+	 */
 	public static URI appendQueryParameter(URI uri, String name, Object value, String encoding) {
 		try {
 
@@ -90,6 +118,30 @@ public class UriUtils {
 		catch (UnsupportedEncodingException e) {
 			throw new IllegalArgumentException("Could not encode URI", e);
 		}		
+	}
+	
+	/**
+	 * Append query parameters to URI by from the formatted property values of specified objects.
+	 * 
+	 * @param uri the {@code URI}
+	 * @param objs a variadic array of objects
+	 * @return the processed {@code URI}
+	 */
+	public static URI appendQueryParameters(URI uri, Object... objs) {
+		if (objs!=null && objs.length>0) {
+			Map<String, String> params = new LinkedHashMap<>();
+			for (Object obj: objs) {
+				if (obj==null) {
+					continue;
+				}
+				if (obj instanceof Pageable) {
+					obj = new PageOptions((Pageable)obj);
+				}
+				params.putAll(MappingUtils.toMapFormatted(obj));
+			}
+			uri = appendQueryParameters(uri, params);			
+		}
+		return uri;
 	}
 	
 	public static String encodePath(String path, String encoding) {
