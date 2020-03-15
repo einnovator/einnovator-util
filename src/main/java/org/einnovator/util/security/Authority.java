@@ -236,66 +236,174 @@ public class Authority extends EntityBase {
 		this.group = group;
 	}
 
-	
+	/**
+	 * Get the value of property {@code connection}.
+	 *
+	 * @return the connection
+	 */
+	public Object getConnection() {
+		return connection;
+	}
+
+	/**
+	 * Set the value of property {@code connection}.
+	 *
+	 * @param connection the value of property connection
+	 */
+	public void setConnection(Object connection) {
+		this.connection = connection;
+	}
+
+	/**
+	 * Get the value of property {@code comment}.
+	 *
+	 * @return the comment
+	 */
+	public Boolean getComment() {
+		return comment;
+	}
+
+	/**
+	 * Set the value of property {@code comment}.
+	 *
+	 * @param comment the value of property comment
+	 */
+	public void setComment(Boolean comment) {
+		this.comment = comment;
+	}
+
+
+	//
 	// With
+	//
 	
+	/**
+	 * Set the value of property {@code type}.
+	 *
+	 * @param type the value of property type
+	 * @return this {@code Authority}
+	 */
+	public Authority withType(OwnerType type) {
+		this.type = type;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code username}.
+	 *
+	 * @param username the value of property username
+	 * @return this {@code Authority}
+	 */
 	public Authority withUsername(String username) {
 		this.username = username;
 		return this;
 	}
-	
-	public Authority withConnectionId(String connectionId) {
-		this.connectionId = connectionId;
-		return this;
-	}
 
-
-	public Authority withUser(Object user) {
-		this.user = user;
-		return this;
-	}
-	
+	/**
+	 * Set the value of property {@code groupId}.
+	 *
+	 * @param groupId the value of property groupId
+	 * @return this {@code Authority}
+	 */
 	public Authority withGroupId(String groupId) {
 		this.groupId = groupId;
 		return this;
 	}
 
-	public Authority withGroup(Object group) {
-		this.group = group;
+	/**
+	 * Set the value of property {@code connectionId}.
+	 *
+	 * @param connectionId the value of property connectionId
+	 * @return this {@code Authority}
+	 */
+	public Authority withConnectionId(String connectionId) {
+		this.connectionId = connectionId;
 		return this;
 	}
 
-	public Authority withConnection(Object connection) {
-		this.connection = connection;
-		return this;
-	}
-	
+	/**
+	 * Set the value of property {@code other}.
+	 *
+	 * @param other the value of property other
+	 * @return this {@code Authority}
+	 */
 	public Authority withOther(Boolean other) {
 		this.other = other;
 		return this;
 	}
 
-	public Authority withOther() {
-		return withOther(true);
+	/**
+	 * Set the value of property {@code user}.
+	 *
+	 * @param user the value of property user
+	 * @return this {@code Authority}
+	 */
+	public Authority withUser(Object user) {
+		this.user = user;
+		return this;
 	}
-	
 
+	/**
+	 * Set the value of property {@code group}.
+	 *
+	 * @param group the value of property group
+	 * @return this {@code Authority}
+	 */
+	public Authority withGroup(Object group) {
+		this.group = group;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code connection}.
+	 *
+	 * @param connection the value of property connection
+	 * @return this {@code Authority}
+	 */
+	public Authority withConnection(Object connection) {
+		this.connection = connection;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code read}.
+	 *
+	 * @param read the value of property read
+	 * @return this {@code Authority}
+	 */
 	public Authority withRead(Boolean read) {
 		this.read = read;
 		return this;
 	}
 
-
+	/**
+	 * Set the value of property {@code write}.
+	 *
+	 * @param write the value of property write
+	 * @return this {@code Authority}
+	 */
 	public Authority withWrite(Boolean write) {
 		this.write = write;
 		return this;
 	}
 
+	/**
+	 * Set the value of property {@code manage}.
+	 *
+	 * @param manage the value of property manage
+	 * @return this {@code Authority}
+	 */
 	public Authority withManage(Boolean manage) {
 		this.manage = manage;
 		return this;
 	}
 
+	/**
+	 * Set the value of property {@code comment}.
+	 *
+	 * @param comment the value of property comment
+	 * @return this {@code Authority}
+	 */
 	public Authority withComment(Boolean comment) {
 		this.comment = comment;
 		return this;
@@ -352,25 +460,6 @@ public class Authority extends EntityBase {
 		return this.connectionId!=null && this.connectionId.equals(connection);
 	}
 
-	@JsonIgnore
-	public boolean isRead() {
-		return Boolean.TRUE.equals(read);
-	}
-
-	@JsonIgnore
-	public boolean isWrite() {
-		return Boolean.TRUE.equals(write);
-	}
-
-	@JsonIgnore
-	public boolean isManage() {
-		return Boolean.TRUE.equals(manage);
-	}
-
-	@JsonIgnore
-	public boolean isComment() {
-		return Boolean.TRUE.equals(comment);
-	}
 
 	@Override
 	public int hashCode() {

@@ -24,6 +24,7 @@ public class RequestOptions extends ObjectBase {
 
 	protected String runAs;
 	
+	@JsonIgnore
 	protected Boolean admin;
 
 	protected Boolean fullstate;
@@ -32,6 +33,12 @@ public class RequestOptions extends ObjectBase {
 	
 	@JsonIgnore
 	protected boolean silent;
+	
+	@JsonIgnore
+	protected Object result;
+	
+	@JsonIgnore
+	protected boolean singleton;
 
 	/**
 	 * Create instance of {@code RequestOptions}.
@@ -149,7 +156,69 @@ public class RequestOptions extends ObjectBase {
 	public void setSilent(boolean silent) {
 		this.silent = silent;
 	}
+	/**
+	 * Get the value of property {@code singleton}.
+	 *
+	 * @return the singleton
+	 */
+	public boolean isSingleton() {
+		return singleton;
+	}
 
+	/**
+	 * Set the value of property {@code singleton}.
+	 *
+	 * @param singleton the value of property singleton
+	 */
+	public void setSingleton(boolean singleton) {
+		this.singleton = singleton;
+	}
+	
+	/**
+	 * Get the value of property {@code result}.
+	 *
+	 * @return the result
+	 */
+	public Object getResult() {
+		return result;
+	}
+
+	/**
+	 * Set the value of property {@code result}.
+	 *
+	 * @param result the value of property result
+	 */
+	public void setResult(Object result) {
+		this.result = result;
+	}
+	
+	/**
+	 * Get the result unwrapped by unwrapping a {@code Result}..
+	 *
+	 * @return the unwrapped result if wrapped in {@code Result}, or plain result value if not
+	 */
+	public Object getResultUnwrapped() {
+		return result instanceof Result ? ((Result<?>)result).getResult() : result;
+	}
+	
+	/**
+	 * Get exception by unwrapping a {@code Result}.
+	 *
+	 * @return the result
+	 */
+	public Exception getResultException() {
+		return result instanceof Result ? ((Result<?>)result).getException() : null;
+	}
+	
+	/**
+	 * Check if result is error by unwrapping a {@code Result}.
+	 *
+	 * @return the result
+	 */
+	public boolean isError() {
+		return result instanceof Result ? ((Result<?>)result).isError() : null;
+	}
+	
 	//
 	// With
 	//
@@ -210,6 +279,29 @@ public class RequestOptions extends ObjectBase {
 		return this;
 	}
 	
+	/**
+	 * Set the value of property {@code singleton}.
+	 *
+	 * @param singleton the value of property singleton
+	 * @return this {@code RequestOptions}
+	 */
+	public RequestOptions withSingleton(boolean singleton) {
+		this.singleton = singleton;
+		return this;
+	}
+
+
+	/**
+	 * Set the value of property {@code result}.
+	 *
+	 * @param result the value of property result
+	 * @return this {@code RequestOptions}
+	 */
+	public RequestOptions withResult(Object result) {
+		this.result = result;
+		return this;
+	}
+
 	//
 	// Util
 	//
@@ -280,15 +372,11 @@ public class RequestOptions extends ObjectBase {
 	 * Check if request is for an {@code /admin} endpoint.
 	 * 
 	 * @param options optional {@code RequestOptions}
-	 * @param context options {@code ClientContext}
 	 * @return true if request is for an admin endpoint, false otherwise
 	 */
-	public static boolean isAdminRequest(RequestOptions options, ClientContext context) {
+	public static boolean isAdminRequest(RequestOptions options) {
 		if (options!=null && options.getAdmin()!=null) {
 			return Boolean.TRUE.equals(options.getAdmin());
-		}
-		if (context!=null && context.isAdmin()) {
-			return true;
 		}
 		return false;
 	}

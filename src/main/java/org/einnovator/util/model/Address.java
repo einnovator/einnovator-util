@@ -1,9 +1,7 @@
 package org.einnovator.util.model;
 
 
-import org.einnovator.util.model.ObjectBase;
-import org.einnovator.util.model.ToStringCreator;
-import org.springframework.util.StringUtils;
+import static org.springframework.util.StringUtils.hasText;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -424,26 +422,26 @@ public class Address extends ObjectBase {
 
 	@JsonIgnore
 	public boolean isEmpty() {
-		return !StringUtils.hasText(country) && !StringUtils.hasText(postalCode) && 
-				!StringUtils.hasText(city) && !StringUtils.hasText(line1) && 
-				!StringUtils.hasText(line2) && !StringUtils.hasText(state) &&
-				!StringUtils.hasText(locality) &&
-				!StringUtils.hasText(countryCode2) && !StringUtils.hasText(countryCode3) &&
-				!StringUtils.hasText(latitude) && !StringUtils.hasText(longitude);
+		return !hasText(country) && !hasText(postalCode) && 
+				!hasText(city) && !hasText(line1) && 
+				!hasText(line2) && !hasText(state) &&
+				!hasText(locality) &&
+				!hasText(countryCode2) && !hasText(countryCode3) &&
+				!hasText(latitude) && !hasText(longitude);
 	}
 
 	public String getFormatted() {
 		StringBuilder sb = new StringBuilder();
-		if (StringUtils.hasText(city)) {
+		if (hasText(city)) {
 			sb.append(city);
 		}
-		if (StringUtils.hasText(state)) {
+		if (hasText(state)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
 			sb.append(state);
 		}
-		if (StringUtils.hasText(country)) {
+		if (hasText(country)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
@@ -452,12 +450,37 @@ public class Address extends ObjectBase {
 		return sb.toString();
 	}
 
+	public String getFormatted0() {
+		StringBuilder sb = new StringBuilder();
+		if (hasText(city)) {
+			sb.append(city);
+		}
+		if (hasText(state)) {
+			if (sb.length()!=0) {
+				sb.append("/");
+			}
+			sb.append(state);
+		}
+		if (hasText(country) || hasText(countryCode2) || hasText(countryCode3)) {
+			if (sb.length()!=0) {
+				sb.append("/");
+			}
+			if (hasText(countryCode3)) {
+				sb.append(countryCode3);
+			} else if (hasText(countryCode2)) {
+				sb.append(countryCode2);
+			} else if (hasText(country)) {
+				sb.append(country);
+			}
+		}
+		return sb.toString();
+	}
 	public String getFormatted1() {
 		StringBuilder sb = new StringBuilder();
-		if (StringUtils.hasText(line1)) {
+		if (hasText(line1)) {
 			sb.append(line1.trim());
 		}
-		if (StringUtils.hasText(line2)) {
+		if (hasText(line2)) {
 			if (sb.length()!=0) {
 				if (!sb.toString().endsWith(",")) {
 					sb.append(",");
@@ -468,26 +491,26 @@ public class Address extends ObjectBase {
 			sb.append(line2);
 		}
 
-		if (StringUtils.hasText(city)) {
+		if (hasText(city)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
 			sb.append(city.trim());
 		}
-		if (StringUtils.hasText(postalCode)) {
+		if (hasText(postalCode)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
 			sb.append(postalCode.trim());
 		}
 
-		if (StringUtils.hasText(state)) {
+		if (hasText(state)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
 			sb.append(state.trim());
 		}
-		if (StringUtils.hasText(country)) {
+		if (hasText(country)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
@@ -498,29 +521,29 @@ public class Address extends ObjectBase {
 
 	public String getFormatted2() {
 		StringBuilder sb = new StringBuilder();
-		if (StringUtils.hasText(line1)) {
+		if (hasText(line1)) {
 			sb.append(line1);
 		}
-		if (StringUtils.hasText(line2)) {
+		if (hasText(line2)) {
 			if (sb.length()!=0) {
 				sb.append(" ");
 			}
 			sb.append(line2);
 		}
 
-		if (StringUtils.hasText(city)) {
+		if (hasText(city)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
 			sb.append(city);
 		}
-		if (StringUtils.hasText(state)) {
+		if (hasText(state)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
 			sb.append(state);
 		}
-		if (StringUtils.hasText(country)) {
+		if (hasText(country)) {
 			if (sb.length()!=0) {
 				sb.append(", ");
 			}
