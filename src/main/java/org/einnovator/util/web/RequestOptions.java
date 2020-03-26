@@ -197,6 +197,7 @@ public class RequestOptions extends ObjectBase {
 	 *
 	 * @return the unwrapped result if wrapped in {@code Result}, or plain result value if not
 	 */
+	@JsonIgnore
 	public Object getResultUnwrapped() {
 		return result instanceof Result ? ((Result<?>)result).getResult() : result;
 	}
@@ -206,6 +207,7 @@ public class RequestOptions extends ObjectBase {
 	 *
 	 * @return the result
 	 */
+	@JsonIgnore
 	public Exception getResultException() {
 		return result instanceof Result ? ((Result<?>)result).getException() : null;
 	}
@@ -215,8 +217,15 @@ public class RequestOptions extends ObjectBase {
 	 *
 	 * @return the result
 	 */
+	@JsonIgnore
 	public boolean isError() {
-		return result instanceof Result ? ((Result<?>)result).isError() : null;
+		if (result instanceof Result) {
+			return Boolean.TRUE.equals(((Result<?>)result).isError());
+		}
+		if (result instanceof Exception) {
+			return true;
+		}
+		return false;
 	}
 	
 	//
