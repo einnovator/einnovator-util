@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.util.StringUtils;
 
+/**
+ * A {@code CachingManagerBase}
+ *
+ * @author support@einnovator.org
+ */
 public class CachingManagerBase {
 
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -38,24 +43,29 @@ public class CachingManagerBase {
 		return CacheUtils.putCacheValue(value, cache, makeKey(keys));
 	}
 	
-	
-
 	protected String makeKey(Object... keys) {
-		String tenant = multitenantResolver.getTenant();
+		String tenant = getTenant();
 		String key = CacheUtils.makeKey(keys);
 		return StringUtils.hasText(tenant) ? tenant + ":" + key : key;
 	}
 
 	protected String makeKeyForPrincipal(Object... keys) {
-		String tenant = multitenantResolver.getTenant();
+		String tenant = getTenant();
 		String key = CacheUtils.makeKeyForPrincipal(keys);
 		return StringUtils.hasText(tenant) ? tenant + ":" + key : key;
 	}
 
 	protected String makeKeyForUser(String username, Object... keys) {
-		String tenant = multitenantResolver.getTenant();
+		String tenant = getTenant();
 		String key = CacheUtils.makeKeyForUser(username, keys);
 		return StringUtils.hasText(tenant) ? tenant + ":" + key : key;
+	}
+	
+	protected String getTenant() {
+		if (multitenantResolver==null) {
+			return null;
+		}
+		return multitenantResolver.getTenant();
 	}
 
 

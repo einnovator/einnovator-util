@@ -7,7 +7,7 @@ import java.util.TimeZone;
 /**
  * Miscellaneous utility methods related with {@code Date}.
  *
- * @author Jorge Simao {@code jorge.simao@einnovator.org}
+ * @author support@einnovator.org {@code support@einnovator.org}
  *
  */
 public class DateUtil {
