@@ -22,10 +22,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RequestOptions extends ObjectBase {
 
+	@JsonIgnore
+	protected Boolean admin;
+
 	protected String runAs;
 	
 	@JsonIgnore
-	protected Boolean admin;
+	protected Boolean runAsClient;
+
+	protected Boolean runAsGuest;
 
 	protected Boolean fullstate;
 
@@ -40,13 +45,17 @@ public class RequestOptions extends ObjectBase {
 	@JsonIgnore
 	protected boolean singleton;
 
+
+	//
+	// Constructors
+	//
+	
 	/**
 	 * Create instance of {@code RequestOptions}.
 	 *
 	 */
 	public RequestOptions() {
 	}
-
 
 	/**
 	 * Create instance of {@code RequestOptions}.
@@ -61,29 +70,11 @@ public class RequestOptions extends ObjectBase {
 	// Setters/Getters
 	//
 	
-	/**
-	 * Get the value of property {@code runAs}.
-	 *
-	 * @return the runAs
-	 */
-	public String getRunAs() {
-		return runAs;
-	}
-
-	/**
-	 * Set the value of property {@code runAs}.
-	 *
-	 * @param runAs the runAs to set
-	 */
-	public void setRunAs(String runAs) {
-		this.runAs = runAs;
-	}
-	
 
 	/**
 	 * Get the value of property {@code admin}.
 	 *
-	 * @return the admin
+	 * @return the value of admin
 	 */
 	public Boolean getAdmin() {
 		return admin;
@@ -92,21 +83,75 @@ public class RequestOptions extends ObjectBase {
 	/**
 	 * Set the value of property {@code admin}.
 	 *
-	 * @param admin the admin to set
+	 * @param admin the value of admin
 	 */
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
 	}
+	
+	/**
+	 * Get the value of property {@code runAs}.
+	 *
+	 * @return the value of runAs
+	 */
+	public String getRunAs() {
+		return runAs;
+	}
+
+	/**
+	 * Set the value of property {@code runAs}.
+	 *
+	 * @param runAs the value of runAs
+	 */
+	public void setRunAs(String runAs) {
+		this.runAs = runAs;
+	}
+
+	/**
+	 * Get the value of property {@code runAsClient}.
+	 *
+	 * @return the value of runAsClient
+	 */
+	public Boolean getRunAsClient() {
+		return runAsClient;
+	}
+
+	/**
+	 * Set the value of property {@code runAsClient}.
+	 *
+	 * @param runAsClient the value of runAsClient
+	 */
+	public void setRunAsClient(Boolean runAsClient) {
+		this.runAsClient = runAsClient;
+	}
+
+	/**
+	 * Get the value of property {@code runAsGuest}.
+	 *
+	 * @return the value of runAsGuest
+	 */
+	public Boolean getRunAsGuest() {
+		return runAsGuest;
+	}
+
+	/**
+	 * Set the value of property {@code runAsGuest}.
+	 *
+	 * @param runAsGuest the value of runAsGuest
+	 */
+	public void setRunAsGuest(Boolean runAsGuest) {
+		this.runAsGuest = runAsGuest;
+	}
+
 
 	/**
 	 * Get the value of property {@code fullstate}.
 	 *
-	 * @return the fullstate
+	 * @return the value of fullstate
 	 */
 	public Boolean getFullstate() {
 		return fullstate;
 	}
-
 
 	/**
 	 * Set the value of property {@code fullstate}.
@@ -121,7 +166,7 @@ public class RequestOptions extends ObjectBase {
 	/**
 	 * Get the value of property {@code publish}.
 	 *
-	 * @return the publish
+	 * @return the value of publish
 	 */
 	public Boolean getPublish() {
 		return publish;
@@ -141,7 +186,7 @@ public class RequestOptions extends ObjectBase {
 	/**
 	 * Get the value of property {@code silent}.
 	 *
-	 * @return the silent
+	 * @return the value of silent
 	 */
 	public boolean isSilent() {
 		return silent;
@@ -159,7 +204,7 @@ public class RequestOptions extends ObjectBase {
 	/**
 	 * Get the value of property {@code singleton}.
 	 *
-	 * @return the singleton
+	 * @return the value of singleton
 	 */
 	public boolean isSingleton() {
 		return singleton;
@@ -177,7 +222,7 @@ public class RequestOptions extends ObjectBase {
 	/**
 	 * Get the value of property {@code result}.
 	 *
-	 * @return the result
+	 * @return the value of result
 	 */
 	public Object getResult() {
 		return result;
@@ -193,9 +238,9 @@ public class RequestOptions extends ObjectBase {
 	}
 	
 	/**
-	 * Get the result unwrapped by unwrapping a {@code Result}..
+	 * Get the value of result unwrapped by unwrapping a {@code Result}..
 	 *
-	 * @return the unwrapped result if wrapped in {@code Result}, or plain result value if not
+	 * @return the value of unwrapped result if wrapped in {@code Result}, or plain result value if not
 	 */
 	@JsonIgnore
 	public Object getResultUnwrapped() {
@@ -205,7 +250,7 @@ public class RequestOptions extends ObjectBase {
 	/**
 	 * Get exception by unwrapping a {@code Result}.
 	 *
-	 * @return the result
+	 * @return the value of result
 	 */
 	@JsonIgnore
 	public Exception getResultException() {
@@ -215,7 +260,7 @@ public class RequestOptions extends ObjectBase {
 	/**
 	 * Check if result is error by unwrapping a {@code Result}.
 	 *
-	 * @return the result
+	 * @return the value of result
 	 */
 	@JsonIgnore
 	public boolean isError() {
@@ -232,11 +277,21 @@ public class RequestOptions extends ObjectBase {
 	// With
 	//
 	
+	/**
+	 * Set the value of property {@code admin}.
+	 *
+	 * @param admin the value of admin
+	 * @return this {@code RequestOptions}
+	 */
+	public RequestOptions withAdmin(Boolean admin) {
+		this.admin = admin;
+		return this;
+	}
 
 	/**
 	 * Set the value of property {@code runAs}.
 	 *
-	 * @param runAs the runAs to with
+	 * @param runAs the value of runAs to with
 	 * @return this {@code RequestOptions}
 	 */
 	public RequestOptions withRunAs(String runAs) {
@@ -245,16 +300,26 @@ public class RequestOptions extends ObjectBase {
 	}
 
 	/**
-	 * Set the value of property {@code admin}.
+	 * Set the value of property {@code runAsClient}.
 	 *
-	 * @param admin the admin to with
+	 * @param runAsClient the value of runAsClient
 	 * @return this {@code RequestOptions}
 	 */
-	public RequestOptions withAdmin(Boolean admin) {
-		this.admin = admin;
+	public RequestOptions withRunAsClient(Boolean runAsClient) {
+		this.runAsClient = runAsClient;
 		return this;
 	}
 
+	/**
+	 * Set the value of property {@code runAsGuest}.
+	 *
+	 * @param runAsGuest the value of runAsGuest
+	 * @return this {@code RequestOptions}
+	 */
+	public RequestOptions withRunAsGuest(Boolean runAsGuest) {
+		this.runAsGuest = runAsGuest;
+		return this;
+	}
 	/**
 	 * Set the value of property {@code fullstate}.
 	 *
@@ -326,22 +391,6 @@ public class RequestOptions extends ObjectBase {
 		return SecurityUtil.getPrincipalName();
 	}
 
-
-	@Override
-	public ToStringCreator toString2(ToStringCreator creator) {
-		return creator
-				.append("runAs", runAs)
-				.append("admin", admin)
-				.append("fullstate", fullstate)
-				.append("publish", publish)
-				.append("silent", silent)
-				;
-	}
-
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -388,6 +437,21 @@ public class RequestOptions extends ObjectBase {
 			return Boolean.TRUE.equals(options.getAdmin());
 		}
 		return false;
+	}
+
+
+
+	@Override
+	public ToStringCreator toString2(ToStringCreator creator) {
+		return creator
+				.append("admin", admin)
+				.append("runAs", runAs)
+				.append("runAsClient", runAsClient)
+				.append("runAsGuest", runAsGuest)
+				.append("fullstate", fullstate)
+				.append("publish", publish)
+				.append("silent", silent)
+				;
 	}
 
 }
