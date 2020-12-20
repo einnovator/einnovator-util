@@ -362,7 +362,7 @@ public abstract class EntityBase extends ObjectBase {
 				.append("lastModifiedFormatted", lastModifiedFormatted)
 				.append("creationDateFormatted", creationDateFormatted)
 				.append("lastModifiedBy", lastModifiedBy)
-				.append("creationDateBy", createdBy)
+				.append("createdBy", createdBy)
 				;
 	}
 
