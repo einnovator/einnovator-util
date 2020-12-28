@@ -320,7 +320,7 @@ public class MetaUtil {
 	public static <T> T getFieldValue(Class<?> ownerClass, String name, Class<T> fieldType, Object obj) {
 		return getFieldValue(getField(ownerClass, name), obj, fieldType);
 	}
-	
+
 	public static Field getField(Class<?> type, String name) {
 		try {
 			Field field = type.getDeclaredField(name);
@@ -331,6 +331,24 @@ public class MetaUtil {
 		}
 		type = type.getSuperclass();
 		return type!=null ? getField(type, name) : null;
+	}
+
+	public static Field getField(Class<?> type, String name, boolean caseSensitive) {
+		if (name!=null) {
+			if (caseSensitive) {
+				return MetaUtil.getField(type, name);
+			}
+			for (Field field: type.getFields()) {
+				if (field.getName().equalsIgnoreCase(name)) {
+					return field;
+				}
+			}
+			type = type.getSuperclass();
+			if (!type.equals(Object.class)) {
+				return getField(type, name, caseSensitive);
+			}			
+		}
+		return null;
 	}
 
 	public static Field getRequiredField(Class<?> type, String name) {
@@ -367,7 +385,11 @@ public class MetaUtil {
 	public static Method getPropertyMethod(Class<?> type, String name, boolean set) {
 		return set ? getSetter(type, name) : getGetter(type, name);
 	}
-	
+
+	public static Method getPropertyMethod(Class<?> type, String name, boolean set, boolean caseSensitive) {
+		return set ? getSetter(type, name, null, caseSensitive) : getGetter(type, name, null, caseSensitive);
+	}
+
 	public static Method getPropertyMethod(Class<?> type, Class<?> propType, boolean set) {
 		return getPropertyMethod(type, getUnqualifiedName(propType), propType, set);
 	}
@@ -394,6 +416,14 @@ public class MetaUtil {
 	}
 
 	public static Method getGetter(Class<?> type, String name, Class<?> propType) {
+		return getGetter(type, name, propType, true);
+	}
+	
+	public static Method getGetter(Class<?> type, String name, boolean caseSensitive) {
+		return getGetter(type, name, null, caseSensitive);
+	}
+
+	public static Method getGetter(Class<?> type, String name, Class<?> propType, boolean caseSensitive) {
 		String methodName1 = null;
 		String methodName2 = null;
 		if (name!=null) {
@@ -409,7 +439,8 @@ public class MetaUtil {
 				String methodName = method.getName();
 				if (method.getParameterTypes().length==0 &&
 						((name==null && (methodName.startsWith("get") || methodName.startsWith("set"))) ||
-						(name!=null && (methodName.equals(methodName1) || methodName.equals(methodName2)))) &&
+						(name!=null && ((caseSensitive && (methodName.equals(methodName1) || methodName.equals(methodName2)))
+						|| (!caseSensitive  && (methodName.equalsIgnoreCase(methodName1) || methodName.equalsIgnoreCase(methodName2)))))) &&
 						(propType==null || returnType.isAssignableFrom(propType))) {
 					if (Object.class.equals(returnType)) { //deal with setter override in generics
 						found = method;
@@ -424,6 +455,14 @@ public class MetaUtil {
 	}
 
 	public static Method getSetter(Class<?> type, String name, Class<?> propType) {
+		return getSetter(type, name, propType, true);
+	}
+
+	public static Method getSetter(Class<?> type, String name, boolean caseSensitive) {
+		return getSetter(type, name, null, caseSensitive);
+	}
+
+	public static Method getSetter(Class<?> type, String name, Class<?> propType, boolean caseSensitive) {
 		String methodName0 = "set" + StringUtils.capitalize(name);
 		Method found = null;
 		while (type!=null) {
@@ -432,7 +471,8 @@ public class MetaUtil {
 				Class<?>[] parameterTypes = method.getParameterTypes(); 
 				String methodName = method.getName();
 				if (parameterTypes.length==1 &&
-						((name!=null && methodName.equals(methodName0)) ||
+						((name!=null && ((caseSensitive && methodName.equals(methodName0)) 
+								|| (!caseSensitive && methodName.equalsIgnoreCase(methodName0)))) ||
 						 (name==null && methodName.startsWith("set"))) &&
 						(propType==null || parameterTypes[0].isAssignableFrom(propType))) {
 					if (Object.class.equals(parameterTypes[0])) { //deal with setter override in generics
@@ -493,6 +533,14 @@ public class MetaUtil {
 			return method;
 		}
 		return getField(type, name);
+	}
+
+	public static Member getPropertyMember(Class<?> type, String name, boolean set, boolean caseSensitive) {
+		Method method = set ? getSetter(type, name, caseSensitive) : getGetter(type, name, caseSensitive);
+		if (method!=null) {
+			return method;
+		}
+		return getField(type, name, caseSensitive);
 	}
 
 	public static Class<?> getPropertyType(Class<?> type, String name) {
@@ -762,6 +810,25 @@ public class MetaUtil {
 		return toArray(collectAllMethods(type));
 	}
 
+	public static Method getMethod(Class<?> type, String name, Integer arity) {
+		Method[] methods = MetaUtil.getMethods(type, name);
+		if (name!=null && methods!=null) {
+			for (Method method: methods) {
+				if (!name.equals(method.getName())) {
+					continue;
+				}
+				if (Modifier.isStatic(method.getModifiers())) {
+					continue;
+				}
+				if (arity!=null && method.getParameterCount()!=arity) {
+					continue;
+				}
+				return method;
+			}
+		}
+		return null;
+		
+	}
 	static private Method[] toArray(List<Method> l) {	
 		Method[] meths = new Method[l.size()];
 		l.toArray(meths);
