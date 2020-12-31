@@ -811,14 +811,23 @@ public class MetaUtil {
 	}
 
 	public static Method getMethod(Class<?> type, String name, Integer arity) {
+		return getMethod(type, name, arity, null);
+	}
+
+	public static Method getMethod(Class<?> type, String name, Integer arity, Boolean static_) {
 		Method[] methods = MetaUtil.getMethods(type, name);
 		if (name!=null && methods!=null) {
 			for (Method method: methods) {
 				if (!name.equals(method.getName())) {
 					continue;
 				}
-				if (Modifier.isStatic(method.getModifiers())) {
-					continue;
+				if (static_!=null) {
+					if (Boolean.TRUE.equals(static_) && !Modifier.isStatic(method.getModifiers())) {
+						continue;
+					}
+					if (Boolean.FALSE.equals(static_) && Modifier.isStatic(method.getModifiers())) {
+						continue;
+					}
 				}
 				if (arity!=null && method.getParameterCount()!=arity) {
 					continue;
