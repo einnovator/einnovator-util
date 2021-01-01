@@ -522,6 +522,7 @@ public class StringUtil {
 		concat(sb, arr);
 		return sb.toString();
 	}
+	
 
 	public static void concat(StringBuilder sb, String... arr)	{	
 		for (String s: arr) {
@@ -531,6 +532,32 @@ public class StringUtil {
 		}
 	}
 
+
+	public static String concat(Object... objs) {
+		return concat(" ", objs);
+	}
+
+	public static String concat(String separator, Object... objs) {
+		StringBuilder sb = new StringBuilder();
+		for (Object obj: objs) {
+			if (obj==null) {
+				continue;
+			}
+			String s = obj.toString();
+			if (s==null) {
+				continue;
+			}
+			s = s.trim();
+			if (s.isEmpty()) {
+				continue;
+			}
+			if (sb.length()>0) {
+				sb.append(separator);
+			}
+			sb.append(s);
+		}
+		return sb.toString();
+	}
 	
 	/**
 	 * Split {@code String}, if not <code>null</code> or empty.
