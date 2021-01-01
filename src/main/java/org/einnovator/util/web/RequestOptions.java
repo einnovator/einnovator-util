@@ -36,6 +36,8 @@ public class RequestOptions extends ObjectBase {
 
 	protected Boolean publish;
 	
+	protected Integer formatStyle;
+	
 	@JsonIgnore
 	protected boolean silent;
 	
@@ -182,6 +184,23 @@ public class RequestOptions extends ObjectBase {
 		this.publish = publish;
 	}
 
+	/**
+	 * Get the value of property {@code formatStyle}.
+	 *
+	 * @return the value of {@code formatStyle}
+	 */
+	public Integer getFormatStyle() {
+		return formatStyle;
+	}
+
+	/**
+	 * Set the value of property {@code formatStyle}.
+	 *
+	 * @param formatStyle the value of {@code formatStyle}
+	 */
+	public void setFormatStyle(Integer formatStyle) {
+		this.formatStyle = formatStyle;
+	}
 
 	/**
 	 * Get the value of property {@code silent}.
@@ -191,8 +210,7 @@ public class RequestOptions extends ObjectBase {
 	public boolean isSilent() {
 		return silent;
 	}
-
-
+	
 	/**
 	 * Set the value of property {@code silent}.
 	 *
@@ -343,6 +361,16 @@ public class RequestOptions extends ObjectBase {
 	}
 
 	/**
+	 * Set the value of property {@code formatStyle}.
+	 *
+	 * @param formatStyle the value of {@code formatStyle}
+	 */
+	public RequestOptions withFormatStyle(Integer formatStyle) {
+		this.formatStyle = formatStyle;
+		return this;
+	}
+	
+	/**
 	 * Set the value of property {@code publish}.
 	 *
 	 * @param publish the value of property publish
@@ -449,6 +477,7 @@ public class RequestOptions extends ObjectBase {
 				.append("runAsClient", runAsClient)
 				.append("runAsGuest", runAsGuest)
 				.append("fullstate", fullstate)
+				.append("formatStyle", formatStyle)
 				.append("publish", publish)
 				.append("silent", silent)
 				;
