@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -20,9 +19,17 @@ public abstract class EntityBase extends ObjectBase {
 
 	protected Date lastModified;
 	
+	protected Long creationTimestamp;
+	
 	protected String creationDateFormatted;
 
+	protected String age;
+	
+	protected Long lastModifiedTimestamp;
+
 	protected String lastModifiedFormatted;
+	
+	protected String lastModifiedAge;
 	
 	protected String createdBy;
 	
@@ -138,6 +145,78 @@ public abstract class EntityBase extends ObjectBase {
 	 */
 	public void setCreationDateFormatted(String creationDateFormatted) {
 		this.creationDateFormatted = creationDateFormatted;
+	}
+
+	/**
+	 * Get the value of property {@code creationTimestamp}.
+	 *
+	 * @return the value of {@code creationTimestamp}
+	 */
+	public Long getCreationTimestamp() {
+		return creationTimestamp;
+	}
+
+	/**
+	 * Set the value of property {@code creationTimestamp}.
+	 *
+	 * @param creationTimestamp the value of {@code creationTimestamp}
+	 */
+	public void setCreationTimestamp(Long creationTimestamp) {
+		this.creationTimestamp = creationTimestamp;
+	}
+
+	/**
+	 * Get the value of property {@code age}.
+	 *
+	 * @return the value of {@code age}
+	 */
+	public String getAge() {
+		return age;
+	}
+
+	/**
+	 * Set the value of property {@code age}.
+	 *
+	 * @param age the value of {@code age}
+	 */
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	/**
+	 * Get the value of property {@code lastModifiedTimestamp}.
+	 *
+	 * @return the value of {@code lastModifiedTimestamp}
+	 */
+	public Long getLastModifiedTimestamp() {
+		return lastModifiedTimestamp;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedTimestamp}.
+	 *
+	 * @param lastModifiedTimestamp the value of {@code lastModifiedTimestamp}
+	 */
+	public void setLastModifiedTimestamp(Long lastModifiedTimestamp) {
+		this.lastModifiedTimestamp = lastModifiedTimestamp;
+	}
+
+	/**
+	 * Get the value of property {@code lastModifiedAge}.
+	 *
+	 * @return the value of {@code lastModifiedAge}
+	 */
+	public String getLastModifiedAge() {
+		return lastModifiedAge;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedAge}.
+	 *
+	 * @param lastModifiedAge the value of {@code lastModifiedAge}
+	 */
+	public void setLastModifiedAge(String lastModifiedAge) {
+		this.lastModifiedAge = lastModifiedAge;
 	}
 
 	/**
@@ -291,7 +370,51 @@ public abstract class EntityBase extends ObjectBase {
 		this.creationDateFormatted = creationDateFormatted;
 		return this;
 	}
+	
 
+	/**
+	 * Set the value of property {@code creationTimestamp}.
+	 *
+	 * @param creationTimestamp the value of {@code creationTimestamp}
+	 * @return this
+	 */
+	public EntityBase withCreationTimestamp(Long creationTimestamp) {
+		this.creationTimestamp = creationTimestamp;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code age}.
+	 *
+	 * @param age the value of {@code age}
+	 * @return this
+	 */
+	public EntityBase withAge(String age) {
+		this.age = age;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedTimestamp}.
+	 *
+	 * @param lastModifiedTimestamp the value of {@code lastModifiedTimestamp}
+	 * @return this
+	 */
+	public EntityBase withLastModifiedTimestamp(Long lastModifiedTimestamp) {
+		this.lastModifiedTimestamp = lastModifiedTimestamp;
+		return this;
+	}
+
+	/**
+	 * Set the value of property {@code lastModifiedAge}.
+	 *
+	 * @param lastModifiedAge the value of {@code lastModifiedAge}
+	 * @return this
+	 */
+	public EntityBase withLastModifiedAge(String lastModifiedAge) {
+		this.lastModifiedAge = lastModifiedAge;
+		return this;
+	}
 	/**
 	 * Set the value of property {@code lastModifiedFormatted}.
 	 *
