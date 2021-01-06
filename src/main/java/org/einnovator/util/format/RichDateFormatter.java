@@ -11,8 +11,16 @@ import java.util.ResourceBundle;
 
 import org.springframework.format.Formatter;
 
+/**
+ * A rich {@code DateFormatter}
+ *
+ * @author support@einnovator.org
+ */
 public class RichDateFormatter implements Formatter<Date> {
-	
+
+	public static final Integer DEFAULT_MAX_DAYS = 30;
+	public static final Integer DEFAULT_SHORT_DAYS = null;
+
 	public static final String KEY_NOW = "now";
 	public static final String KEY_YESTERDAY = "yesterday";
 	public static final String KEY_MIN = "min";
@@ -26,7 +34,7 @@ public class RichDateFormatter implements Formatter<Date> {
 
 	private SimpleDateFormat formatter;
 	
-	private Integer maxDays = 30;
+	private Integer maxDays;
 	
 	private int style;
 	
@@ -40,6 +48,10 @@ public class RichDateFormatter implements Formatter<Date> {
 	}
 
 	public RichDateFormatter(int style) {
+		this(style, style==DateFormat.SHORT ? DEFAULT_SHORT_DAYS : DEFAULT_MAX_DAYS);
+	}
+
+	public RichDateFormatter(int style, Integer maxDays) {
 		this(new SimpleDateFormat("dd MMM yyy"), style);
 	}
 
@@ -48,8 +60,13 @@ public class RichDateFormatter implements Formatter<Date> {
 	}
 
 	public RichDateFormatter(SimpleDateFormat formatter, int style) {
+		this(formatter, style, style==DateFormat.SHORT ? DEFAULT_SHORT_DAYS : DEFAULT_MAX_DAYS);
+	}
+
+	public RichDateFormatter(SimpleDateFormat formatter, int style, Integer maxDays) {
 		this.formatter = formatter;
 		this.style = style;
+		this.maxDays = maxDays;
 	}
 
 	/**
