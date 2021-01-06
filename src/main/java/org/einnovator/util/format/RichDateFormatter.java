@@ -140,11 +140,8 @@ public class RichDateFormatter implements Formatter<Date> {
 		if (days==1) {
 			return resolve(KEY_YESTERDAY);
 			}
-		if (maxDays!=null && days<maxDays) {
+		if (formatter==null || maxDays==null || days<maxDays) {
 			return concat(getSeparator(), days, resolve(days==1 ? KEY_DAY: KEY_DAYS), resolve(KEY_AGO));
-		}
-		if (formatter==null) {
-			return null;
 		}
 		return formatter.format(date);
 	}
