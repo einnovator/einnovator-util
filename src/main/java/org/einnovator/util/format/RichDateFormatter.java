@@ -23,6 +23,8 @@ public class RichDateFormatter implements Formatter<Date> {
 
 	public static final String KEY_NOW = "now";
 	public static final String KEY_YESTERDAY = "yesterday";
+	public static final String KEY_SEC = "sec";
+	public static final String KEY_SECS = "secs";
 	public static final String KEY_MIN = "min";
 	public static final String KEY_MINS = "mins";
 	public static final String KEY_HOUR = "hour";
@@ -32,17 +34,22 @@ public class RichDateFormatter implements Formatter<Date> {
 	public static final String KEY_AGO = "ago";
 
 
-	private SimpleDateFormat formatter;
+	protected SimpleDateFormat formatter;
 	
-	private Integer maxDays;
+	protected Integer maxDays;
 	
-	private int style;
+	protected int style;
 	
-	private ResourceBundle bundle;
+	protected ResourceBundle bundle;
 	
-	private boolean fallback;
+	protected boolean fallback;
 		
-	
+	protected boolean seconds;
+
+	protected boolean fraction;
+
+	protected boolean now = true;
+
 	public RichDateFormatter() {
 		this(DateFormat.DEFAULT);
 	}
@@ -123,29 +130,134 @@ public class RichDateFormatter implements Formatter<Date> {
 		this.style = style;
 	}
 
+	/**
+	 * Get the value of property {@code now}.
+	 *
+	 * @return the value of {@code now}
+	 */
+	public boolean isNow() {
+		return now;
+	}
+
+	/**
+	 * Set the value of property {@code now}.
+	 *
+	 * @param now the value of {@code now}
+	 */
+	public void setNow(boolean now) {
+		this.now = now;
+	}
+
+	/**
+	 * Get the value of property {@code fallback}.
+	 *
+	 * @return the value of {@code fallback}
+	 */
+	public boolean isFallback() {
+		return fallback;
+	}
+
+	/**
+	 * Set the value of property {@code fallback}.
+	 *
+	 * @param fallback the value of {@code fallback}
+	 */
+	public void setFallback(boolean fallback) {
+		this.fallback = fallback;
+	}
+
+	/**
+	 * Get the value of property {@code fraction}.
+	 *
+	 * @return the value of {@code fraction}
+	 */
+	public boolean isFraction() {
+		return fraction;
+	}
+
+	/**
+	 * Set the value of property {@code fraction}.
+	 *
+	 * @param fraction the value of {@code fraction}
+	 */
+	public void setFraction(boolean fraction) {
+		this.fraction = fraction;
+	}
+
+	/**
+	 * Get the value of property {@code seconds}.
+	 *
+	 * @return the value of {@code seconds}
+	 */
+	public boolean isSeconds() {
+		return seconds;
+	}
+
+	/**
+	 * Set the value of property {@code seconds}.
+	 *
+	 * @param seconds the value of {@code seconds}
+	 */
+	public void setSeconds(boolean seconds) {
+		this.seconds = seconds;
+	}
+
 	@Override
 	public String print(Date date, Locale locale) {
-		long dt = (System.currentTimeMillis() - date.getTime())/(1000*60);
-		if (dt==0) {
+		long sec = getDurationSeconds(date);
+		if (seconds) {
+			if (sec==0 && isNow()) {
+				return resolve(KEY_NOW);
+			}
+			if (sec < 60) {
+				return concat(getSeparator(), sec, resolve(sec==1 ? KEY_SEC: KEY_SECS), resolve(KEY_AGO));
+			}			
+		}
+		long min = sec/60;
+		if (min==0 && isNow()) {
 			return resolve(KEY_NOW);
 		}
-		if (dt < 60) {
-			return concat(getSeparator(), dt, resolve(dt==1 ? KEY_MIN: KEY_MINS), resolve(KEY_AGO));
+		if (min < 60) {
+			if (fraction) {
+				long sec_ = sec - min*60;
+				if (sec_>0) {
+					String fsec = Long.toString(sec_);
+					return concat(getSeparator(), min, resolve(min==1 ? KEY_MIN: KEY_MINS), fsec, resolve(sec_==1 ? KEY_SEC: KEY_SECS), resolve(KEY_AGO));									
+				}
+			}
+			return concat(getSeparator(), min, resolve(min==1 ? KEY_MIN: KEY_MINS), resolve(KEY_AGO));				
 		}
-		long hs = dt / 60;
+		long hs = min / 60;
 		if (hs<24) {
+			if (fraction) {
+				long min_ = min - hs*60;
+				if (min_>0) {
+					String fmin = Long.toString(min_);
+					return concat(getSeparator(), hs, resolve(hs==1 ? KEY_HOUR: KEY_HOURS), fmin, resolve(min_==1 ? KEY_MIN: KEY_MINS), resolve(KEY_AGO));
+				}
+			}
 			return concat(getSeparator(), hs, resolve(hs==1 ? KEY_HOUR: KEY_HOURS), resolve(KEY_AGO));
 		}
-		long days = dt / (60*24);
-		if (days==1) {
+		long days = min / (60*24);
+		if (days==1 && now) {
 			return resolve(KEY_YESTERDAY);
-			}
+		}
 		if (formatter==null || maxDays==null || days<maxDays) {
+			if (fraction) {
+				long hs_ = hs - days*24;
+				if (hs_>0) {
+					String fhs = Long.toString(hs_);
+					return concat(getSeparator(), days, resolve(days==1 ? KEY_DAY: KEY_DAYS), fhs, resolve(hs_==1 ? KEY_HOUR: KEY_HOURS), resolve(KEY_AGO));
+				}
+			}
 			return concat(getSeparator(), days, resolve(days==1 ? KEY_DAY: KEY_DAYS), resolve(KEY_AGO));
 		}
 		return formatter.format(date);
 	}
 
+	protected long getDurationSeconds(Date date) {
+		return (System.currentTimeMillis() - date.getTime())/(1000);
+	}
 	protected String resolve(String key) {
 		return resolve(key, style);
 	}
@@ -206,6 +318,10 @@ public class RichDateFormatter implements Formatter<Date> {
 			return "just now";
 		case KEY_YESTERDAY:
 			return "yesterday";
+		case KEY_SEC:
+			return "sec";
+		case KEY_SECS:
+			return "secs";
 		case KEY_MIN:
 			return "min";
 		case KEY_MINS:
@@ -230,6 +346,9 @@ public class RichDateFormatter implements Formatter<Date> {
 			return "now";
 		case KEY_YESTERDAY:
 			return "1d";
+		case KEY_SEC:
+		case KEY_SECS:
+			return "s";
 		case KEY_MIN:
 		case KEY_MINS:
 			return "m";

@@ -19,7 +19,9 @@ public class RichDateFormatterTests {
 		RichDateFormatter formatter = new RichDateFormatter(DateFormat.SHORT);
 		System.out.println("Short Style:");
 		basicTests(formatter);
+
 	}
+
 
 	public void basicTests(RichDateFormatter formatter) {
 		System.out.println(formatter.print(new Date(), null));
