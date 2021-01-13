@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.util.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -489,6 +491,16 @@ public abstract class EntityBase extends ObjectBase {
 				;
 	}
 
+	public static String getAnyId(EntityBase obj) {
+		if (StringUtils.hasText(obj.getUuid())) {
+			return obj.getUuid();
+		}
+		if (StringUtils.hasText(obj.getId())) {
+			return obj.getId();
+		}
+		return null;
+	}
+	
 	public static <T extends EntityBase> T findById(String id, Iterable<T> it) {
 		if (it!=null) {
 			for (T obj: it) {
@@ -524,6 +536,17 @@ public abstract class EntityBase extends ObjectBase {
 		return ids;
 	}
 
+	public static <T extends EntityBase> T findByAnyId(String id, List<T> objs) {
+		if (id!=null && objs!=null) {
+			for (T obj: objs) {
+				if (id.equals(obj.getUuid()) || (obj.getId()!=null && obj.getId().toString().equals(id))) {
+					return obj;
+				}
+			}
+		}
+		return null;
+	}
+	
 	public static <T extends EntityBase> List<String> getUuids(Iterable<T> it) {
 		if (it==null) {
 			return null;

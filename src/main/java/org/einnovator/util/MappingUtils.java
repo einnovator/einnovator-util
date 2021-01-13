@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -73,6 +74,18 @@ public class MappingUtils {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static <T> List<T> fromJsonAsList(String s, Class<T> type, Class<?> arrayType) {
+		if (s==null || s.isEmpty()) {
+			return null;
+		}
+		T[] a = (T[])fromJson(s, arrayType);
+		if (a==null) {
+			return null;
+		}
+		return new ArrayList<T>(Arrays.asList(a));			
+	}
+
 	public static <T> T makeObject(Class<T> type, Map<String, Object> map) {
 		if (map==null) {
 			return null;

@@ -90,7 +90,7 @@ public class UriUtils {
 		try {
 
 			String query = uri.getRawQuery();
-			String queryFragment = name + "=" + URLEncoder.encode(value.toString(), encoding);
+			String queryFragment = name + "=" + URLEncoder.encode(formatQueryParameter(value.toString()), encoding);
 			if (query == null) {
 				query = queryFragment;
 			}
@@ -118,6 +118,21 @@ public class UriUtils {
 		catch (UnsupportedEncodingException e) {
 			throw new IllegalArgumentException("Could not encode URI", e);
 		}		
+	}
+	
+	private static String formatQueryParameter(Object value) {
+		if (value==null) {
+			return "";
+		}
+		if (value.getClass().isArray()) {
+			if (value instanceof String[]) {
+				value = String.join(",", (String[])value);
+			}
+		}
+		if (value instanceof Iterable) {
+			value = CollectionUtil.toString((Iterable<?>)value, null, null, ",");
+		}
+		return value.toString();
 	}
 	
 	/**

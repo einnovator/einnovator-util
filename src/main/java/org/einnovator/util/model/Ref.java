@@ -49,7 +49,7 @@ public class Ref extends ObjectBase {
 	/**
 	 * Set the value of property {@code id}.
 	 *
-	 * @param id the id to set
+	 * @param id the id
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -67,7 +67,7 @@ public class Ref extends ObjectBase {
 	/**
 	 * Set the value of property {@code type}.
 	 *
-	 * @param type the type to set
+	 * @param type the type
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -85,7 +85,7 @@ public class Ref extends ObjectBase {
 	/**
 	 * Set the value of property {@code name}.
 	 *
-	 * @param name the name to set
+	 * @param name the name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -103,7 +103,7 @@ public class Ref extends ObjectBase {
 	/**
 	 * Set the value of property {@code img}.
 	 *
-	 * @param img the img to set
+	 * @param img the img
 	 */
 	public void setImg(String img) {
 		this.img = img;
@@ -121,7 +121,7 @@ public class Ref extends ObjectBase {
 	/**
 	 * Set the value of property {@code thumbnail}.
 	 *
-	 * @param thumbnail the thumbnail to set
+	 * @param thumbnail the thumbnail
 	 */
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
@@ -139,7 +139,7 @@ public class Ref extends ObjectBase {
 	/**
 	 * Set the value of property {@code redirectUri}.
 	 *
-	 * @param redirectUri the redirectUri to set
+	 * @param redirectUri the redirectUri
 	 */
 	public void setRedirectUri(String redirectUri) {
 		this.redirectUri = redirectUri;
@@ -157,7 +157,7 @@ public class Ref extends ObjectBase {
 	/**
 	 * Set the value of property {@code pingUri}.
 	 *
-	 * @param pingUri the pingUri to set
+	 * @param pingUri the pingUri
 	 */
 	public void setPingUri(String pingUri) {
 		this.pingUri = pingUri;

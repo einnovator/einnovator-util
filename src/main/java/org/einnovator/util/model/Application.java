@@ -56,7 +56,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Set the value of property {@code id}.
 	 *
-	 * @param id the id to set
+	 * @param id the id
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -76,7 +76,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Set the value of property {@code name}.
 	 *
-	 * @param name the name to set
+	 * @param name the name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -96,7 +96,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Set the value of property {@code icon}.
 	 *
-	 * @param icon the icon to set
+	 * @param icon the icon
 	 */
 	public void setIcon(String icon) {
 		this.icon = icon;
@@ -116,7 +116,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Set the value of property {@code img}.
 	 *
-	 * @param img the img to set
+	 * @param img the img
 	 */
 	public void setImg(String img) {
 		this.img = img;
@@ -135,7 +135,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Set the value of property {@code info}.
 	 *
-	 * @param info the info to set
+	 * @param info the info
 	 */
 	public void setInfo(String info) {
 		this.info = info;
@@ -155,7 +155,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Set the value of property {@code description}.
 	 *
-	 * @param description the description to set
+	 * @param description the description
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -174,7 +174,7 @@ public class Application extends ObjectBase {
 	/**
 	 * Set the value of property {@code thumbnail}.
 	 *
-	 * @param thumbnail the thumbnail to set
+	 * @param thumbnail the thumbnail
 	 */
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;

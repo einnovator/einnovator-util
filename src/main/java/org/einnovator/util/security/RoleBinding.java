@@ -59,7 +59,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code user}.
 	 *
-	 * @param user the user to set
+	 * @param user the user
 	 */
 	public void setUsername(String user) {
 		this.username = user;
@@ -77,7 +77,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code group}.
 	 *
-	 * @param group the group to set
+	 * @param group the group
 	 */
 	public void setGroupId(String group) {
 		this.groupId = group;
@@ -95,7 +95,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code user}.
 	 *
-	 * @param user the user to set
+	 * @param user the user
 	 */
 	public void setUser(Object user) {
 		this.user = user;
@@ -113,7 +113,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code group}.
 	 *
-	 * @param group the group to set
+	 * @param group the group
 	 */
 	public void setGroup(Object group) {
 		this.group = group;
@@ -179,7 +179,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code username}.
 	 *
-	 * @param username the username to set
+	 * @param username the username
 	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withUsername(String username) {
@@ -190,7 +190,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code user}.
 	 *
-	 * @param user the user to set
+	 * @param user the user
 	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withUser(Object user) {
@@ -200,7 +200,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code groupId}.
 	 *
-	 * @param groupId the group id to set
+	 * @param groupId the group id
 	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withGroupId(String groupId) {
@@ -211,7 +211,7 @@ public class RoleBinding extends ObjectBase {
 	/**
 	 * Set the value of property {@code group}.
 	 *
-	 * @param group the group to set
+	 * @param group the group
 	 * @return this {@code RoleBinding}
 	 */
 	public RoleBinding withGroup(Object group) {

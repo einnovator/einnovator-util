@@ -107,6 +107,8 @@ public abstract class ObjectBase {
 	/**
 	 * Returns this {@code Object} cast to specified type.
 	 * 
+	 * @param <T> any type
+	 * @param type input type
 	 * @return this {@code Object}
 	 */
 	@SuppressWarnings("unchecked")

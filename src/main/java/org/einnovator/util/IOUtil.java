@@ -39,7 +39,7 @@ public class IOUtil {
 	/**
 	 * Set the value of property {@code bufferSize}.
 	 *
-	 * @param bufferSize the bufferSize to set
+	 * @param bufferSize the bufferSize
 	 */
 	public static void setBufferSize(int bufferSize) {
 		IOUtil.bufferSize = bufferSize;

@@ -3,7 +3,6 @@ package org.einnovator.util.model;
 import java.util.Collection;
 
 import org.springframework.core.style.DefaultValueStyler;
-import org.einnovator.util.model.ToStringCreator;
 import org.springframework.core.style.ValueStyler;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;

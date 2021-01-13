@@ -111,7 +111,7 @@ public class TextTemplates {
 	/**
 	 * Set the value of property {@code startMarker}.
 	 *
-	 * @param startMarker the startMarker to set
+	 * @param startMarker the startMarker
 	 */
 	public void setStartMarker(String startMarker) {
 		this.startMarker = startMarker;
@@ -129,7 +129,7 @@ public class TextTemplates {
 	/**
 	 * Set the value of property {@code endMarker}.
 	 *
-	 * @param endMarker the endMarker to set
+	 * @param endMarker the endMarker
 	 */
 	public void setEndMarker(String endMarker) {
 		this.endMarker = endMarker;
@@ -147,7 +147,7 @@ public class TextTemplates {
 	/**
 	 * Set the value of property {@code resolver}.
 	 *
-	 * @param resolver the resolver to set
+	 * @param resolver the resolver
 	 */
 	public void setResolver(ExpressionResolver resolver) {
 		this.resolver = resolver;

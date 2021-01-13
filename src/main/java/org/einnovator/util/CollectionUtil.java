@@ -162,9 +162,9 @@ public class CollectionUtil {
 	public static String toString(Collection<?> collection, String separator) {
 		return toString(collection, "{", "}", separator);
 	}
-	
-	public static String toString(Collection<?> collection, String beginMark, String endMark, String separator) {
-		Iterator<?> it = collection.iterator();
+
+	public static String toString(Iterable<?> iterable, String beginMark, String endMark, String separator) {
+		Iterator<?> it = iterable.iterator();
 		StringBuilder sb = new StringBuilder();
 		if (beginMark!=null) {
 			sb.append(beginMark);
@@ -250,6 +250,27 @@ public class CollectionUtil {
 			return "\"" + value + "\"";
 		}
 		return value.toString();
+	}
+
+	
+	/**
+	 * Find one element of specified type.
+	 * 
+	 * @param <T> element type
+	 * @param it an iterable
+	 * @param type the type
+	 * @return the element if found, null otherwise.
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T findOneOfType(Iterable<?> it, Class<T> type) {
+		if (it!=null) {
+			for (Object obj: it) {
+				if (type.isAssignableFrom(obj.getClass())) {
+					return (T)obj;
+				}
+			}
+		}
+		return null;
 	}
 
 }

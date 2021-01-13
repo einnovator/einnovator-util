@@ -35,7 +35,7 @@ public class ConnectionConfiguration {
 	/**
 	 * Set the value of property {@code requestTimeout}.
 	 *
-	 * @param requestTimeout the requestTimeout to set
+	 * @param requestTimeout the requestTimeout
 	 */
 	public void setRequestTimeout(Integer requestTimeout) {
 		this.requestTimeout = requestTimeout;
@@ -53,7 +53,7 @@ public class ConnectionConfiguration {
 	/**
 	 * Set the value of property {@code timeout}.
 	 *
-	 * @param timeout the timeout to set
+	 * @param timeout the timeout
 	 */
 	public void setTimeout(Integer timeout) {
 		this.timeout = timeout;
@@ -71,7 +71,7 @@ public class ConnectionConfiguration {
 	/**
 	 * Set the value of property {@code readTimeout}.
 	 *
-	 * @param readTimeout the readTimeout to set
+	 * @param readTimeout the readTimeout
 	 */
 	public void setReadTimeout(Integer readTimeout) {
 		this.readTimeout = readTimeout;

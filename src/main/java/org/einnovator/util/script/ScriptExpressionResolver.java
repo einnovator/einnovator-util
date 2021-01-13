@@ -95,7 +95,7 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	/**
 	 * Set the value of property {@code engine}.
 	 *
-	 * @param engine the engine to set
+	 * @param engine the engine
 	 */
 	public void setEngine(ScriptEngine engine) {
 		this.engine = engine;
@@ -113,7 +113,7 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	/**
 	 * Set the value of property {@code silent}.
 	 *
-	 * @param silent the silent to set
+	 * @param silent the silent
 	 */
 	public void setSilent(boolean silent) {
 		this.silent = silent;
@@ -131,7 +131,7 @@ public class ScriptExpressionResolver implements ExpressionResolver {
 	/**
 	 * Set the value of property {@code context}.
 	 *
-	 * @param context the context to set
+	 * @param context the context
 	 */
 	public void setContext(ScriptContext context) {
 		this.context = context;

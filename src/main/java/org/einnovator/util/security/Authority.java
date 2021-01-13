@@ -68,7 +68,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code type}.
 	 *
-	 * @param type the type to set
+	 * @param type the type
 	 */
 	public void setType(OwnerType type) {
 		this.type = type;
@@ -86,7 +86,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code user}.
 	 *
-	 * @param user the user to set
+	 * @param user the user
 	 */
 	public void setUsername(String user) {
 		this.username = user;
@@ -104,7 +104,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code group}.
 	 *
-	 * @param group the group to set
+	 * @param group the group
 	 */
 	public void setGroupId(String group) {
 		this.groupId = group;
@@ -122,7 +122,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code other}.
 	 *
-	 * @param other the other to set
+	 * @param other the other
 	 */
 	public void setOther(Boolean other) {
 		this.other = other;
@@ -140,7 +140,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code read}.
 	 *
-	 * @param read the read to set
+	 * @param read the read
 	 */
 	public void setRead(Boolean read) {
 		this.read = read;
@@ -158,7 +158,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code write}.
 	 *
-	 * @param write the write to set
+	 * @param write the write
 	 */
 	public void setWrite(Boolean write) {
 		this.write = write;
@@ -194,7 +194,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code connectionId}.
 	 *
-	 * @param connectionId the connectionId to set
+	 * @param connectionId the connectionId
 	 */
 	public void setConnectionId(String connectionId) {
 		this.connectionId = connectionId;
@@ -212,7 +212,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code user}.
 	 *
-	 * @param user the user to set
+	 * @param user the user
 	 */
 	public void setUser(Object user) {
 		this.user = user;
@@ -230,7 +230,7 @@ public class Authority extends EntityBase {
 	/**
 	 * Set the value of property {@code group}.
 	 *
-	 * @param group the group to set
+	 * @param group the group
 	 */
 	public void setGroup(Object group) {
 		this.group = group;
