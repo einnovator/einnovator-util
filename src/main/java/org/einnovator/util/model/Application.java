@@ -1,8 +1,5 @@
 package org.einnovator.util.model;
 
-import org.einnovator.util.model.ObjectBase;
-import org.einnovator.util.model.ToStringCreator;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
