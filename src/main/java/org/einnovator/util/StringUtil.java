@@ -96,7 +96,7 @@ public class StringUtil {
 	public static int countEmpty(String[] l) {
 		int n = 0;
 		for (String s: l) {
-			if (StringUtils.isEmpty(s))	{
+			if (StringUtils.hasLength(s))	{
 				n++;
 			}
 		}
@@ -111,7 +111,7 @@ public class StringUtil {
 		String[] l_ = new String[n];
 		int i = 0;
 		for (String s: l) {
-			if (!StringUtils.isEmpty(s)) {
+			if (!StringUtils.hasLength(s)) {
 				l_[i++] = s;
 			}
 		}
@@ -526,7 +526,7 @@ public class StringUtil {
 
 	public static void concat(StringBuilder sb, String... arr)	{	
 		for (String s: arr) {
-			if (!StringUtils.isEmpty(s)) {
+			if (!StringUtils.hasLength(s)) {
 				sb.append(s);				
 			}
 		}
@@ -567,7 +567,7 @@ public class StringUtil {
 	 * @return an array with parts; or <code>null</code>, if input string is <code>null</code> or empty. 
 	 */
 	public static String[] split(String s, String separator) {
-		return !StringUtils.isEmpty(s) ? s.split(separator) : null;
+		return !StringUtils.hasLength(s) ? s.split(separator) : null;
 	}
 	
 	/**
@@ -616,7 +616,7 @@ public class StringUtil {
 		}
 		List<String> l = new ArrayList<String>(a.length);
 		for (int i=0; i<a.length; i++) {
-			if (!StringUtils.isEmpty(a[i])) {
+			if (!StringUtils.hasLength(a[i])) {
 				l.add(a[i]);
 			}
 		}
@@ -695,7 +695,7 @@ public class StringUtil {
 	 */
 	public static boolean isValidEmail(String s) {
 		 String[] a = s.split("@");
-		 if (a.length != 2 || StringUtils.isEmpty(a[0]) || StringUtils.isEmpty(a[1])) {
+		 if (a.length != 2 || StringUtils.hasLength(a[0]) || StringUtils.hasLength(a[1])) {
 			 return false;
 		 }
 		 String[] d = a[1].split("\\.");

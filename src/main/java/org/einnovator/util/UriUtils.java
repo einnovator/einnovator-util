@@ -161,10 +161,7 @@ public class UriUtils {
 	
 	public static String encodePath(String path, String encoding) {
 		if(StringUtils.hasText(path)) {
-			try {
-				return org.springframework.web.util.UriUtils.encodePath(path, encoding);				
-			} catch (UnsupportedEncodingException e) {
-			}
+			return org.springframework.web.util.UriUtils.encodePath(path, encoding);				
 		}
 		return path;
 	}
@@ -176,10 +173,7 @@ public class UriUtils {
 	
 	public static String encode(String path, String encoding) {
 		if(StringUtils.hasText(path)) {
-			try {
-				return org.springframework.web.util.UriUtils.encode(path, encoding);				
-			} catch (UnsupportedEncodingException e) {
-			}
+			return org.springframework.web.util.UriUtils.encode(path, encoding);				
 		}
 		return path;
 	}
@@ -190,10 +184,7 @@ public class UriUtils {
 
 	public static String decode(String path, String encoding) {
 		if(StringUtils.hasText(path)) {
-			try {
-				return org.springframework.web.util.UriUtils.decode(path, encoding);				
-			} catch (UnsupportedEncodingException e) {
-			}
+			return org.springframework.web.util.UriUtils.decode(path, encoding);				
 		}
 		return path;
 	}

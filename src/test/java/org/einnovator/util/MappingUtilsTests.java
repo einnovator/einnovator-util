@@ -1,13 +1,12 @@
 package org.einnovator.util;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
 
-import org.einnovator.util.MappingUtils;
 import org.einnovator.util.script.TestUser;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class MappingUtilsTests {

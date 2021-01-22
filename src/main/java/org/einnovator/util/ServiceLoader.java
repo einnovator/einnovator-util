@@ -150,16 +150,17 @@ public class ServiceLoader<T> {
 		InputStream in = null;
 		try {
 			in = url.openStream();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-			String line;
-			while ((line = reader.readLine()) != null) {
-				line = line.trim();
-				Matcher m = nonCommentPattern.matcher(line);
-				if (m.find()) {
-					serviceNames.add(new ServiceName(m.group().trim(), url));
-				}
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+				String line;
+				while ((line = reader.readLine()) != null) {
+					line = line.trim();
+					Matcher m = nonCommentPattern.matcher(line);
+					if (m.find()) {
+						serviceNames.add(new ServiceName(m.group().trim(), url));
+					}
+				}				
 			}
+
 		} catch (IOException e) {
 			logger.warn("addServiceNames: " + e + " " + url);
 		} finally {

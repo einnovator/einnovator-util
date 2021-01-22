@@ -217,7 +217,7 @@ public class PageOptions extends ObjectBase {
 
 	
 	public static PageRequest toPageRequest(PageOptions options) {
-		return new PageRequest(options.getPage()!=null ? options.getPage() : 0, options.getPageSize()!=null ? options.getPageSize() : PageOptions
+		return PageRequest.of(options.getPage()!=null ? options.getPage() : 0, options.getPageSize()!=null ? options.getPageSize() : PageOptions
 				.DEFAULT_PAGESIZE, toSort(options));
 	}
 
@@ -263,7 +263,7 @@ public class PageOptions extends ObjectBase {
 		if (orderList.isEmpty()) {
 			return null;
 		}
-		return new Sort(orderList);
+		return Sort.by(orderList);
 	}
 
 

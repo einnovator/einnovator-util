@@ -6,10 +6,10 @@ public class TestUser {
 	
 	
 	public TestUser(String id, String username) {
-		super();
 		this.id = id;
 		this.username = username;
 	}
+	
 	public String getId() {
 		return id;
 	}

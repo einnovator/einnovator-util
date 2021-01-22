@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.einnovator.util.MappingUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author support@einnovator.org

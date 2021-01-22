@@ -3,7 +3,7 @@ package org.einnovator.util.format;
 import java.text.DateFormat;
 import java.util.Date;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RichDateFormatterTests {
 

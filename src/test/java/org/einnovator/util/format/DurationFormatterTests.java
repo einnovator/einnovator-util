@@ -2,7 +2,7 @@ package org.einnovator.util.format;
 
 import java.util.Date;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DurationFormatterTests {
 

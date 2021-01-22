@@ -10,7 +10,7 @@ import java.util.List;
 import org.einnovator.util.FileUtil;
 import org.einnovator.util.MappingUtils;
 import org.einnovator.util.ResourceUtils;
-import org.springframework.boot.context.embedded.MimeMappings;
+import org.springframework.boot.web.server.MimeMappings;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 
