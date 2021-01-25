@@ -4,7 +4,7 @@ target/
 .project
 .springBeans
 .settings/
-
+.aws.settings.xml
 
 # Compiled class file
 *.class
