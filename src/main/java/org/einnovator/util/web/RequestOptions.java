@@ -39,13 +39,13 @@ public class RequestOptions extends ObjectBase {
 	protected Integer formatStyle;
 	
 	@JsonIgnore
-	protected boolean silent;
+	protected Boolean silent;
 	
 	@JsonIgnore
 	protected Object result;
 	
 	@JsonIgnore
-	protected boolean singleton;
+	protected Boolean singleton;
 
 
 	//
@@ -207,7 +207,7 @@ public class RequestOptions extends ObjectBase {
 	 *
 	 * @return the value of silent
 	 */
-	public boolean isSilent() {
+	public Boolean getSilent() {
 		return silent;
 	}
 	
@@ -216,7 +216,7 @@ public class RequestOptions extends ObjectBase {
 	 *
 	 * @param silent the value of property silent
 	 */
-	public void setSilent(boolean silent) {
+	public void setSilent(Boolean silent) {
 		this.silent = silent;
 	}
 	/**
@@ -224,7 +224,7 @@ public class RequestOptions extends ObjectBase {
 	 *
 	 * @return the value of singleton
 	 */
-	public boolean isSingleton() {
+	public Boolean getSingleton() {
 		return singleton;
 	}
 
@@ -233,7 +233,7 @@ public class RequestOptions extends ObjectBase {
 	 *
 	 * @param singleton the value of property singleton
 	 */
-	public void setSingleton(boolean singleton) {
+	public void setSingleton(Boolean singleton) {
 		this.singleton = singleton;
 	}
 	
@@ -276,12 +276,12 @@ public class RequestOptions extends ObjectBase {
 	}
 	
 	/**
-	 * Check if result is error by unwrapping a {@code Result}.
+	 * Check if result get error by unwrapping a {@code Result}.
 	 *
 	 * @return the value of result
 	 */
 	@JsonIgnore
-	public boolean isError() {
+	public Boolean getError() {
 		if (result instanceof Result) {
 			return Boolean.TRUE.equals(((Result<?>)result).isError());
 		}
@@ -355,7 +355,7 @@ public class RequestOptions extends ObjectBase {
 	 * @param silent the value of property silent
 	 * @return this {@code RequestOptions}
 	 */
-	public RequestOptions withSilent(boolean silent) {
+	public RequestOptions withSilent(Boolean silent) {
 		this.silent = silent;
 		return this;
 	}
@@ -387,7 +387,7 @@ public class RequestOptions extends ObjectBase {
 	 * @param singleton the value of property singleton
 	 * @return this {@code RequestOptions}
 	 */
-	public RequestOptions withSingleton(boolean singleton) {
+	public RequestOptions withSingleton(Boolean singleton) {
 		this.singleton = singleton;
 		return this;
 	}
@@ -455,12 +455,12 @@ public class RequestOptions extends ObjectBase {
 	}
 	
 	/**
-	 * Check if request is for an {@code /admin} endpoint.
+	 * Check if request get for an {@code /admin} endpoint.
 	 * 
 	 * @param options optional {@code RequestOptions}
-	 * @return true if request is for an admin endpoint, false otherwise
+	 * @return true if request get for an admin endpoint, false otherwise
 	 */
-	public static boolean isAdminRequest(RequestOptions options) {
+	public static Boolean getAdminRequest(RequestOptions options) {
 		if (options!=null && options.getAdmin()!=null) {
 			return Boolean.TRUE.equals(options.getAdmin());
 		}
