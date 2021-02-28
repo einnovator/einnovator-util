@@ -460,7 +460,7 @@ public class RequestOptions extends ObjectBase {
 	 * @param options optional {@code RequestOptions}
 	 * @return true if request get for an admin endpoint, false otherwise
 	 */
-	public static Boolean getAdminRequest(RequestOptions options) {
+	public static boolean isAdminRequest(RequestOptions options) {
 		if (options!=null && options.getAdmin()!=null) {
 			return Boolean.TRUE.equals(options.getAdmin());
 		}
