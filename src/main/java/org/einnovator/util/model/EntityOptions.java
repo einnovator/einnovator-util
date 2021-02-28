@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class EntityOptions<T> extends RequestOptions implements Options<T> {
 
 	@JsonIgnore
-	private boolean fetch;
+	private Boolean fetch;
 
 	/**
 	 * Create instance of {@code EntityOptions}.
@@ -34,7 +34,7 @@ public class EntityOptions<T> extends RequestOptions implements Options<T> {
 	 *
 	 * @return the fetch
 	 */
-	public boolean isFetch() {
+	public Boolean getFetch() {
 		return fetch;
 	}
 
